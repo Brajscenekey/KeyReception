@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Recepnist.RsettingActivity">
+
+
+
+    <RelativeLayout
+        android:id="@+id/rr1"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentLeft="true">
+
+
+
+        <ImageView
+            android:id="@+id/iv_leftarrow_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/arrow" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/quicksandmedium"
+            android:text="@string/Settings"
+            android:letterSpacing=".01"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorwhite"
+            android:textSize="17sp"
+            />
+
+    </RelativeLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rr1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_notification"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp">
+
+
+
+                <ImageView
+                    android:id="@+id/iv_noti"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/ic_bell"
+                    />
+
+
+                <TextView
+                    android:id="@+id/notification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/iv_noti"
+                    android:fontFamily="@font/quicksandregular"
+                    android:layout_centerVertical="true"
+                    android:textSize="17sp"
+                    android:text="@string/noti"
+                    />
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:theme="@style/SCBSwitch"
+                    android:checked="true"
+                    android:layout_centerInParent="true"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/notification"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/LigthestGraycolor"
+                    />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_payment_op"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp">
+
+
+                <ImageView
+                    android:id="@+id/iv_pay"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/ic_wallet"
+                    />
+
+
+                <TextView
+                    android:id="@+id/pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/iv_pay"
+                    android:fontFamily="@font/quicksandregular"
+                    android:layout_centerVertical="true"
+                    android:textSize="17sp"
+                    android:text="@string/pay_opt"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_right_arrow"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/pay"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/LigthestGraycolor"
+                    />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_up_doc"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp">
+
+
+                <ImageView
+                    android:id="@+id/iv_doc"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/ic_checklist"
+                    />
+
+
+                <TextView
+                    android:id="@+id/updoc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/iv_doc"
+                    android:fontFamily="@font/quicksandregular"
+                    android:layout_centerVertical="true"
+                    android:textSize="17sp"
+                    android:text="@string/up_doc"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_right_arrow"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/updoc"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/LigthestGraycolor"
+                    />
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/rl_chan_pass"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp">
+
+
+                <ImageView
+                    android:id="@+id/iv_pass"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/ic_locked"
+                    />
+
+
+                <TextView
+                    android:id="@+id/bi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/quicksandregular"
+                    android:layout_centerVertical="true"
+                    android:textSize="17sp"
+                    android:layout_toRightOf="@+id/iv_pass"
+                    android:text="@string/chan_pass"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_right_arrow"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/bi"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/LigthestGraycolor"
+                    />
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/rl_abo"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp">
+
+
+                <ImageView
+                    android:id="@+id/iv_abo"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/ic_about_us"
+                    />
+
+
+                <TextView
+                    android:id="@+id/not"
+                    android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/iv_abo"
+                    android:fontFamily="@font/quicksandregular"
+                    android:layout_centerVertical="true"
+                    android:textSize="17sp"
+                    android:text="@string/abo_us"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_right_arrow"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/not"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/LigthestGraycolor"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_term"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp">
+
+
+
+                <ImageView
+                    android:id="@+id/iv_term"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/ic_list"
+                    />
+
+
+                <TextView
+                    android:id="@+id/term"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/iv_term"
+                    android:fontFamily="@font/quicksandregular"
+                    android:layout_centerVertical="true"
+                    android:textSize="17sp"
+                    android:text="@string/term_con"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_right_arrow"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/term"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/LigthestGraycolor"
+                    />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_privacy"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp">
+
+
+
+                <ImageView
+                    android:id="@+id/iv_pri"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/ic_privecy_policy_ico"
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/pri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/iv_pri"
+                    android:fontFamily="@font/quicksandregular"
+                    android:layout_centerVertical="true"
+                    android:textSize="17sp"
+                    android:text="@string/pri_pol"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_right_arrow"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/pri"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/LigthestGraycolor"
+                    />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_log"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/iv_log"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    app:srcCompat="@drawable/ic_logout"
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/log"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/quicksandregular"
+                    android:layout_centerVertical="true"
+                    android:textSize="17sp"
+                    android:layout_toRightOf="@+id/iv_log"
+                    android:text="@string/log"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_right_arrow"
+                    />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/log"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/LigthestGraycolor"
+                    />
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>

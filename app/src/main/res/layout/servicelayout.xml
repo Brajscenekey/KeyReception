@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="10dp"
+    android:id="@+id/rl_post_service"
+    android:background="@drawable/cornerwhiteback"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:id="@+id/detail_li1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_below="@+id/service"
+        android:layout_weight="1"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_categoryimg"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/ic_plumbering"
+            android:elevation="5dp"
+            android:tint="@color/colorDarkgray"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tv_categorytitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksandmedium"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="5dp"
+            android:text="plumber"
+            android:textColor="@color/colorDarkgray"
+            android:textSize="14sp"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

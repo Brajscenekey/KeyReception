@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/rl_request"
+    android:layout_height="wrap_content">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/setting_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardBackgroundColor="@color/colorwhite"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/iv_Myjobhome"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:scaleType="fitXY"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/app_ico"
+                app:riv_corner_radius="2dp"
+                />
+
+
+            <TextView
+                android:id="@+id/tv_Myjob_proname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksandbold"
+                android:gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/iv_Myjobhome"
+                android:text="Righthaus Property"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginRight="50dp"
+                android:textColor="@color/colordarkblack"
+                android:textSize="17sp"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/rprof_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_user_ico"
+                app:civ_border_color="@color/appcolor"
+                app:civ_border_width=".55dp"
+                />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/tv_Myjob_proname"
+                android:layout_toRightOf="@+id/iv_Myjobhome"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                >
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="12dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_placeholder" />
+                <TextView
+                    android:id="@+id/tv_Myjob_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksandregular"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginRight="50dp"
+                    android:text="9891 Bridle St.Buffalo, NY 14215"
+                    android:textColor="@color/colorDarkgray"
+                    android:textSize="15sp"
+                    />
+
+            </LinearLayout>
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_Myjobhome"
+                android:layout_below="@+id/iv_Myjobhome"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+               >
+
+
+
+                    <TextView
+                        android:id="@+id/tv_Myjob_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/quicksandbold"
+                        android:gravity="center"
+                        android:text="15,March 12:00 AM"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_Myjob_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/quicksandbold"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:text="Request"
+                        android:textColor="@color/appcolor"
+                        android:textSize="14sp"
+                        />
+
+                <ImageView
+                    android:id="@+id/requestarrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="15dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_right_arrowline" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/req_popup"
+    android:background="#80000000"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/setting_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorwhite"
+        app:cardElevation="2dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/pop_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/colorPrimary"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    app:srcCompat="@drawable/arrow" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:text="@string/newappo"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17dp"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/LigthestGraycolor"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_height="wrap_content">
+
+
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/iv_selecttype_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/app_ico"
+                app:riv_corner_radius="2dp"
+                />
+
+
+            <TextView
+                android:id="@+id/tv_rdetail_propname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksandbold"
+                android:gravity="start"
+                android:layout_marginRight="34dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/iv_selecttype_image"
+                android:text="Righthaus Property"
+                android:textColor="@color/colordarkblack"
+                android:textSize="17sp"
+                />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/tv_rdetail_propname"
+                android:layout_toRightOf="@+id/iv_selecttype_image"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                >
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="12dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_placeholder" />
+                <TextView
+                    android:id="@+id/tv_rdetail_propaddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksandregular"
+                    android:gravity="start"
+                    android:layout_marginRight="34dp"
+                    android:text="9891 Bridle St.Buffalo, NY 14215"
+                    android:textColor="@color/colorDarkgray"
+                    android:textSize="16sp"
+                    />
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/viewres1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/LigthestGraycolor"
+                android:layout_below="@+id/iv_selecttype_image"
+                android:layout_marginTop="10dp"
+                />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/serdate"
+                    android:textColor="@color/colordarkblack"
+                    android:textSize="17sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_rdetail_sdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksandbold"
+                    android:gravity="center"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colordarkblack"
+                    android:textSize="15sp"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@color/LigthestGraycolor"
+                android:layout_below="@+id/iv_selecttype_image"
+                android:layout_marginTop="10dp"
+                />
+
+
+            <TextView
+                android:id="@+id/timeout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksandmedium"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="@string/timeleft"
+                android:textColor="@color/colorgray"
+                android:textSize="20sp"
+                />
+
+
+            <TextView
+                android:id="@+id/tv_rdetail_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksandbold"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:text="00:55"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@color/LigthestGraycolor"
+                android:layout_marginTop="10dp"
+                />
+
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/iv_rdetail_vimg"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/app_ico"
+                app:riv_corner_radius="2dp"
+                />
+
+
+            <TextView
+                android:id="@+id/tv_rdetail_vname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksandbold"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17sp"
+                />
+
+            <RatingBar
+                android:id="@+id/tv_rdetail_vendorrating"
+                style="@style/customRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:numStars="5"
+                android:stepSize="0.1" />
+            <LinearLayout
+                android:id="@+id/li_btn"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_height="wrap_content">
+
+
+                <Button
+
+                    android:id="@+id/dialog_reject"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:text="@string/reject"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="16dp"
+                    android:gravity="center"
+                    android:backgroundTint="@color/appcolor"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:background="@drawable/btnback"
+                    android:textColor="@color/colorwhite"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"/>
+
+                <Button
+                    android:id="@+id/dialog_accept"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:text="@string/accept"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/colorDarkGreen"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:background="@drawable/btnback"
+                    android:textColor="@color/colorwhite"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"/>
+
+
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

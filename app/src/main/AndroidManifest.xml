@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.key.keyreception">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <application
+
+        android:allowBackup="true"
+        android:icon="@drawable/app_ico"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app_ico"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_place_api" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+
+        <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".Activity.UserTypeActivity" />
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".Activity.SignupActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".Activity.ForgotActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity android:name=".Activity.ValidateAccountActivity" />
+        <activity android:name=".Activity.Owner.OwnerTabActivity" />
+        <activity android:name=".Activity.Recepnist.RsettingActivity" />
+        <activity
+            android:name=".Activity.Recepnist.TabActivity"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="ChatActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.DetailActivity" />
+        <activity android:name=".Activity.EditActivity" />
+        <activity
+            android:name=".Activity.Owner.CreatePostActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".Activity.PaymentActivity" />
+        <activity android:name=".Activity.Owner.ServiceActivity" />
+        <activity android:name=".Activity.Owner.SubscriptionActivity" />
+        <activity android:name=".Activity.Owner.RequestActivity" />
+        <activity android:name=".Activity.Recepnist.AppoDetailActivity"></activity>
+
+        <!-- Firebase Notifications -->
+        <service android:name=".supportnoti.service.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".supportnoti.service.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- ./Firebase Notifications -->
+    </application>
+
+</manifest>

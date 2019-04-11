@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/allrl"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/rb_selectcategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/appcolor"
+        android:drawableTint="@color/appcolor"
+        app:srcCompat="@drawable/ic_inactive_checked"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+
+        />
+    <ImageView
+        android:id="@+id/inactivecheck"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/app_ico"
+
+        />
+
+    <TextView
+        android:id="@+id/comyorder_tv"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Records Founds"
+        android:layout_toRightOf="@+id/inactivecheck"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/quicksandregular"
+        android:textColor="@color/colorDarkgray"
+        android:textSize="16sp"
+
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/inactivecheck"
+        android:background="@color/LigthestGraycolor"
+       />
+</RelativeLayout>

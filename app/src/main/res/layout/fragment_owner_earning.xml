@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/rev_tabsUper">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:gravity="center"
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/exchange_btn"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="20dp"
+                android:background="@color/LigthestGraycolor"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/auction_btn"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/sliding_oearning_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:tabSelectedTextColor="@color/appcolor"
+            app:tabMode="fixed"
+            app:tabIndicatorFullWidth="false"
+            app:tabPaddingStart="25dp"
+            app:tabPaddingEnd="25dp"
+            app:tabIndicatorColor="@color/appcolor"
+            app:tabTextColor="@color/colorgray"
+            app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+            />
+
+    </RelativeLayout>
+
+    <!--    <android.support.design.widget.AppBarLayout
+            android:id="@+id/rev_tabsUper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:visibility="visible">-->
+
+
+
+
+    <!--
+        </android.support.design.widget.AppBarLayout>-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/own_earning_viewPager"
+        android:background="@color/LigthestGraycolor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rev_tabsUper"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</RelativeLayout>

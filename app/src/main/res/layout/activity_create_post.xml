@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".Activity.Owner.CreatePostActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/owner_chomerr"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:elevation="2dp"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentLeft="true">
+
+        <TextView
+            android:id="@+id/owner_tv_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="5dp"
+            android:fontFamily="@font/quicksandmedium"
+            android:text="@string/cpost"
+            android:textColor="@color/colorwhite"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_leftarrow_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/arrow" />
+
+
+
+
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/owner_chomerr"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorwhite"
+            android:orientation="vertical"
+            >
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_selcecttype"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:cardBackgroundColor="@color/colorwhite"
+                app:cardCornerRadius="6dp"
+                android:layout_marginStart="7.7dp"
+                android:layout_marginEnd="7.7dp"
+                android:layout_marginBottom="20dp"
+                app:cardElevation="5dp"
+                app:cardUseCompatPadding="true">
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_propertydata"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_selecttype_image"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="15dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/app_ico"
+                    app:riv_corner_radius="2dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/tv_property_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksandbold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_selecttype_image"
+                    android:text="Righthaus Property"
+                    android:layout_marginRight="34dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    />
+
+
+                <LinearLayout
+                    android:id="@+id/li_property"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/tv_property_name"
+                    android:layout_toRightOf="@+id/iv_selecttype_image"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    >
+                    <ImageView
+                        android:id="@+id/iv_property_image"
+                        android:layout_width="15dp"
+                        android:layout_height="12dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:tint="@color/colorPrimary"
+                        app:srcCompat="@drawable/ic_placeholder" />
+                    <TextView
+                        android:id="@+id/tv_property_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/quicksandregular"
+                        android:gravity="center"
+                        android:layout_marginRight="34dp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="9891 Bridle St.Buffalo, NY 14215"
+                        android:textColor="@color/colorDarkgray"
+                        android:textSize="14sp"
+                        />
+
+
+
+                </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_change_property"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/li_property"
+                        android:fontFamily="@font/quicksandbold"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/cproperty"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="10sp"
+                        />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_selectproperty1"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/iv_Myjobhome"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_home"
+                        android:layout_gravity="center_vertical"
+                        app:riv_corner_radius="3dp"
+                        android:scaleType="centerInside"
+                        android:background="@color/LigthestGraycolor"
+                        app:riv_border_color="@color/colorDarkgray"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sproperty"
+                        android:textColor="@color/colorPrimary"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="16sp"
+                        />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <ImageView
+                            android:id="@+id/dateImg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="5dp"
+                            android:layout_centerVertical="true"
+                            app:srcCompat="@drawable/ic_right_arrow"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bed"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorgray"
+                        android:fontFamily="@font/quicksandmedium"
+                        />
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <FrameLayout
+                            android:id="@+id/llFrame1"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp">
+                            <Spinner
+                                android:id="@+id/Spinner_bedroom"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:gravity="start"
+                                android:background="@null"
+                                android:entries="@array/selectbadroom"
+                                />
+                            <TextView
+                                android:id="@+id/spinner_bedroom_selector"
+                                android:background="@color/colorwhite"
+                                android:text="Select Bedroom"
+                                android:textSize="16sp"
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </FrameLayout>
+
+                        <View android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/llFrame1"
+                            android:background="@color/LigthestGraycolor"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:tint="@color/colorgray"
+                            app:srcCompat="@drawable/ic_down_arrow"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bath"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorgray"
+                        android:fontFamily="@font/quicksandmedium"
+                        />
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <FrameLayout
+                            android:id="@+id/llFrame2"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp">
+                            <Spinner
+                                android:id="@+id/Spinner_bathroom"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:entries="@array/selectbathroom"
+                                android:background="@null"
+                                />
+
+                            <TextView
+                                android:id="@+id/spinner_bathroom_selector"
+                                android:background="@color/colorwhite"
+                                android:text="Select Bathroom"
+                                android:textSize="16sp"
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </FrameLayout>
+
+
+                        <View android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/llFrame2"
+                            android:background="@color/LigthestGraycolor"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:tint="@color/colorgray"
+                            app:srcCompat="@drawable/ic_down_arrow"/>
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price"
+                android:textSize="15sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorgray"
+                android:fontFamily="@font/quicksandmedium"
+                />
+            <EditText
+                android:id="@+id/post_price"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:drawableLeft="@drawable/ic_dollar_symbol"
+                android:background="@null"
+                android:hint="Enter Price"
+                android:padding="5dp"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/quicksandmedium"
+                android:paddingLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:inputType="number"
+                />
+
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@color/LigthestGraycolor"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/psize"
+                android:textSize="15sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorgray"
+                android:fontFamily="@font/quicksandmedium"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                >
+                <EditText
+                    android:id="@+id/post_property_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@null"
+                    android:textSize="15sp"
+                    android:layout_weight=".9"
+                    android:hint="Enter Property Size"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:inputType="number"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="@string/feet"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorgray"
+                    android:fontFamily="@font/quicksandmedium"
+                    />
+
+
+            </LinearLayout>
+
+
+
+
+
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@color/LigthestGraycolor"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/viewres1">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:gravity="center"
+                        android:text="@string/cin"
+                        android:textColor="@color/colorDarkgray"
+                        android:textSize="16sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_post_intime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/quicksandbold"
+                        android:gravity="center"
+                        android:text="15,March 12:00 AM"
+                        android:visibility="invisible"
+                        android:textColor="@color/appcolor"
+                        android:textSize="14sp"
+                        />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivut_send"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/ic_right_arrow_red"
+                    android:scaleType="center"
+                    android:elevation="5dp"
+                    android:layout_centerInParent="true"
+                    android:textAllCaps="false"
+                    android:background="@drawable/circleboardergray"
+                    android:layout_gravity="right"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:gravity="center"
+                        android:text="@string/cout"
+                        android:textColor="@color/colorDarkgray"
+                        android:textSize="16sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_post_outtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/quicksandbold"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        android:text="15,March 12:00 AM"
+                        android:textColor="@color/appcolor"
+                        android:textSize="14sp"
+                        />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@color/LigthestGraycolor"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/serdate"
+                android:textSize="15sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorgray"
+                android:fontFamily="@font/quicksandmedium"
+                />
+            <EditText
+                android:id="@+id/et_date_cpost"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:hint="Select Service Date"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/quicksandmedium"
+                android:layout_marginStart="15dp"
+                android:focusable="false"
+                android:layout_marginEnd="15dp"
+                android:drawableTint="@color/colorgray"
+                android:drawableRight="@drawable/ic_inactive_calendar"
+                />
+
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@color/LigthestGraycolor"
+                />
+
+            <TextView
+                android:id="@+id/service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/services"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/quicksandbold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17sp"
+                />
+
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/post_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/calendar"
+                android:scrollbars="none" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/des"
+                android:layout_marginTop="15dp"
+                android:textSize="15sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/colorgray"
+                android:fontFamily="@font/quicksandmedium"
+                />
+            <EditText
+                android:id="@+id/post_Description"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:hint="Enter Description"
+                android:fontFamily="@font/quicksandmedium"
+                android:padding="5dp"
+                android:textColor="@color/colorPrimary"
+                android:paddingLeft="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:inputType="textMultiLine"
+                />
+
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@color/LigthestGraycolor"
+                />
+
+
+            <Button
+                android:id="@+id/btnpost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/post"
+                android:textSize="16dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp"
+                android:layout_below="@+id/bank_view1"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/quicksandmedium"
+                android:background="@drawable/btnback"
+                android:textColor="@color/colorwhite"
+                android:textAllCaps="false"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

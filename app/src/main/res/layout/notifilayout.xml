@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/noti_imgLabour"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/app_ico"
+        app:riv_corner_radius="2dp"
+        />
+
+
+
+    <TextView
+        android:id="@+id/noti_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Jhon indua"
+        android:textSize="14sp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="27dp"
+        android:layout_toRightOf="@+id/noti_imgLabour"
+        android:fontFamily="@font/quicksandmedium"
+        android:textColor="@color/colorgray" />
+
+
+
+
+
+    <TextView
+        android:id="@+id/noti_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 min ago"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentRight="true"
+        android:fontFamily="@font/quicksandregular"
+        android:textColor="@color/colorgray" />
+
+
+
+
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/LigthestGraycolor"
+        android:layout_below="@+id/noti_imgLabour"
+        />
+
+
+
+</RelativeLayout>

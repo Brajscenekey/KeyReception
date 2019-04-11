@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Ligthestwhitecolor"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ownerChildFragment.MyjobFragment">
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/rl_myjob"
+        android:orientation="horizontal">
+
+
+
+        <EditText
+            android:id="@+id/et_jobsearch"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/editback"
+            android:hint="@string/search"
+            android:inputType="text"
+            android:textColorHint="@color/colorgray"
+            android:textColor="@color/colorgray"
+            android:fontFamily="@font/quicksandregular"
+            android:textSize="14sp"
+            android:padding="12dp" />
+
+
+        <ImageView
+            android:id="@+id/iv_filter"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:tint="@color/appcolor"
+            android:scaleType="center"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circlercamera"
+            app:srcCompat="@drawable/ic_funnel"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/reservmyjob_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@+id/rl_myjob"
+        android:scrollbars="none" />
+    <TextView
+        android:id="@+id/tv_no_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:textColor="@color/appcolor"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/quicksandbold"
+        android:text="@string/nrf" />
+
+
+
+
+    <ImageView
+        android:id="@+id/creat_post"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:tint="@color/colorwhite"
+        android:background="@drawable/circlechat"
+        app:srcCompat="@drawable/ic_notepad"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:scaleType="centerInside"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_filter"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/icotraingle"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="fitXY"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="60dp"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/ic_drop_up_arrow" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_chat_menu"
+            android:layout_width="140dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="25dp"
+            android:scrollbars="none"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-7dp"
+            android:layout_below="@+id/icotraingle"
+            android:orientation="vertical"
+            app:cardBackgroundColor="@color/colorwhite"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ly_complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_complete"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/complete"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_pending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@color/Ligthestwhitecolor" />
+
+                    <TextView
+                        android:id="@+id/tv_pending"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/Pending"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_inprogress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+
+                        android:layout_marginTop="3dp"
+                        android:background="@color/LigthestGraycolor" />
+
+                    <TextView
+                        android:id="@+id/tv_inprogress"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:gravity="center_vertical"
+                        android:text="@string/inpro"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+</RelativeLayout>

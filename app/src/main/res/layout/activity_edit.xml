@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/rr"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:elevation="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentLeft="true">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pro_rl"
+            >
+
+
+            <ImageView
+                android:id="@+id/iv_editleftarrow"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                app:srcCompat="@drawable/arrow" />
+
+            <TextView
+                android:id="@+id/tv_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/quicksandmedium"
+                android:text="Edit Profile"
+                android:textColor="@color/colorwhite"
+                android:textSize="17sp"
+                />
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/sped_rl"
+            android:layout_width="150dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/pro_rl"
+            android:layout_centerHorizontal="true"
+            android:layout_height="140dp">
+
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_edit_profile"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_user_ico"
+                app:civ_border_color="@color/colorwhite"
+                app:civ_border_width="5dp"
+                />
+
+
+            <ImageView
+                android:id="@+id/upload"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="105dp"
+                android:layout_marginRight="16dp"
+                android:scaleType="center"
+                android:background="@drawable/circlercamera"
+                android:layout_alignParentRight="true"
+                app:srcCompat="@drawable/ic_camera_ico" />
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/setting_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorwhite"
+        app:cardCornerRadius="6dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="210dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/siimgLabour"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginEnd="20dp"
+                >
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                >
+
+                <TextView
+                    android:id="@+id/bank_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="15dp"
+                    android:textSize="14sp"
+                    />
+
+
+                <EditText
+                    android:id="@+id/et_editname"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@null"
+                    android:textColorHint="@color/colorgray"
+                    android:textColor="@color/colorgray"
+                    android:inputType="text"
+                    android:layout_below="@+id/bank_name"
+                    android:fontFamily="@font/quicksandregular"
+                    android:textSize="12sp"
+
+                    />
+
+
+                <View
+                    android:id="@+id/bank_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/LigthestGraycolor"
+                    android:layout_below="@+id/et_editname"
+                    />
+
+
+                <TextView
+                    android:id="@+id/bank_ahname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/address"
+                    android:layout_below="@+id/bank_view"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="15dp"
+                    android:textSize="14sp"
+                    />
+
+
+                <EditText
+                    android:id="@+id/et_editAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:textColorHint="@color/colorgray"
+                    android:textColor="@color/colorgray"
+                    android:inputType="text"
+                    android:layout_below="@+id/bank_ahname"
+                    android:fontFamily="@font/quicksandregular"
+                    android:textSize="12sp"
+
+                    />
+
+
+                <View
+                    android:id="@+id/bank_view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/LigthestGraycolor"
+                    android:layout_below="@+id/et_editAddress"
+                    />
+
+
+
+                <Button
+
+                    android:id="@+id/btn_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/updateprofile"
+                    android:textSize="16dp"
+                    android:layout_below="@+id/bank_view1"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:background="@drawable/btnback"
+                    android:textColor="@color/colorwhite"
+                    android:textAllCaps="false"/>
+
+
+
+            </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+</RelativeLayout>
+
+

@@ -1,0 +1,218 @@
+<resources>
+    <string name="app_name">KeyReception</string>
+    <string name="app_wel">Welcome to</string>
+    <string name="app_Keyrec">Key Reception</string>
+    <string name="google_place_api">AIzaSyB20iWo0NdlMyRoEVEZaTmi_mQwy3PWssw</string>
+    <string name="app_Own">Owner</string>
+    <string name="app_rec">Receptionist</string>
+    <string name="app_sign">Sign in to access your account</string>
+    <string name="app_selectut">Select your user type to go continue with key reception</string>
+
+
+    <!--Login-->
+    <string name="welcomeText">Welcome to</string>
+    <string name="f_n">First Name</string>
+    <string name="l_n">Last Name</string>
+    <string name="company">Company Name</string>
+    <string name="category">Category</string>
+    <string name="hoursText">HOUR LABORS</string>
+    <string name="emailTextHint">Email</string>
+    <string name="uname">Username</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="emailadd">Email Address</string>
+    <string name="already">Already have an account?</string>
+    <string name="account">Create Your Account</string>
+    <string name="filltext">Fill the details for create account</string>
+    <string name="passwordTextHint">Password</string>
+    <string name="CategoryTextHint">Category</string>
+    <string name="rememberText">Remember me</string>
+    <string name="forgetText">Forgot Password?</string>
+    <string name="forgetlargeText">Please enter your registered email address below to reset your password.</string>
+    <string name="forgethead">Forgot Password</string>
+    <string name="signText">Sign In</string>
+    <string name="send">Send</string>
+    <string name="orText">OR</string>
+    <string name="accountText">Don\'t have an account ?</string>
+    <string name="signUpText">Sign Up</string>
+    <string name="updateprofile">Update Profile</string>
+    <string name="update">Update</string>
+    <string name="socialnumber">Social Security Number</string>
+    <string name="number">Enter Number</string>
+    <string name="or">OR</string>
+    <string name="vya">Validate Your Account</string>
+    <string name="dlicense">Driving License</string>
+    <string name="sub">Submit</string>
+    <string name="validate">In order to validate your account please submit any the document listed below</string>
+
+
+    <!--registation-->
+
+    <string name="last_name">Last Name</string>
+    <string name="firstNameEmptyError">Please enter User name</string>
+    <string name="lastNameEmptyError">Please enter last name</string>
+    <string name="firstNameLengthError">first name is too short (minimum 3 characters)</string>
+    <string name="lastNameLengthError">last name is too short (minimum 3 characters)</string>
+    <string name="emailEmptyError">Please enter email</string>
+    <string name="emailInvalidError">Invalid email</string>
+    <string name="passEmptyError">Please enter password</string>
+    <string name="opassEmptyError">Please enter old password</string>
+    <string name="npassEmptyError">Please enter new password</string>
+    <string name="cpassEmptyError">Please enter confirm password</string>
+    <string name="passLengthError">Password is too short (minimum 6 characters)</string>
+    <string name="coNameEmptyError">Please enter company name</string>
+    <string name="addNameEmptyError">Please enter address</string>
+    <string name="Lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--setting text-->
+    <string name="faq">FAQ\'s</string>
+    <string name="help">Help</string>
+    <string name="Setting">Setting</string>
+    <string name="Settings">Settings</string>
+    <string name="vyasmall">Validate your account</string>
+    <string name="profile">My Profile</string>
+    <string name="service">Service</string>
+    <string name="services">Services</string>
+    <string name="linacc">Linked Account</string>
+    <string name="paymethod">Payment Method</string>
+    <string name="switchrece">Switch Receptionist</string>
+
+
+    <!--tab text-->
+    <string name="appo">Appointment</string>
+    <string name="reserv">Reservation</string>
+    <string name="mess">Messages</string>
+    <string name="earn">Earnings</string>
+    <string name="not">Notifications</string>
+
+
+    <!--Settings text-->
+    <string name="noti">Notification</string>
+    <string name="pay_opt">Payment Option</string>
+    <string name="up_doc">Upload Document</string>
+    <string name="chan_pass">Change Password</string>
+    <string name="abo_us">About us</string>
+    <string name="term_con">Terms &amp; Conditions</string>
+    <string name="pri_pol">Privacy Policy</string>
+    <string name="log">Logout</string>
+
+
+    <!--Reservation text-->
+    <string name="cin">Check-in</string>
+    <string name="cout">Check-out</string>
+    <string name="subscrip">Subscription</string>
+    <string name="basic">Basic</string>
+    <string name="subscrib">Subscribe</string>
+    <string name="basictext">lorem ipsum dammy text...</string>
+
+
+    <!--Detail text-->
+
+    <string name="detail">Details</string>
+    <string name="corepro">Corevestor Property</string>
+    <string name="info">Informations</string>
+    <string name="psize">Property size</string>
+    <string name="serdate">Service Date</string>
+    <string name="servicess">Services</string>
+    <string name="start">Start</string>
+    <string name="des">Description</string>
+    <string name="assign">Assign Vendor</string>
+    <string name="cstatus">Change Status</string>
+    <string name="price">Price</string>
+
+
+    <!--Create post text-->
+    <string name="sproperty">Select Property</string>
+    <string name="cproperty">Change Property</string>
+    <string name="bed">Bedroom</string>
+    <string name="bath">Bathroom</string>
+    <string name="cpost">Create Post</string>
+    <string name="post">Post</string>
+
+
+    <!--change password text-->
+
+
+    <string name="newpass">New Password</string>
+    <string name="oldpass">Old Password</string>
+    <string name="changepass">Change Password</string>
+    <string name="confirmpass">ConFirm Password</string>
+
+
+    <string name="badd">Billing Address</string>
+    <string name="eadd">Enter address</string>
+    <string name="spaytype">Select Payment Type</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="search">Search...</string>
+    <string name="servicetext">There are many variations of passages of lorem ipsm available.</string>
+
+
+    <string-array name="selectbadroom">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="selectbathroom">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+
+    <!--error-->
+
+    <string name="priceEmptyError">Please enter price</string>
+    <string name="desEmptyError">Please enter Description</string>
+    <string name="dateEmptyError">Please enter service date</string>
+    <string name="psEmptyError">Please enter service property size</string>
+    <string name="bedEmptyError">Please select bedroom</string>
+    <string name="bathEmptyError">Please select bathdroom</string>
+    <string name="serEmptyError">Please select service</string>
+    <string name="ptypeEmptyError">Please select payment type</string>
+    <string name="spEmptyError">Please select property</string>
+
+
+    <!--filter text-->
+    <string name="complete">Completed</string>
+    <string name="Pending">Pending</string>
+    <string name="inpro">In Progress</string>
+    <string name="nrf">No Record Found</string>
+    <string name="feet">Sq Feet</string>
+    <string name="paypal">Paypal</string>
+    <string name="venmo">Venmo</string>
+    <string name="credit">Credit Card</string>
+    <string name="request">Request</string>
+    <string name="timeout">Time Out</string>
+    <string name="timeleft">Time Left</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="newappo">New Appointment</string>
+    <string name="valid">Validate your account</string>
+
+
+    <string name="title_sc">Select Category</string>
+    <string name="title_sub">Submit</string>
+    <string name="yes">Yes</string>
+
+
+</resources>
