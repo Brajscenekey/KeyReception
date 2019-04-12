@@ -65,10 +65,10 @@ public interface Reginterface {
     );
 
 
-    @Multipart
+    /*@Multipart
     @POST("updateLocation")
     Call<ResponseBody> updateLocation(@Header("authToken") String authToken,
-                                      @Part RequestBody data);
+                                      @Part RequestBody data);*/
 
 
     /*@POST("updateLocation")
@@ -77,7 +77,15 @@ public interface Reginterface {
                                       @Header("Content-Type") String ContentType,
                                     @Part("address") RequestBody jobId,
                                     @Part("latitude") RequestBody requestId,
-                                    @Part("longitude") RequestBody jobCreaterId);*/
+                                    @Part("longitude") RequestBody jobCreaterId);
+*/
+
+    @POST("updateLocation")
+    @Multipart
+    Call<ResponseBody> updateLocation(@Header("authToken") String authToken,
+                                      @Part("address") RequestBody add,
+                                      @Part("latitude") RequestBody lat,
+                                      @Part("longitude") RequestBody lng);
 
 
     @GET("userInfo")

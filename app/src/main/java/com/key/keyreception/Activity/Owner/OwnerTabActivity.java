@@ -3,15 +3,12 @@ package com.key.keyreception.Activity.Owner;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,18 +22,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.key.keyreception.Activity.Recepnist.TabActivity;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
 import com.key.keyreception.base.BaseActivity;
@@ -46,18 +38,13 @@ import com.key.keyreception.ownerFragment.OwnerMessageFragment;
 import com.key.keyreception.ownerFragment.OwnerNotificationFragment;
 import com.key.keyreception.ownerFragment.OwnerProfileFragment;
 import com.key.keyreception.ownerFragment.OwnerReservationFragment;
-import com.key.keyreception.recepnistFragment.ProfileFragment;
-
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-
 import okhttp3.FormBody;
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -74,11 +61,9 @@ public class OwnerTabActivity extends BaseActivity implements View.OnClickListen
     private View view1, view2, view3, view4, view5;
     private double latitude,longitude;
     private String address;
-    LocationManager locationManager;
     private Session session;
 
     private Geocoder geocoder;
-    private FusedLocationProviderClient mFusedLocationClient;
     boolean checkloc = false;
 
 
@@ -93,13 +78,13 @@ public class OwnerTabActivity extends BaseActivity implements View.OnClickListen
         session = new Session(this);
         geocoder = new Geocoder(this, Locale.getDefault());
         init();
-        requestPermission();
+       /* requestPermission();
         //getLocation();
 
         if (!checkloc)
         {
             alertOwnerLocation();
-        }
+        }*/
         Intent intent = getIntent();
 
         if (intent != null && intent.hasExtra("order")) {
@@ -440,7 +425,7 @@ public class OwnerTabActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void initFusedLocation() {
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        FusedLocationProviderClient mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         try {
             mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
@@ -461,7 +446,7 @@ public class OwnerTabActivity extends BaseActivity implements View.OnClickListen
         }
     }
     private String getCompleteAddress(double latitude,double longitude) {
-/** Getting location from target*/
+/* Getting location from target*/
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
 
@@ -481,16 +466,21 @@ public class OwnerTabActivity extends BaseActivity implements View.OnClickListen
     public void upLocationApiData(String add,String lat, String lon) {
         Log.d("TESTING","Requesting...");
         String authtoken = session.getAuthtoken();
-        RequestBody add1 = RequestBody.create(MediaType.parse("text/plain"), add);
+        /*RequestBody add1 = RequestBody.create(MediaType.parse("text/plain"), add);
         RequestBody lat1 = RequestBody.create(MediaType.parse("text/plain"), lat);
-        RequestBody lon1 = RequestBody.create(MediaType.parse("text/plain"), lon);
+        RequestBody lon1 = RequestBody.create(MediaType.parse("text/plain"), lon);*/
+
+        MediaType text = MediaType.parse("text/plain");
+        RequestBody add1 = RequestBody.create(text, add);
+        RequestBody lat1 = RequestBody.create(text, lat);
+        RequestBody lon1 = RequestBody.create(text, lon);
 
         RequestBody requestBody = new FormBody.Builder().add("address",add).add("latitude",lat).add("longitude",lon).build();
 
 
 
         Call<ResponseBody> call = RetrofitClient.getInstance()
-                .getApi().updateLocation(authtoken , requestBody);
+                .getApi().updateLocation(authtoken , add1, lat1, lon1);
         call.enqueue(new Callback<ResponseBody>() {
             @SuppressLint("NewApi")
             @Override

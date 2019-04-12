@@ -1,19 +1,26 @@
 package com.key.keyreception.Activity.Recepnist;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
@@ -33,6 +40,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.key.keyreception.Activity.Owner.OwnerTabActivity;
 import com.key.keyreception.Activity.Owner.RequestActivity;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
@@ -48,14 +59,19 @@ import com.key.keyreception.recepnistFragment.ProfileFragment;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,9 +89,10 @@ public class TabActivity extends BaseActivity implements View.OnClickListener {
     private View view1, view2, view3, view4, view5;
     private Session session;
     private PDialog pDialog;
+    private double latitude,longitude;
+    private String address12;
+    private Geocoder geocoder;
     private String propertyName, address, sdfullName, sdprofileImage, serviceDate, expireTime, currentTime, jobid, senderid, reqid;
-
-
 
     private BroadcastReceiver myReceiver = new BroadcastReceiver() {
 
@@ -112,6 +129,14 @@ public class TabActivity extends BaseActivity implements View.OnClickListener {
         session = new Session(this);
         pDialog = new PDialog();
         init();
+        geocoder = new Geocoder(this, Locale.getDefault());
+        requestPermission();
+        //getLocation();
+
+        if (session.getLocationId().isEmpty())
+        {
+            alertOwnerLocation();
+        }
 
 
         if (getIntent().getStringExtra("notifyId") != null) {
@@ -781,4 +806,186 @@ public class TabActivity extends BaseActivity implements View.OnClickListener {
         // Showing Alert Message
         alertDialog.show();
     }
+    public void alertOwnerLocation()
+    {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(TabActivity.this);
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Alert");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("\"Location is disabled\", message: \"We need access to your location to show you relevant search result, Please click on Settings to allow location.\"");
+
+        // Setting Icon to Dialog
+
+
+        // Setting Positive "Yes" Button
+        alertDialog.setPositiveButton("Allow", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            public void onClick(DialogInterface dialog, int which) {
+                session.putLocationId("1");
+                upLocationApiData(address12,String.valueOf(latitude),String.valueOf(longitude));
+                dialog.dismiss();
+
+            }
+        });
+
+
+        alertDialog.setNegativeButton("Don't Allow", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                session.putLocationId("");
+                dialogInterface.dismiss();
+
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+    }
+
+    private void requestPermission() {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},2001);
+        } else {
+            // Permission granted do your stuffs here
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    initFusedLocation();
+                }
+            },1000);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 2001) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted do your stuffs here
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        initFusedLocation();
+                    }
+                },1000);
+            } else {
+                requestPermission();
+            }
+        }
+    }
+
+    private void initFusedLocation() {
+        FusedLocationProviderClient mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        try {
+            mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if (location != null) {
+                        // Logic to handle location object
+                        latitude = location.getLatitude();
+                        longitude = location.getLongitude();
+                        Log.v("latitude",String.valueOf(latitude));
+                        Log.v("longitude",String.valueOf(longitude));
+                        address12 = getCompleteAddress(latitude,longitude);
+                        Log.v("address",address12);
+                    }
+                }
+            });
+        } catch (SecurityException se) {
+            se.printStackTrace();
+        }
+    }
+    private String getCompleteAddress(double latitude,double longitude) {
+        /* Getting location from target*/
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+
+            if (addresses != null) {
+                if (addresses.size() != 0) {
+                    return addresses.get(0).getAddressLine(0);
+                } else {
+                    return "Address not found";
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "Address not found";
+    }
+
+    public void upLocationApiData(String add,String lat, String lon) {
+        Log.d("TESTING","Requesting...");
+        String authtoken = session.getAuthtoken();
+        /*RequestBody add1 = RequestBody.create(MediaType.parse("text/plain"), add);
+        RequestBody lat1 = RequestBody.create(MediaType.parse("text/plain"), lat);
+        RequestBody lon1 = RequestBody.create(MediaType.parse("text/plain"), lon);*/
+
+        MediaType text = MediaType.parse("text/plain");
+        RequestBody add1 = RequestBody.create(text, add);
+        RequestBody lat1 = RequestBody.create(text, lat);
+        RequestBody lon1 = RequestBody.create(text, lon);
+
+        RequestBody requestBody = new FormBody.Builder().add("address",add).add("latitude",lat).add("longitude",lon).build();
+
+
+
+        Call<ResponseBody> call = RetrofitClient.getInstance()
+                .getApi().updateLocation(authtoken , add1, lat1, lon1);
+        call.enqueue(new Callback<ResponseBody>() {
+            @SuppressLint("NewApi")
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull retrofit2.Response<ResponseBody> response) {
+                Log.d("TESTING",""+response.code()+" "+response.message());
+                try {
+                    switch (response.code()) {
+                        case 200: {
+                            String stresult = Objects.requireNonNull(response.body()).string();
+                            Log.d("response", stresult);
+                            JSONObject jsonObject = new JSONObject(stresult);
+                            String statusCode = jsonObject.optString("status");
+                            String msg = jsonObject.optString("message");
+                            if (statusCode.equals("success")) {
+
+                                Toast.makeText(TabActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(TabActivity.this, msg, Toast.LENGTH_SHORT).show();
+                            }
+                            break;
+                        }
+                        case 400: {
+                            String result = Objects.requireNonNull(response.errorBody()).string();
+                            Log.d("response400", result);
+                            JSONObject jsonObject = new JSONObject(result);
+                            String statusCode = jsonObject.optString("status");
+                            String msg = jsonObject.optString("message");
+                            if (statusCode.equals("true")) {
+                                Toast.makeText(TabActivity.this, msg, Toast.LENGTH_SHORT).show();
+                            }
+                            break;
+                        }
+                        case 401:
+                            try {
+                                Log.d("ResponseInvalid", Objects.requireNonNull(response.errorBody()).string());
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                            break;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Log.e("TESTING","ERROR",t);
+            }
+        });
+
+    }
+
 }

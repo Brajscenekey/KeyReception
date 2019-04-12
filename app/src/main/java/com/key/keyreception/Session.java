@@ -123,6 +123,13 @@ public class Session {
 
     public String getjobid(){ return mypref2.getString("jobid", ""); }
 
+    public void putLocationId(String jobid){
+        editor2.putString("locid",jobid);
+        editor2.apply();
+    }
+
+    public String getLocationId(){ return mypref2.getString("locid", ""); }
+
 
 
 
