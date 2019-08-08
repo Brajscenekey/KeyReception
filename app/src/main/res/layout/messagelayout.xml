@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/chat_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/user_upload"
+        app:civ_border_color="@color/LigthestGraycolor"
+        app:civ_border_width="2dp"
+        android:elevation="@dimen/_2sdp"
+        />
+
+    <TextView
+        android:id="@+id/chat_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Jhon indua"
+        android:textSize="14sp"
+        android:layout_marginTop="22dp"
+        android:layout_toEndOf="@+id/chat_img"
+        android:fontFamily="@font/quicksandbold"
+        android:textColor="@color/colorblack" />
+
+
+
+    <TextView
+        android:id="@+id/chat_tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Jhon indua"
+        android:textSize="14sp"
+        android:maxLines="1"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/chat_img"
+        android:layout_below="@+id/chat_tv_name"
+        android:fontFamily="@font/quicksandregular"
+        android:textColor="@color/colorgray" />
+
+
+    <TextView
+        android:id="@+id/chat_time_ago"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="@font/quicksandmedium"
+        android:textColor="@color/colorgray" />
+
+
+
+
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="20dp"
+        android:background="@color/LigthestGraycolor"
+        android:layout_below="@+id/chat_tv_text"
+        />
+
+
+
+</RelativeLayout>
