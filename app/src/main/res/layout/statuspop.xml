@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000"
+    android:id="@+id/popup_element"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/setting_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorwhite"
+        app:cardElevation="2dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/owner_tv_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:fontFamily="@font/quicksandmedium"
+                android:text="@string/cstats"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17sp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/LigthestGraycolor"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginStart="5dp"
+                android:weightSum="3"
+                android:layout_marginEnd="5dp"
+                android:layout_height="wrap_content">
+
+
+
+                <LinearLayout
+                    android:id="@+id/ll_start_service"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".8"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/iv_start_service"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/ic_active_start_ico"
+                        android:background="@drawable/circletransparent"
+                        android:scaleType="centerInside"
+                        android:tint="@color/colorgray"
+                        android:layout_marginTop="20dp"
+                        android:textAllCaps="false"
+                        android:layout_gravity="center"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/tv_start_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:text="@string/startservice"
+                        android:textColor="@color/colorgray"
+                        android:textSize="12sp"
+                        />
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="3dp"
+                    android:layout_marginStart="-15dp"
+                    android:layout_weight=".3"
+                    android:layerType="software"
+                    android:layout_gravity="center"
+                    android:background="@drawable/dashline"
+                    />
+                <LinearLayout
+                    android:id="@+id/ll_inprogress_service"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_marginStart="-15dp"
+                    android:layout_weight=".8"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/iv_inprogress_service"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/ic_active_reload_ico"
+                        android:scaleType="centerInside"
+                        android:tint="@color/colorgray"
+                        android:background="@drawable/circletransparent"
+                        android:layout_marginTop="20dp"
+                        android:textAllCaps="false"
+                        android:layout_gravity="center"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/tv_inprogress_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:text="@string/inprogress"
+                        android:textColor="@color/colorgray"
+                        android:textSize="12sp"
+                        />
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="3dp"
+                    android:layout_weight=".3"
+                    android:layerType="software"
+                    android:layout_marginStart="-15dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/dashline"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/ll_end_service"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="-15dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".8"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/iv_end_service"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/circletransparent"
+                        android:tint="@color/colorgray"
+                        app:srcCompat="@drawable/ic_active_exit_ico"
+                        android:scaleType="centerInside"
+                        android:layout_marginTop="20dp"
+                        android:textAllCaps="false"
+                        android:layout_gravity="center"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/tv_end_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:text="@string/endservice"
+                        android:textColor="@color/colorgray"
+                        android:textSize="12sp"
+                        />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_height="wrap_content">
+
+
+                <Button
+
+                    android:id="@+id/dialog_status_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:text="@string/cancel"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/colorgray"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:background="@drawable/btnback"
+                    android:textColor="@color/colorwhite"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"/>
+
+                <Button
+
+                    android:id="@+id/dialog_status_done"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:text="@string/done"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="16sp"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:background="@drawable/btnback"
+                    android:textColor="@color/colorwhite"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"/>
+
+
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

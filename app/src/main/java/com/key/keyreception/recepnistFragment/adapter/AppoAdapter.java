@@ -14,10 +14,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.key.keyreception.Activity.Recepnist.AppoDetailActivity;
-import com.key.keyreception.Activity.model.MyJobData;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
+import com.key.keyreception.activity.model.MyJobData;
+import com.key.keyreception.activity.recepnist.AppoDetailActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,12 +33,9 @@ public class AppoAdapter extends RecyclerView.Adapter<AppoAdapter.MyViewHolder> 
     private Context context;
     private List<MyJobData> jobDataList;
 
-
-    public AppoAdapter(Context context, List<MyJobData> jobDataList)
-    {
+    public AppoAdapter(Context context, List<MyJobData> jobDataList) {
         this.context = context;
-        this.jobDataList=jobDataList;
-
+        this.jobDataList = jobDataList;
     }
 
     @NonNull
@@ -55,46 +52,51 @@ public class AppoAdapter extends RecyclerView.Adapter<AppoAdapter.MyViewHolder> 
         holder.tv_Myjob_proname.setText(myJobData.getPropertyName());
         holder.tv_Myjob_address.setText(myJobData.getAddress());
         holder.tv_Myjob_status.setVisibility(View.VISIBLE);
-
+        RequestOptions options1 = new RequestOptions();
+        options1.placeholder(R.drawable.app_ico);
+        options1.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+        if (myJobData.getPropertyImg().size() != 0) {
+            Glide.with(context).load(myJobData.getPropertyImg().get(0).getPropertyImage()).apply(options1).into(holder.iv_Myjobhome);
+        }
         try {
-            if(myJobData.getServiceDate().contains("-")) {
+            if (myJobData.getServiceDate().contains("-")) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
                 Date date = sdf.parse(myJobData.getServiceDate());
                 SimpleDateFormat mSDF = new SimpleDateFormat("dd, MMMM hh:mm a", Locale.getDefault());
                 String fDate = mSDF.format(date);
-                holder.tv_Myjob_time.setText(fDate);                }
-            else {
+                holder.tv_Myjob_time.setText(fDate);
+            } else {
                 holder.tv_Myjob_time.setText(myJobData.getServiceDate());
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
-
-
-
-        if(myJobData.getOwnerDetail().get(position).getProfileImage() !=  null) {
+        if (myJobData.getOwnerDetail().get(0).getProfileImage() != null) {
             RequestOptions options = new RequestOptions();
             options.placeholder(R.drawable.ic_user_ico);
             options.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-            Glide.with(context).load(myJobData.getOwnerDetail().get(position).getProfileImage()).apply(options).into(holder.rprof_img);
+            Glide.with(context).load(myJobData.getOwnerDetail().get(0).getProfileImage()).apply(options).into(holder.rprof_img);
         }
-        if (myJobData.getStatus() == 1)
-        {
+        if (myJobData.getStatus() == 1) {
             holder.tv_Myjob_status.setText(context.getResources().getString(R.string.Pending));
             holder.tv_Myjob_status.setTextColor(context.getResources().getColor(R.color.colorPending));
-        }
-        else if(myJobData.getStatus() == 2)
-        {
+        } else if (myJobData.getStatus() == 2) {
+            holder.tv_Myjob_status.setText(context.getResources().getString(R.string.nostart));
+            holder.tv_Myjob_status.setTextColor(context.getResources().getColor(R.color.appcolor));
+
+        } else if (myJobData.getStatus() == 3) {
             holder.tv_Myjob_status.setText(context.getResources().getString(R.string.inpro));
             holder.tv_Myjob_status.setTextColor(context.getResources().getColor(R.color.colorInprogress));
 
-        }
-        else {
-            holder.tv_Myjob_status.setText(context.getResources().getString(R.string.complete));
-            holder.tv_Myjob_status.setTextColor(context.getResources().getColor(R.color.colorDarkGreen));
+        } else {
+            if (myJobData.getStatus() == 4) {
+                holder.tv_Myjob_status.setText(context.getResources().getString(R.string.complete));
+                holder.tv_Myjob_status.setTextColor(context.getResources().getColor(R.color.colorDarkGreen));
 
+            } else {
+                holder.tv_Myjob_status.setText(context.getResources().getString(R.string.paymentcomplete));
+                holder.tv_Myjob_status.setTextColor(context.getResources().getColor(R.color.colorDarkGreen));
+            }
         }
 
     }
@@ -106,16 +108,18 @@ public class AppoAdapter extends RecyclerView.Adapter<AppoAdapter.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView rprof_img;
-        TextView tv_Myjob_proname,tv_Myjob_address,tv_Myjob_time,tv_Myjob_status;
+        ImageView rprof_img, iv_Myjobhome;
+        TextView tv_Myjob_proname, tv_Myjob_address, tv_Myjob_time, tv_Myjob_status;
+
         public MyViewHolder(final View itemView) {
             super(itemView);
 
-            tv_Myjob_proname =itemView.findViewById(R.id.tv_Myjob_proname);
-            rprof_img =itemView.findViewById(R.id.rprof_img);
-            tv_Myjob_address =itemView.findViewById(R.id.tv_Myjob_address);
-            tv_Myjob_time =itemView.findViewById(R.id.tv_Myjob_time);
-            tv_Myjob_status =itemView.findViewById(R.id.tv_Myjob_status);
+            tv_Myjob_proname = itemView.findViewById(R.id.tv_Myjob_proname);
+            rprof_img = itemView.findViewById(R.id.rprof_img);
+            tv_Myjob_address = itemView.findViewById(R.id.tv_Myjob_address);
+            tv_Myjob_time = itemView.findViewById(R.id.tv_Myjob_time);
+            tv_Myjob_status = itemView.findViewById(R.id.tv_Myjob_status);
+            iv_Myjobhome = itemView.findViewById(R.id.iv_Myjobhome);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -128,9 +132,6 @@ public class AppoAdapter extends RecyclerView.Adapter<AppoAdapter.MyViewHolder> 
                     context.startActivity(intent);
                 }
             });
-
-
-
         }
     }
 

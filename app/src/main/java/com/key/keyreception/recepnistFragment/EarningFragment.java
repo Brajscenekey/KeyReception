@@ -20,27 +20,22 @@ import com.key.keyreception.viewPager.Reserv_earning_viewpager;
  */
 public class EarningFragment extends BaseFragment {
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_earning, container, false);
-        return inflater.inflate(R.layout.fragment_owner_message, container, false);
-
+        return inflater.inflate(R.layout.fragment_earning, container, false);
     }
 
-
-
-  /*  @Override
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         ViewPager viewPager = view.findViewById(R.id.rev_earning_viewPager);
         TabLayout tabLayout = view.findViewById(R.id.sliding_rearning_tabs);
-        //wrapTabIndicatorToTitle(tabLayout,150,150);
         Reserv_earning_viewpager reserv_earning_viewpager = new Reserv_earning_viewpager(getChildFragmentManager());
         viewPager.setAdapter(reserv_earning_viewpager);
         tabLayout.setupWithViewPager(viewPager);
 
-    }*/
-
+    }
 }

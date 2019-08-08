@@ -6,7 +6,7 @@
     <string name="app_Own">Owner</string>
     <string name="app_rec">Receptionist</string>
     <string name="app_sign">Sign in to access your account</string>
-    <string name="app_selectut">Select your user type to go continue with key reception</string>
+    <string name="app_selectut">Select your login profile to continue with KeyReception</string>
 
 
     <!--Login-->
@@ -15,9 +15,10 @@
     <string name="l_n">Last Name</string>
     <string name="company">Company Name</string>
     <string name="category">Category</string>
+    <string name="selectcategory">Select Category</string>
     <string name="hoursText">HOUR LABORS</string>
     <string name="emailTextHint">Email</string>
-    <string name="uname">Username</string>
+    <string name="uname">Full name</string>
     <string name="name">Name</string>
     <string name="address">Address</string>
     <string name="emailadd">Email Address</string>
@@ -40,10 +41,12 @@
     <string name="socialnumber">Social Security Number</string>
     <string name="number">Enter Number</string>
     <string name="or">OR</string>
+    <string name="and">AND</string>
     <string name="vya">Validate Your Account</string>
-    <string name="dlicense">Driving License</string>
+    <string name="dlicense">Driver License</string>
     <string name="sub">Submit</string>
-    <string name="validate">In order to validate your account please submit any the document listed below</string>
+    <string name="validate">Please validate your account below</string>
+    <string name="validate1">In order to validate your account please submit any the document listed below</string>
 
 
     <!--registation-->
@@ -56,11 +59,16 @@
     <string name="emailEmptyError">Please enter email</string>
     <string name="emailInvalidError">Invalid email</string>
     <string name="passEmptyError">Please enter password</string>
+    <string name="passspace">Please don\'t enter space</string>
     <string name="opassEmptyError">Please enter old password</string>
     <string name="npassEmptyError">Please enter new password</string>
     <string name="cpassEmptyError">Please enter confirm password</string>
     <string name="passLengthError">Password is too short (minimum 6 characters)</string>
-    <string name="coNameEmptyError">Please enter company name</string>
+    <string name="coNameEmptyError">Please enter Property name</string>
+    <string name="categoryEmptyError">Please select category</string>
+    <string name="snEmptyError">Please enter social number</string>
+    <string name="ssnEmptyError">Please enter social security number</string>
+    <string name="dlEmptyError">Please choose driver licence</string>
     <string name="addNameEmptyError">Please enter address</string>
     <string name="Lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry</string>
 
@@ -79,14 +87,14 @@
     <string name="services">Services</string>
     <string name="linacc">Linked Account</string>
     <string name="paymethod">Payment Method</string>
-    <string name="switchrece">Switch Receptionist</string>
+    <string name="switchrece">Receptionist</string>
 
 
     <!--tab text-->
     <string name="appo">Appointment</string>
     <string name="reserv">Reservation</string>
     <string name="mess">Messages</string>
-    <string name="earn">Earnings</string>
+    <string name="earn">Earning</string>
     <string name="not">Notifications</string>
 
 
@@ -105,6 +113,7 @@
     <string name="cin">Check-in</string>
     <string name="cout">Check-out</string>
     <string name="subscrip">Subscription</string>
+    <string name="veified">Verified</string>
     <string name="basic">Basic</string>
     <string name="subscrib">Subscribe</string>
     <string name="basictext">lorem ipsum dammy text...</string>
@@ -121,14 +130,23 @@
     <string name="start">Start</string>
     <string name="des">Description</string>
     <string name="assign">Assign Vendor</string>
+    <string name="postby">Posted By</string>
     <string name="cstatus">Change Status</string>
     <string name="price">Price</string>
+    <string name="pname">Property Name</string>
+    <string name="paddress">Address</string>
 
 
     <!--Create post text-->
     <string name="sproperty">Select Property</string>
     <string name="cproperty">Change Property</string>
+    <string name="cstats">Change Status</string>
+    <string name="givereview">Give Review</string>
+    <string name="startservice">Start Service</string>
+    <string name="inprogress">In Progress</string>
+    <string name="endservice">End Service</string>
     <string name="bed">Bedroom</string>
+    <string name="sel">Select</string>
     <string name="bath">Bathroom</string>
     <string name="cpost">Create Post</string>
     <string name="post">Post</string>
@@ -145,7 +163,11 @@
 
     <string name="badd">Billing Address</string>
     <string name="eadd">Enter address</string>
-    <string name="spaytype">Select Payment Type</string>
+    <string name="spaytype">Select Payment Option</string>
+    <string name="paytype">Payment Type</string>
+    <string name="payoption">Payment Option</string>
+    <string name="pay">Pay</string>
+    <string name="totamount">Total Amount</string>
     <string name="cancel">Cancel</string>
     <string name="done">Done</string>
     <string name="search">Search...</string>
@@ -186,6 +208,7 @@
     <string name="dateEmptyError">Please enter service date</string>
     <string name="psEmptyError">Please enter service property size</string>
     <string name="bedEmptyError">Please select bedroom</string>
+    <string name="imageEmptyError">Please select upload image</string>
     <string name="bathEmptyError">Please select bathdroom</string>
     <string name="serEmptyError">Please select service</string>
     <string name="ptypeEmptyError">Please select payment type</string>
@@ -194,8 +217,11 @@
 
     <!--filter text-->
     <string name="complete">Completed</string>
+    <string name="paymentcomplete">Paid</string>
+    <string name="nostart">Not Started</string>
     <string name="Pending">Pending</string>
     <string name="inpro">In Progress</string>
+    <string name="confirm">Confirmed</string>
     <string name="nrf">No Record Found</string>
     <string name="feet">Sq Feet</string>
     <string name="paypal">Paypal</string>
@@ -208,11 +234,113 @@
     <string name="reject">Reject</string>
     <string name="newappo">New Appointment</string>
     <string name="valid">Validate your account</string>
+    <string name="payment">Payment</string>
+    <string name="makepayment">Make Payment</string>
+    <string name="review">Give Review</string>
+    <string name="addprop">Add Property</string>
+    <string name="updp">Update</string>
+    <string name="updprop">Edit Property</string>
+    <string name="uimg">Upload Image</string>
 
 
     <string name="title_sc">Select Category</string>
     <string name="title_sub">Submit</string>
     <string name="yes">Yes</string>
+
+
+    <string name="days_ago">day ago</string>
+    <string name="hours_ago">hour ago</string>
+    <string name="minute_ago">min ago</string>
+    <string name="second_ago">sec ago</string>
+
+
+    <string name="permission_denied">YOU DENIED PERMISSION CANNOT SELECT IMAGE</string>
+    <string name="your_permission_denied">YOUR PERMISSION DENIED</string>
+    <string name="pick_image_intent_chooser_title">Select source</string>
+
+    <string name="please_complete_profile">Please complete your profile</string>
+
+
+    <!--Image Cropper-->
+    <string name="pick_image_intent_text">Choose an image</string>
+    <string name="crop_image_activity_title">Crop Image</string>
+    <string name="crop_image_menu_rotate_left">Rotate counter clockwise</string>
+    <string name="crop_image_menu_rotate_right">Rotate</string>
+    <string name="crop_image_menu_crop">Crop</string>
+    <!--<string name="pick_image_intent_chooser_title">Select source</string>-->
+    <string name="result_image_desc">crop result</string>
+
+
+    <!--Alerts-->
+    <string name="alertImageException">The file is corrupt &amp; cannot be opened.</string>
+    <string name="alertOutOfMemory">This device doesn\'t have enough space , free up storage space</string>
+    <string name="all">All</string>
+    <string name="complete_validate">Complete Profile</string>
+    <string name="switchid">Switch</string>
+    <string name="rece">receptionist</string>
+    <string name="own">owner</string>
+    <string name="please_switch_user_mode_to_do_this">Please switch user mode to do this.</string>
+    <string name="no_property_added">No Property Added</string>
+    <string name="delete_chat">Delete chat</string>
+    <string name="block_user">Block user</string>
+
+    <!--Chat Activity-->
+    <string name="enter_message">Write a message…</string>
+    <string name="dummy_time">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="admin_chat_placeholder">How can i help you?</string>
+    <string name="block_user_alert">Are you want to block user?</string>
+    <string name="unblock_user_alert">Are you want to unblock user?</string>
+    <string name="wch">Write comment here</string>
+    <string name="wh">Type here...</string>
+    <string name="delete">Delete Chat</string>
+    <string name="block">Block User</string>
+    <string name="unblock">Unblock</string>
+    <string name="enter_property_name">Enter property Name</string>
+    <string name="enter_address">Enter Address</string>
+
+    <!--Offers-->
+    <string name="offers">Offers</string>
+    <string name="receive_offer">Offers Received</string>
+    <string name="my_offer">Offers Sent</string>
+    <string name="no_offer_found">No Offer Found</string>
+    <string name="you_pay">You Pay</string>
+    <string name="i_pay">I\'ll Pay</string>
+    <string name="offer_price">Offer Price</string>
+    <string name="counter_price">Counter Price</string>
+    <string name="city">City</string>
+    <string name="counter">Counter</string>
+    <string name="declined">Decline</string>
+    <string name="free_love_txt">Free Date</string>
+    <string name="years_ago">years ago</string>
+    <string name="year_ago">year ago</string>
+    <string name="months_ago">months ago</string>
+    <string name="month_ago">month ago</string>
+    <string name="weeks_ago">weeks ago</string>
+    <string name="week_ago">week ago</string>
+    <string name="day_ago">day ago</string>
+    <string name="hour_ago">hr ago</string>
+    <string name="minutes_ago">mins ago</string>
+    <string name="seconds_ago">secs ago</string>
+    <string name="date_time_format">yyyy-MM-dd hh:mm:ss</string>
+    <string name="offer_amount_max_limit">Amount cannot exceed $10,000</string>
+    <string name="offer_type_null">Please select offer type</string>
+    <string name="offer_amount_null">Please enter Offer Amount</string>
+    <string name="counter_amount_invalid">Offer and Counter Price can\'t be same</string>
+    <string name="swipe_to_left">Swipe to left</string>
+    <string name="request_pending">Request pending</string>
+    <string name="request_accepted">Request accepted</string>
+    <string name="request_rejected">Request declined</string>
+    <string name="request_timeout">Time-out for this offer</string>
+    <string name="counter_applied">Counter applied</string>
+    <string name="counter_accepted">Counter accepted</string>
+    <string name="counter_rejected">Counter declined</string>
+    <string name="counter_pending">Counter pending</string>
+    <string name="heading_message">Message</string>
+    <string name="happy">Happy</string>
+    <string name="share_your_exprience">Share your exprience</string>
+    <string name="availability">Availability</string>
+    <string name="email_id">Email Id</string>
 
 
 </resources>

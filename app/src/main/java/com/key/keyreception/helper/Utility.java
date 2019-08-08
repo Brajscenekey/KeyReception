@@ -1,10 +1,12 @@
 package com.key.keyreception.helper;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -19,14 +21,28 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.key.keyreception.BuildConfig;
+import com.key.keyreception.base.ImageSessionManager;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
+import static com.key.keyreception.helper.Constant.PLACE_AUTOCOMPLETE_REQUEST_CODE;
 
 /**
  * Created by Shreya Kotak on 12/05/16.
@@ -35,6 +51,8 @@ public class Utility {
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
 
     private static final String IMAGE_DIRECTORY = "/demonuts_upload_camera";
+    public static String mCurrentPhotoPath = "";
+
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static boolean checkPermission(final Context context)
@@ -113,8 +131,6 @@ public class Utility {
         }
     }
 
-
-
     public Uri getImageUri(Bitmap inImage, Context context) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -171,4 +187,91 @@ public class Utility {
         }
         return "";
     }
+
+    public static String formatDate(String date, String srcFormat, String dstFormat){
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat(srcFormat);
+            SimpleDateFormat outputFormat = new SimpleDateFormat(dstFormat);
+            Date myDate = inputFormat.parse(date);
+            return outputFormat.format(myDate);
+        }catch (Exception e){
+            return date;
+        }
+    }
+
+    public static boolean checkCameraPermission(Activity activity) {
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            // No explanation needed, we can request the permission.
+            ActivityCompat.requestPermissions(activity,
+                    new String[]{Manifest.permission.CAMERA},
+                    Constant.MY_PERMISSIONS_REQUEST_CAMERA);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static void autoCompletePlacePicker(Activity activity) {
+        try {
+            // Set the fields to specify which types of place data to
+            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY)
+                    .build(activity);
+            activity.startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            Log.d("", e.getMessage());
+        }
+    }
+
+    public  void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+
+
+    //-------------------------------
+
+    public void dispatchTakePictureIntent(Activity context) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(context.getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile(context);
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(context,
+                        BuildConfig.APPLICATION_ID + ".fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                context.startActivityForResult(takePictureIntent, 1);
+            }
+        }
+    }
+
+    private File createImageFile(Context context) throws IOException {
+        // Create an image file name
+        @SuppressLint("SimpleDateFormat")
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,
+                ".jpg",
+                storageDir
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        ImageSessionManager.getInstance().createImageSession(mCurrentPhotoPath, false);
+        return image;
+    }
+
+
+
 }

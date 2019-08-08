@@ -9,29 +9,38 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
     <uses-feature
         android:name="android.hardware.camera.any"
         android:required="true" />
-    <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
 
     <application
-
+        android:name=".base.KeyReception"
         android:allowBackup="true"
         android:icon="@drawable/app_ico"
         android:label="@string/app_name"
         android:roundIcon="@drawable/app_ico"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Activity.SplashActivity">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+
+
+
+
+
+        <activity
+            android:name=".activity.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -40,41 +49,79 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.UserTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.SignupActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ForgotActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ValidateAccountActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.owner.OwnerTabActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.recepnist.RsettingActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.recepnist.TabActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
 
-        <activity android:name=".MainActivity">
         </activity>
-        <activity android:name=".Activity.UserTypeActivity" />
         <activity
-            android:name=".Activity.LoginActivity"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
-        <activity
-            android:name=".Activity.SignupActivity"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
-        <activity
-            android:name=".Activity.ForgotActivity"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
-        <activity android:name=".Activity.ValidateAccountActivity" />
-        <activity android:name=".Activity.Owner.OwnerTabActivity" />
-        <activity android:name=".Activity.Recepnist.RsettingActivity" />
-        <activity
-            android:name=".Activity.Recepnist.TabActivity"
-            android:windowSoftInputMode="stateAlwaysHidden">
+            android:name=".activity.DetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
             <intent-filter>
-                <action android:name="ChatActivity" />
-
+                <action android:name="DetailActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.DetailActivity" />
-        <activity android:name=".Activity.EditActivity" />
         <activity
-            android:name=".Activity.Owner.CreatePostActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".Activity.PaymentActivity" />
-        <activity android:name=".Activity.Owner.ServiceActivity" />
-        <activity android:name=".Activity.Owner.SubscriptionActivity" />
-        <activity android:name=".Activity.Owner.RequestActivity" />
-        <activity android:name=".Activity.Recepnist.AppoDetailActivity"></activity>
+            android:name=".activity.EditActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.owner.CreatePostActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.PaymentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.owner.ServiceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.owner.SubscriptionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.owner.RequestActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.recepnist.AppoDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
 
         <!-- Firebase Notifications -->
         <service android:name=".supportnoti.service.MyFirebaseMessagingService">
@@ -88,6 +135,87 @@
             </intent-filter>
         </service>
         <!-- ./Firebase Notifications -->
+        <activity
+            android:name=".activity.recepnist.GetValidatedataActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.recepnist.NotiDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.owner.MakePaymentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.owner.OwnerNotifiDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+
+        </activity>
+        <activity
+            android:name=".activity.owner.PayOptionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.owner.AddpropertyActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+
+        </activity>
+        <activity
+            android:name=".activity.owner.PropertyDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".helper.croper.CropImageActivity"
+            android:theme="@style/CropImage" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:enabled="true"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- <activity android:name=".helper.croper.CropImageActivity"/>-->
+
+        <activity
+            android:name=".activity.recepnist.CompleteValidActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+
+
+        </activity>
+        <activity
+            android:name=".activity.owner.EditPropertyActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+
+        </activity>
+        <activity
+            android:name=".activity.ChattingActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="ChatActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="2ec06576d6c5248cca082ad82d40935731f442c4" />
     </application>
 
 </manifest>

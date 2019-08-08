@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ValidateAccountActivity">
+
+    <RelativeLayout
+        android:id="@+id/rr1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        >
+
+
+
+        <ImageView
+            android:id="@+id/iv_leftarrow_payback"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            app:srcCompat="@drawable/arrow" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/quicksandmedium"
+            android:text="@string/makepayment"
+            android:letterSpacing=".01"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorwhite"
+            android:textSize="17sp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/payoption"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorgray"
+            android:fontFamily="@font/quicksandmedium"
+            android:gravity="center"
+            />
+
+        <RelativeLayout
+            android:id="@+id/rl_makepay_paypal"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/cornerwhiteback"
+            android:gravity="center_vertical">
+
+
+            <ImageView
+                android:id="@+id/iv_makepay_paypal"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                app:srcCompat="@drawable/ic_paypal_ico" />
+
+            <TextView
+                android:id="@+id/tv_makepay_paypal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/paypal"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/iv_makepay_paypal"
+                android:textColor="@color/colordarkblack"
+                android:fontFamily="@font/quicksandmedium"
+                android:gravity="center"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/totamount"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorgray"
+            android:fontFamily="@font/quicksandmedium"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tv_paytotalamount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:text="$10"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/colordarkblack"
+            android:fontFamily="@font/quicksandbold"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+    <Button
+
+        android:id="@+id/btn_makepayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pay"
+        android:textSize="16sp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/quicksandmedium"
+        android:background="@drawable/btnback"
+        android:textColor="@color/colorwhite"
+        android:textAllCaps="false"/>
+
+
+
+</LinearLayout>

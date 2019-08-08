@@ -70,7 +70,7 @@
                 android:layout_marginTop="20dp"
                 android:scaleType="fitXY"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/app_ico"
+                android:src="@drawable/ic_new_property_img"
                 app:riv_corner_radius="2dp"
                 />
 

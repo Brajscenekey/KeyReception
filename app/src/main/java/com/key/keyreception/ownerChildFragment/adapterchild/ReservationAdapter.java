@@ -1,15 +1,12 @@
 package com.key.keyreception.ownerChildFragment.adapterchild;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-import com.key.keyreception.Activity.DetailActivity;
 import com.key.keyreception.R;
 
 /**
@@ -17,12 +14,9 @@ import com.key.keyreception.R;
  */
 public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.MyViewHolder> {
 
-    Context context;
+    private Context context;
 
-
-
-    public ReservationAdapter(Context context)
-    {
+    public ReservationAdapter(Context context) {
         this.context = context;
 
     }
@@ -36,11 +30,8 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull final ReservationAdapter.MyViewHolder holder, final int position) {
-
-
     }
 
-    //TOTAL SPACECRAFTS
     @Override
     public int getItemCount() {
         return 5;
@@ -49,9 +40,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public MyViewHolder(final View itemView) {
             super(itemView);
-
-
-           /* itemView.setOnClickListener(new View.OnClickListener() {
+            /* itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, DetailActivity.class);

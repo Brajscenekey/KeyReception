@@ -137,7 +137,7 @@
                     android:id="@+id/bank_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/name"
+                    android:text="@string/uname"
                     android:fontFamily="@font/quicksandmedium"
                     android:textColor="@color/colorPrimary"
                     android:layout_marginTop="15dp"
@@ -153,7 +153,7 @@
                     android:background="@null"
                     android:textColorHint="@color/colorgray"
                     android:textColor="@color/colorgray"
-                    android:inputType="text"
+                    android:inputType="textCapWords"
                     android:layout_below="@+id/bank_name"
                     android:fontFamily="@font/quicksandregular"
                     android:textSize="12sp"
@@ -169,13 +169,50 @@
                     android:layout_below="@+id/et_editname"
                     />
 
+                <TextView
+                    android:id="@+id/updatemail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/bank_view"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:text="@string/email_id"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
+
+
+                <EditText
+                    android:id="@+id/et_editmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:textColorHint="@color/colorgray"
+                    android:textColor="@color/colorgray"
+                    android:inputType="textCapWords"
+                    android:layout_below="@+id/updatemail"
+                    android:fontFamily="@font/quicksandregular"
+                    android:textSize="12sp"
+
+                    />
+
+
+                <View
+                    android:id="@+id/bank_mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/LigthestGraycolor"
+                    android:layout_below="@+id/et_editmail"
+                    />
+
 
                 <TextView
                     android:id="@+id/bank_ahname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/address"
-                    android:layout_below="@+id/bank_view"
+                    android:layout_below="@+id/bank_mail"
                     android:fontFamily="@font/quicksandmedium"
                     android:textColor="@color/colorPrimary"
                     android:layout_marginTop="15dp"

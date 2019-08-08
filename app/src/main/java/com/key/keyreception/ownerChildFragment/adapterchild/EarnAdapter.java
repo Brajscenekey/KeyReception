@@ -14,16 +14,12 @@ import com.key.keyreception.R;
  */
 public class EarnAdapter extends RecyclerView.Adapter<EarnAdapter.MyViewHolder> {
 
-    Context context;
-
-
-
+    private Context context;
     public EarnAdapter(Context context)
     {
         this.context = context;
 
     }
-
     @NonNull
     @Override
     public EarnAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,22 +29,17 @@ public class EarnAdapter extends RecyclerView.Adapter<EarnAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final EarnAdapter.MyViewHolder holder, final int position) {
-
-
-    }
+        }
 
     //TOTAL SPACECRAFTS
     @Override
     public int getItemCount() {
         return 5;
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public MyViewHolder(final View itemView) {
             super(itemView);
-
-
-        }
+            }
     }
 
 }

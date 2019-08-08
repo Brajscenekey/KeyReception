@@ -29,7 +29,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/app_ico"
+                android:src="@drawable/ic_new_property_img"
                 app:riv_corner_radius="2dp"
                 />
 
@@ -121,7 +121,7 @@
                         android:gravity="center"
                         android:text="15,March 12:00 AM"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         />
 
                     <TextView
@@ -135,7 +135,7 @@
                         android:layout_alignParentRight="true"
                         android:text="Request"
                         android:textColor="@color/appcolor"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         />
 
                 <ImageView

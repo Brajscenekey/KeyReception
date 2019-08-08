@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_margin="20dp"
+        android:weightSum="4"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/rl_myjob"
         android:orientation="horizontal">
@@ -24,10 +25,11 @@
 
         <EditText
             android:id="@+id/et_Appojobsearch"
-            android:layout_width="270dp"
+            android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/editback"
             android:hint="@string/search"
+            android:layout_weight="3.5"
             android:inputType="text"
             android:textColorHint="@color/colorgray"
             android:textColor="@color/colorgray"
@@ -116,19 +118,45 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/ly_Appocomplete"
+                    android:id="@+id/ly_Appoall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+
                     <TextView
-                        android:id="@+id/tv_Appocomplete"
+                        android:id="@+id/tv_Appoall"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:fontFamily="@font/quicksandmedium"
                         android:gravity="center_vertical"
                         android:layout_marginStart="10dp"
-                        android:text="@string/complete"
+                        android:text="@string/all"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ly_Apponnotstart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+
+                        android:layout_marginTop="3dp"
+                        android:background="@color/LigthestGraycolor" />
+                    <TextView
+                        android:id="@+id/tv_Apponotstart"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/nostart"
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp" />
 
@@ -155,6 +183,29 @@
                         android:fontFamily="@font/quicksandmedium"
                         android:gravity="center_vertical"
                         android:text="@string/inpro"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ly_Appocomplete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+
+                        android:layout_marginTop="3dp"
+                        android:background="@color/LigthestGraycolor" />
+
+                    <TextView
+                        android:id="@+id/tv_Appocomplete"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:gravity="center_vertical"
+                        android:text="@string/complete"
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp" />
                 </LinearLayout>

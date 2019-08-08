@@ -30,6 +30,13 @@ public class KeyReception extends Application{
         return mInstance;
     }
 
+    public static KeyReception getInstance1() {
+        if (mInstance != null) {
+           return mInstance;
+        }
+        return new KeyReception();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

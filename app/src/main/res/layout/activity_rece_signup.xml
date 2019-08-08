@@ -192,10 +192,11 @@
                         android:textColor="@color/colorgray"
                         android:fontFamily="@font/quicksandregular"
                         android:textSize="14sp"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                         android:layout_below="@+id/rsignet_email"
                         android:background="@drawable/editback"
                         android:hint="@string/uname"
-                        android:inputType="text"
+                        android:inputType="textCapWords"
                         android:padding="12dp" />
 
 
@@ -262,7 +263,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/signUpText"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:layout_below="@+id/rsignet_address"
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/quicksandmedium"
@@ -288,7 +289,7 @@
                             android:id="@+id/rtv_account"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             android:fontFamily="@font/quicksandregular"
                             android:text="@string/already"
                             android:textColor="@color/colorgray" />
@@ -300,7 +301,7 @@
                             android:layout_toRightOf="@+id/rtv_account"
                             android:layout_height="wrap_content"
                             android:text="@string/signText"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             android:fontFamily="@font/quicksandmedium"
                             android:layout_marginLeft="5dp"
                             android:textColor="@color/appcolor" />

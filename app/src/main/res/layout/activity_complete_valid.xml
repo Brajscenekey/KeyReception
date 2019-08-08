@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ValidateAccountActivity">
+
+    <RelativeLayout
+        android:id="@+id/rr1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentLeft="true">
+
+
+
+        <ImageView
+            android:id="@+id/iv_leftarrow_forgot"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:visibility="invisible"
+            android:layout_marginTop="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/arrow" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/quicksandmedium"
+            android:text="@string/complete_validate"
+            android:letterSpacing=".01"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorwhite"
+            android:textSize="17sp"
+            />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:orientation="vertical"
+            >
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_list"
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/validate"
+                android:textSize="14dp"
+                android:visibility="gone"
+                android:textColor="@color/colorgray"
+                android:fontFamily="@font/quicksandregular"
+                android:gravity="center"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/selectcategory"
+                android:textSize="14dp"
+                android:textColor="@color/colordarkblack"
+                android:fontFamily="@font/quicksandmedium"
+                android:gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/et_comvalid_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColorHint="@color/colorgray"
+                android:textColor="@color/colorgray"
+                android:fontFamily="@font/quicksandregular"
+                android:textSize="14sp"
+                android:drawableRight="@drawable/ic_down_arrow"
+                android:focusable="false"
+                android:layout_below="@+id/rsignet_password"
+                android:background="@drawable/editback"
+                android:hint="@string/CategoryTextHint"
+                android:inputType="text"
+                android:padding="12dp" />
+
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/socialnumber"
+                android:textSize="14sp"
+                android:textColor="@color/colordarkblack"
+                android:fontFamily="@font/quicksandmedium"
+                android:gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/et_socialnumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColorHint="@color/colorgray"
+                android:textColor="@color/colorgray"
+                android:fontFamily="@font/quicksandregular"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:background="@drawable/editback"
+                android:hint="@string/number"
+                android:inputType="number"
+                android:padding="12dp" />
+
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                >
+
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorgray"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/and"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colordarkblack"
+                    android:fontFamily="@font/quicksandregular"
+                    android:gravity="center"
+                    />
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/colorgray"
+                    />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dlicense"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colordarkblack"
+                android:fontFamily="@font/quicksandmedium"
+                android:gravity="center"
+                />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/iv_plusbox"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_plus_box_img"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_horizontal"
+                app:riv_corner_radius="2dp"
+                />
+
+
+            <Button
+
+                android:id="@+id/btn_validaccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sub"
+                android:gravity="center"
+                android:layout_marginBottom="30dp"
+                android:textSize="16dp"
+                android:layout_below="@+id/forgot_emailaddress"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/quicksandmedium"
+                android:background="@drawable/btnback"
+                android:textColor="@color/colorwhite"
+                android:textAllCaps="false"/>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

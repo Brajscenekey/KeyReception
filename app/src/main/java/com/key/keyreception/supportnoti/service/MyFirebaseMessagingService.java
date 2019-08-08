@@ -15,12 +15,18 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.key.keyreception.Activity.DetailActivity;
-import com.key.keyreception.Activity.LoginActivity;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
+import com.key.keyreception.activity.ChattingActivity;
+import com.key.keyreception.activity.DetailActivity;
+import com.key.keyreception.activity.LoginActivity;
+import com.key.keyreception.activity.owner.OwnerTabActivity;
+import com.key.keyreception.activity.recepnist.AppoDetailActivity;
+import com.key.keyreception.activity.recepnist.TabActivity;
 
 import java.util.List;
+
+import static com.key.keyreception.helper.Constant.Other_User_id;
 
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -34,40 +40,75 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     String notifincationType = "";
     String notifyId = "";
     String userType = "";
+    String forUserType = "";
+    String opponentChatId = "";
+
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-        Log.e(TAG, "Body: " + remoteMessage.getData().toString());
+         Log.e(TAG, "Body: " + remoteMessage.getData().toString());
         Log.e(TAG, "Body1: " + remoteMessage);
 
-//        Bundle[{urlImageString=http://koobi.co.uk:3000/keyreception/uploads/profile/undefined,
-        // google.delivered_priority=high,
-        // google.sent_time=1554726699825,
-        // google.ttl=2419200,
-        // google.original_priority=high,
-        // gcm.notification.e=1,
-        // gcm.notification.
-        // fullName=aarti,
-        // gcm.notification.notifincationType=1,
-        // gcm.notification.notifyId=54,
-        // gcm.notification.sound=default,
-        // gcm.notification.title=Job Request,
-        // userType=owner,
-        // body=aarti sent a job request.,
-        // from=21884075450,
-        // gcm.notification.sound2=default,
-        // title=Job Request,
-        // click_action =ChatActivity,
-        // gcm.notification.urlImageString=http://koobi.co.uk:3000/keyreception/uploads/profile/undefined,
-        // google.message_id=0:1554726699832972%e045cf4ce045cf4c,
-        // gcm.notification.body=aarti sent a job request.,
-        // notifincationType=1, google.c.a.e=1,
-        // fullName=aarti, notifyId=54,
-        // gcm.notification.
-        // click_action=ChatActivity,
-        // gcm.notification.userType=owner,
-        // collapse_key=com.key.keyreception}]
+
+//        Bundle[{other_key=true,
+//                gcm.notification.fcm_token=eTxjnSR7j3c:APA91bG3Jq7rwaYOjsLuGEiyo2iW1ctZPmCuhbCgyGUBRpLXpQ1Jh_2u5ziAuQb-rn2Qxe413C-IUMej9_FQWl2XoJhMleSZhFQLUExwqg__xA_Mdyns-Z7PnhwVPdZaTSmWU6VNGjyz,
+//                google.delivered_priority=high,
+//                google.sent_time=1558501298273,
+//                google.ttl=2419200,
+//                google.original_priority=high,
+//                gcm.notification.e=1,
+//                gcm.notification.other_key=true,
+//                priority=high, opponentChatId=5,
+//                ChatTitle=vin diesal,
+//                gcm.notification.badge=1,
+//                gcm.notification.sound=default,
+//        gcm.notification.title=vin diesal,
+//                username=vin diesal,
+//                gcm.notification.ChatTitle=vin diesal,
+//                uid=5, body=Hello ,
+//                from=21884075450,
+//                icon=new, type=chat,
+//                gcm.notification.sound2=default,
+//                gcm.notification.message=Hello ,
+//                badge=1, sound=default,
+//                title=vin diesal, click_action=ChatActivity,
+//                google.message_id=0:1558501298279621%e045cf4ce045cf4c,
+//                gcm.notification.body=Hello ,
+//                gcm.notification.icon=new,
+//                gcm.notification.type=chat,
+//                gcm.notification.opponentChatId=5,
+//                message=Hello , google.c.a.e=1,
+//                gcm.notification.uid=5,
+//                content_available=true,
+//                gcm.notification.click_
+//                action=ChatActivity,
+//                gcm.notification.username=vin diesal,
+//                fcm_token=eTxjnSR7j3c:APA91bG3Jq7rwaYOjsLuGEiyo2iW1ctZPmCuhbCgyGUBRpLXpQ1Jh_2u5ziAuQb-rn2Qxe413C-IUMej9_FQWl2XoJhMleSZhFQLUExwqg__xA_Mdyns-Z7PnhwVPdZaTSmWU6VNGjyz, collapse_key=com.key.keyreception}]
+
+
+//        Bundle[{google.delivered_priority=high,
+//                google.sent_time=1557305169835,
+//                google.ttl=2419200,
+//                google.original_priority=high,
+//                gcm.notification.e=1,
+//                gcm.notification.fullName=shiva,
+//                gcm.notification.notifincationType=1,
+//                gcm.notification.notifyId=7,
+//                gcm.notification.sound=default,
+//        gcm.notification.title=Job Request,
+//                userType=receptionist,
+//                body=shiva sent you a job request.,
+//                from=21884075450, gcm.notification.sound2=default,
+//        title=Job Request, click_action=ChatActivity,
+//                google.message_id=0:1557305169847650%e045cf4ce045cf4c,
+//                gcm.notification.body=shiva sent you a job request.,
+//                notifincationType=1, forUserType=receptionist,
+//                google.c.a.e=1, fullName=shiva,
+//                notifyId=7, gcm.notification.click_action=ChatActivity,
+//                gcm.notification.userType=receptionist,
+//                collapse_key=com.key.keyreception,
+//                gcm.notification.forUserType=receptionist}]
 
 
         if (remoteMessage.getData().containsKey("body")) {
@@ -75,9 +116,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             body = remoteMessage.getData().get("body");
             userType = remoteMessage.getData().get("userType");
             notifincationType = remoteMessage.getData().get("notifincationType");
+            opponentChatId = remoteMessage.getData().get("opponentChatId");
+
+
+            forUserType = remoteMessage.getData().get("forUserType");
             if (remoteMessage.getData().get("notifyId") != null) {
                 notifyId = remoteMessage.getData().get("notifyId");
             }
+
 
             //  Log.v("reference_id", reference_id);
 
@@ -90,24 +136,117 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             case "1":
 
                 if (sessionManager.isLoggedIn()) {
-                    intent = new Intent("BroadcastNotification");
-                    intent.putExtra("notifyId", notifyId);
-                    sendBroadcast(intent);
+                    if (sessionManager.getusertype().equals(forUserType)) {
+                        intent = new Intent("BroadcastNotification");
+                        intent.putExtra("notifyId", notifyId);
+                        sendBroadcast(intent);
+                    } else {
+                        intent = new Intent(this, TabActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("checkid", "1001");
+                    }
                 } else {
                     new Intent(this, LoginActivity.class);
                 }
 
                 break;
             case "2":
+
                 if (sessionManager.isLoggedIn()) {
-                    intent = new Intent(this, DetailActivity.class);
-                    intent.putExtra("notifyId", notifyId);
+                    if (sessionManager.getusertype().equals(forUserType)) {
+                        intent = new Intent(this, DetailActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("notifyId", notifyId);
+                    } else {
+
+                        intent = new Intent(this, TabActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("checkid", "1001");
+                    }
+
+
+                } else {
+                    new Intent(this, LoginActivity.class);
+                }
+
+                sendNotification(remoteMessage.getTtl(), title, intent, body, false);
+
+
+                break;
+
+            case "3":
+                if (sessionManager.isLoggedIn()) {
+                    if (sessionManager.getusertype().equals(forUserType)) {
+                        intent = new Intent(this, DetailActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("notifyId", notifyId);
+                    } else {
+
+                        intent = new Intent(this, TabActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("checkid", "1001");
+                    }
+
                 } else {
                     new Intent(this, LoginActivity.class);
                 }
                 sendNotification(remoteMessage.getTtl(), title, intent, body, false);
 
                 break;
+
+            case "4":
+                if (sessionManager.isLoggedIn()) {
+                    if (sessionManager.getusertype().equals(forUserType)) {
+                        intent = new Intent(this, DetailActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("notifyId", notifyId);
+                    } else {
+
+                        intent = new Intent(this, TabActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("checkid", "1001");
+                    }
+
+                } else {
+                    new Intent(this, LoginActivity.class);
+                }
+                sendNotification(remoteMessage.getTtl(), title, intent, body, false);
+
+                break;
+
+            case "5":
+                if (sessionManager.isLoggedIn()) {
+                    if (sessionManager.getusertype().equals(forUserType)) {
+                        intent = new Intent(this, AppoDetailActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("notifyId", notifyId);
+                    } else {
+
+                        intent = new Intent(this, OwnerTabActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("checkid", "1001");
+                    }
+
+                } else {
+                    new Intent(this, LoginActivity.class);
+                }
+                sendNotification(remoteMessage.getTtl(), title, intent, body, false);
+
+                break;
+
+            case "chat":
+
+                if (Other_User_id != Integer.parseInt(opponentChatId)) {
+                    if (sessionManager.isLoggedIn()) {
+                        intent = new Intent(this, ChattingActivity.class);
+                        intent.putExtra("serviceProviderId", opponentChatId);
+                    } else {
+                        new Intent(this, LoginActivity.class);
+                    }
+                    sendNotification(remoteMessage.getTtl(), title, intent, body, false);
+                }
+                break;
+
         }
     }
 

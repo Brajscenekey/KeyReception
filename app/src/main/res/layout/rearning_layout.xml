@@ -21,26 +21,27 @@
             android:layout_height="wrap_content">
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/iv_Myjobhome"
+                android:id="@+id/iv_earnimage"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
+                android:scaleType="fitXY"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/app_ico"
+                android:src="@drawable/ic_new_property_img"
                 app:riv_corner_radius="2dp"
                 />
 
 
             <TextView
-                android:id="@+id/tv_Myjob_proname"
+                android:id="@+id/tv_earn_proname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/quicksandmedium"
                 android:gravity="center"
                 android:layout_marginTop="12dp"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/iv_Myjobhome"
+                android:layout_toRightOf="@+id/iv_earnimage"
                 android:text="Righthaus Property"
 
                 android:textColor="@color/colordarkblack"
@@ -48,7 +49,7 @@
                 />
 
             <TextView
-                android:id="@+id/rprof_img"
+                android:id="@+id/tv_earn_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
@@ -63,15 +64,15 @@
                 />
 
                 <TextView
-                    android:id="@+id/tv_Myjob_address"
+                    android:id="@+id/tv_earn_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/quicksandregular"
                     android:gravity="center"
                     android:layout_marginLeft="10dp"
-                    android:layout_below="@+id/tv_Myjob_proname"
+                    android:layout_below="@+id/tv_earn_proname"
                     android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@+id/iv_Myjobhome"
+                    android:layout_toRightOf="@+id/iv_earnimage"
                     android:text="Plumber"
                     android:textColor="@color/colorDarkgray"
                     android:textSize="14sp"
@@ -80,13 +81,13 @@
 
 
                     <TextView
-                        android:id="@+id/tv_Myjob_time"
+                        android:id="@+id/tv_earn_des"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/quicksandregular"
-                        android:gravity="center"
-                        android:layout_toRightOf="@+id/iv_Myjobhome"
-                        android:layout_below="@+id/iv_Myjobhome"
+                        android:gravity="start"
+                        android:layout_toRightOf="@+id/iv_earnimage"
+                        android:layout_below="@+id/iv_earnimage"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"
                         android:text="Content here,making look "

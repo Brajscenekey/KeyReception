@@ -1,5 +1,6 @@
 package com.key.keyreception.supportnoti.service;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -32,7 +33,7 @@ public class FcmNotificationBuilder{
 
 
     //""""""""""""""""" livewire dev """"""""""""""" //
-    private static final String AUTH_KEY = "key=" + "AAAAu0uy0RY:APA91bHCRoukQGS1ZTmrXLwi5cfw8mUpOhT6Cw4wff9ToLxa_jELIIG1oS73OikpsPjWQZbLSMs80pFq7D0qEsUYrN0iL-H9uSxRT8H-2kTn5wH5Ucr3k6NiQ9QOcYsVpp0BZIH0ELSp";
+    private static final String AUTH_KEY = "key=" + "AAAABRhkfbo:APA91bEy7Iw0lp0wsjBYS42rFodoLtrMwPc4qhShoyHIaz6TtEK1uqSdXOXjp4S5adOodPnPK9vprzV3Jh_GBQMn-GW7YUeRYKRs69_V-05meQ2C1g60nDQW_QW7H1ZFr8lkZ-EvLk2A";
 
 
 
@@ -129,12 +130,12 @@ public class FcmNotificationBuilder{
         Call call = new OkHttpClient().newCall(request);
         call.enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Log.e(TAG, "onGetAllUsersFailure: " + e.getMessage());
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 Log.e(TAG, "onResponse: " + response.body().string());
             }
         });
@@ -150,7 +151,7 @@ public class FcmNotificationBuilder{
         data.put(KEY_USERNAME, mUsername);
         data.put(KEY_UID, mUid);
         data.put(KEY_FCM_TOKEN, mFirebaseToken);
-        data.put("type", "chat");
+        data.put("notifincationType", "chat");
         data.put("ChatTitle", mTitle);
         data.put("opponentChatId", mUid);
         data.put("sound", "default");

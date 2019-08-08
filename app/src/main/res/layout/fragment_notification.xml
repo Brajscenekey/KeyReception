@@ -5,14 +5,26 @@
     android:layout_height="match_parent"
     >
 
-    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/notification_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@+id/rr1"
+        android:scrollbars="none" />
+
     <TextView
+        android:id="@+id/notification_tv_no_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:visibility="gone"
         android:textColor="@color/appcolor"
         android:layout_centerInParent="true"
         android:fontFamily="@font/quicksandbold"
-        android:text="Under Indevelopment" />
+        android:text="@string/nrf" />
+
+
 
 </RelativeLayout>

@@ -7,7 +7,9 @@ buildscript {
         jcenter()
     }
     dependencies {
+        //noinspection GradleDependency
         classpath 'com.android.tools.build:gradle:3.1.0'
+        //noinspection GradleDependency
         classpath 'com.google.gms:google-services:4.0.1'
         
 
@@ -20,6 +22,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 

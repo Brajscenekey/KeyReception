@@ -42,12 +42,12 @@ public class ReservationFragment extends BaseFragment {
 
     public void init()
     {
-        recyclerView=getView().findViewById(R.id.reserv_recycler_view);
+        /*recyclerView=getView().findViewById(R.id.reserv_recycler_view);
         adapter = new ReservationAdapter(mContext);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);*/
     }
 
     @Override

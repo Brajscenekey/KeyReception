@@ -64,6 +64,8 @@
             app:tabIndicatorColor="@color/appcolor"
             app:tabTextColor="@color/colorgray"
             app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+
+
             />
 
     </RelativeLayout>

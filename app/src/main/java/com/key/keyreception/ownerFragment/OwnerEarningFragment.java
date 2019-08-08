@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 
 import com.key.keyreception.R;
 import com.key.keyreception.base.BaseFragment;
+import com.key.keyreception.ownerChildFragment.MyPropertyFragment;
 import com.key.keyreception.viewPager.Owner_earning_viewpager;
-import com.key.keyreception.viewPager.Reserv_earning_viewpager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,31 +22,37 @@ import com.key.keyreception.viewPager.Reserv_earning_viewpager;
 public class OwnerEarningFragment extends BaseFragment {
 
 
+    private ViewPager viewPager;
+
     public OwnerEarningFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_owner_earning, container, false);
-        return inflater.inflate(R.layout.fragment_owner_message, container, false);
+        return inflater.inflate(R.layout.fragment_owner_earning, container, false);
 
     }
 
-   /* @Override
+    public void ownerSwitchPager() {
+        viewPager.setCurrentItem(1);
+        MyPropertyFragment fragment = (MyPropertyFragment) getChildFragmentManager().findFragmentByTag("android:switcher:" + R.id.earnrev_viewPager + ":" + viewPager.getCurrentItem());
+        assert fragment != null;
+        fragment.propertyListApiData();
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        ViewPager viewPager = view.findViewById(R.id.own_earning_viewPager);
-        TabLayout tabLayout = view.findViewById(R.id.sliding_oearning_tabs);
-        //wrapTabIndicatorToTitle(tabLayout,150,150);
+        viewPager = view.findViewById(R.id.earnrev_viewPager);
+        TabLayout tabLayout = view.findViewById(R.id.sliding_tabs);
         Owner_earning_viewpager owner_earning_viewpager = new Owner_earning_viewpager(getChildFragmentManager());
         viewPager.setAdapter(owner_earning_viewpager);
         tabLayout.setupWithViewPager(viewPager);
 
-    }*/
-
+    }
 
 }

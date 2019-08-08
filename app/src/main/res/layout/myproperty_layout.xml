@@ -22,19 +22,19 @@
 
 
             <ImageView
-                android:id="@+id/iv_property"
+                android:id="@+id/iv_myproperty_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:text="$120.00"
                 android:scaleType="fitXY"
-                android:src="@drawable/splash_bg"
+                android:src="@drawable/ic_new_big_placeholder_img"
                 android:textSize="17sp"/>
 
 
 
 
             <TextView
-                android:id="@+id/tv_reserv_proname"
+                android:id="@+id/tv_myprop_proname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/quicksandbold"
@@ -42,17 +42,43 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
                 android:text="Righthaus Property"
-                android:layout_below="@+id/iv_property"
+                android:layout_below="@+id/iv_myproperty_image"
                 android:textColor="@color/colordarkblack"
                 android:textSize="17sp"
      />
+
+            <ImageView
+                android:id="@+id/iv_myproperty_editimage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$120.00"
+                android:layout_marginTop="25dp"
+                android:scaleType="fitXY"
+                android:layout_marginEnd="10dp"
+                android:layout_toLeftOf="@+id/iv_myproperty_deleteimage"
+                android:layout_below="@+id/iv_myproperty_image"
+                app:srcCompat="@drawable/ic_edit_ico"
+                android:textSize="17sp"/>
+            <ImageView
+                android:id="@+id/iv_myproperty_deleteimage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$120.00"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/iv_myproperty_image"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_delete_ico"
+                android:textSize="17sp"/>
+
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_below="@+id/tv_reserv_proname"
+                android:layout_below="@+id/tv_myprop_proname"
                 android:layout_toRightOf="@+id/iv_reservhome"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
@@ -68,11 +94,14 @@
                     android:tint="@color/colorPrimary"
                     app:srcCompat="@drawable/ic_placeholder" />
                 <TextView
-                    android:id="@+id/tv_reserv_address"
+                    android:id="@+id/tv_myprop_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/quicksandregular"
                     android:gravity="center"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginEnd="50dp"
                     android:text="9891 Bridle St.Buffalo, NY 14215"
                     android:textColor="@color/colorDarkgray"
                     android:textSize="14sp"

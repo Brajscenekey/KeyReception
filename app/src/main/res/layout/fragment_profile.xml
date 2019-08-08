@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:layout_alignParentLeft="true">
+        android:layout_alignParentStart="true">
 
 
 
@@ -20,9 +20,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             app:srcCompat="@drawable/ic_user" />
 
 
@@ -111,15 +111,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginEnd="25dp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
                         android:layout_marginTop="10dp"
                         >
                         <ImageView
                             android:layout_width="12dp"
                             android:layout_height="12dp"
                             android:layout_gravity="start"
-                            android:layout_marginEnd="5dp"
                             app:srcCompat="@drawable/ic_placeholder" />
                         <TextView
                             android:id="@+id/rpro_add"
@@ -169,6 +168,60 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <RelativeLayout
+                        android:id="@+id/rl_notification"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="50dp">
+
+
+
+                        <ImageView
+                            android:id="@+id/iv_noti"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="20dp"
+                            app:srcCompat="@drawable/ic_availability_ico"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/t"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_toRightOf="@+id/iv_noti"
+                            android:textColor="@color/colordarkblack"
+                            android:fontFamily="@font/quicksandmedium"
+                            android:layout_centerVertical="true"
+                            android:textSize="16sp"
+                            android:text="@string/availability"
+                            />
+
+                        <Switch
+                            android:id="@+id/ava_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:theme="@style/SCBSwitch"
+                            android:checked="true"
+                            android:layout_centerInParent="true"
+                            />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/t"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:background="@color/LigthestGraycolor"
+                            />
+
+                    </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/rl_tc"
                     android:layout_width="match_parent"
@@ -202,8 +255,8 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
                         android:layout_centerInParent="true"
                         app:srcCompat="@drawable/ic_right_arrow"
                         />
@@ -281,8 +334,8 @@
                         android:id="@+id/iv3"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="20dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="20dp"
                         android:layout_centerInParent="true"
                         app:srcCompat="@drawable/ic_settings"
                         />
@@ -292,11 +345,11 @@
                         android:id="@+id/privacy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:fontFamily="@font/quicksandmedium"
                         android:layout_centerVertical="true"
                         android:textSize="16sp"
-                        android:layout_toRightOf="@id/iv3"
+                        android:layout_toEndOf="@id/iv3"
                         android:textColor="@color/colordarkblack"
                         android:text="@string/Setting"
                         />
@@ -304,8 +357,8 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
                         android:layout_centerInParent="true"
                         app:srcCompat="@drawable/ic_right_arrow"
                         />
@@ -322,10 +375,9 @@
 
 
                 <RelativeLayout
-                    android:id="@+id/bi_rl"
+                    android:id="@+id/rl_valid_your_acc"
                     android:layout_width="match_parent"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="80dp"
                     android:layout_height="50dp">
 
 
@@ -333,8 +385,8 @@
                         android:id="@+id/iv4"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="20dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="20dp"
                         android:layout_centerInParent="true"
                         app:srcCompat="@drawable/ic_account"
                         />
@@ -344,11 +396,11 @@
                         android:id="@+id/bi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:fontFamily="@font/quicksandmedium"
                         android:layout_centerVertical="true"
                         android:textSize="16sp"
-                        android:layout_toRightOf="@id/iv4"
+                        android:layout_toEndOf="@id/iv4"
                         android:textColor="@color/colordarkblack"
                         android:text="@string/vyasmall"
                         />
@@ -356,8 +408,8 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
                         android:layout_centerInParent="true"
                         app:srcCompat="@drawable/ic_right_arrow"
                         />
@@ -371,6 +423,71 @@
                         />
 
                 </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_owner_switch_resep"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="80dp"
+                        android:layout_height="50dp">
+
+                        <ImageView
+                            android:id="@+id/iv1_switch_resep"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="20dp"
+                            android:layout_centerInParent="true"
+                            app:srcCompat="@drawable/ic_switch"
+                            />
+
+                        <TextView
+                            android:id="@+id/switch_resep"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_toEndOf="@+id/iv1_switch_resep"
+                            android:textColor="@color/colordarkblack"
+                            android:fontFamily="@font/quicksandmedium"
+                            android:layout_centerVertical="true"
+                            android:textSize="16sp"
+                            android:text="@string/switchid"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@+id/switch_resep"
+                            android:textColor="@color/colordarkblack"
+                            android:fontFamily="@font/quicksandmedium"
+                            android:layout_centerVertical="true"
+                            android:textSize="16sp"
+                            android:text="@string/own"
+                            />
+
+
+                        <Switch
+                            android:id="@+id/recep_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="10dp"
+                            android:visibility="gone"
+                            android:layout_centerInParent="true"
+                            />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+
+                            android:layout_below="@+id/switch_resep"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/LigthestGraycolor"
+                            />
+
+                    </RelativeLayout>
 
 
 

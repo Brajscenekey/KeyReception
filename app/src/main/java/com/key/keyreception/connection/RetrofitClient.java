@@ -10,24 +10,26 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-
-    private static final String Base_Url = "http://3.17.192.198:8042/api/";
-    private static final String Base_Url1 = "http://3.17.192.198:8042/api/";
+//    http://3.17.192.198:8042/api/
+    private static final String Base_Url = "http://3.17.192.198:8042/api/"; //"http://keyreception.us-east-1.elasticbeanstalk.com/api/";
+    private static final String Base_Url1 =  "http://3.17.192.198:8042/api/"; // "http://keyreception.us-east-1.elasticbeanstalk.com/api/";
     private static RetrofitClient minstance;
     private Retrofit retrofit,retrofit1;
 
     private RetrofitClient() {
 
-        OkHttpClient client = new OkHttpClient.Builder()
+      /*  OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS).build();
+*/
+
 
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(Base_Url)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
+//                .client(client)
                 .build();
 
 

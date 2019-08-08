@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorwhite"
+    tools:context=".activity.owner.AddpropertyActivity">
+
+    <RelativeLayout
+        android:id="@+id/rr1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/iv_leftarrow_addprop"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/quicksandmedium"
+            android:letterSpacing=".01"
+            android:text="@string/updprop"
+            android:textColor="@color/colorwhite"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+
+            <RelativeLayout
+                android:id="@+id/rtl_upload_photo"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/uploadimagebtn">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/uploadimage"
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/ic_upload" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_toRightOf="@+id/uploadimage"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:letterSpacing=".01"
+                        android:text="@string/uimg"
+                        android:textColor="@color/colorgray"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+
+            <!--<ImageView
+                android:id="@+id/checkImage"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_upload" />
+-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/addprop_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:scrollbars="none" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/quicksandmedium"
+                android:text="@string/pname"
+                android:textColor="@color/colorgray"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/Addprop_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:background="@null"
+                android:fontFamily="@font/quicksandmedium"
+                android:hint="@string/enter_property_name"
+                android:inputType="textCapWords"
+                android:padding="5dp"
+                android:textColor="@color/colorPrimary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:background="@color/LigthestGraycolor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/quicksandmedium"
+                android:text="@string/paddress"
+                android:textColor="@color/colorgray"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/Addprop_address"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:background="@null"
+                android:focusable="false"
+                android:fontFamily="@font/quicksandmedium"
+                android:hint="@string/enter_address"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textColor="@color/colorPrimary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:background="@color/LigthestGraycolor" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/quicksandmedium"
+                android:text="@string/psize"
+                android:textColor="@color/colorgray"
+                android:textSize="17sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                >
+                <EditText
+                    android:id="@+id/Addprop_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:textSize="15sp"
+                    android:layout_weight=".9"
+                    android:hint="Enter Property Size"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/quicksandmedium"
+                    android:inputType="number"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:text="@string/feet"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorgray"
+                    android:fontFamily="@font/quicksandmedium"
+                    />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:background="@color/LigthestGraycolor" />
+
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorwhite"
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/transparntrect">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+
+                        >
+
+                        <TextView
+                            android:id="@+id/prop_bedroom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/quicksandmedium"
+                            android:text="@string/bed"
+                            android:textColor="@color/colorgray"
+                            android:textSize="16sp"
+                            />
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <FrameLayout
+                                android:id="@+id/llFrame1"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp">
+                                <Spinner
+                                    android:id="@+id/addprop_Spinner_bedroom"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:gravity="start"
+                                    android:background="@null"
+                                    android:entries="@array/selectbadroom"
+                                    />
+                                <TextView
+                                    android:id="@+id/addprop_selectbed"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="8dp"
+                                    android:fontFamily="@font/quicksandmedium"
+                                    android:text="@string/sel"
+                                    android:background="@color/colorwhite"
+                                    android:textColor="@color/colorgray"
+                                    android:textSize="16sp" />
+                            </FrameLayout>
+
+                            <View android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@+id/llFrame1"
+                                android:background="@color/LigthestGraycolor"
+                                />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginTop="10dp"
+                                android:tint="@color/appcolor"
+                                app:srcCompat="@drawable/ic_bed" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                    <!--<TextView
+                        android:id="@+id/prop_bedroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:text="@string/bed"
+                        android:textColor="@color/colorgray"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/Addprop_selectbed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/prop_bedroom"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:text="@string/sel"
+                        android:textColor="@color/colorblack"
+                        android:textSize="16sp" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_below="@+id/prop_bedroom"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="10dp"
+                        android:tint="@color/appcolor"
+                        app:srcCompat="@drawable/ic_bed" />-->
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/transparntrect">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:id="@+id/prop_bathroom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/quicksandmedium"
+                            android:text="@string/bath"
+                            android:textColor="@color/colorgray"
+                            android:textSize="16sp" />
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <FrameLayout
+                                android:id="@+id/llFrame2"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp">
+                                <Spinner
+                                    android:id="@+id/addprop_Spinner_bathroom"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:entries="@array/selectbathroom"
+                                    android:background="@null"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/addprop_selectbath"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@color/colorwhite"
+                                    android:fontFamily="@font/quicksandmedium"
+                                    android:text="@string/sel"
+                                    android:textColor="@color/colorgray"
+                                    android:textSize="16sp" />
+
+                            </FrameLayout>
+
+
+                            <View android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@+id/llFrame2"
+                                android:background="@color/LigthestGraycolor"
+                                />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginTop="10dp"
+                                android:tint="@color/appcolor"
+                                app:srcCompat="@drawable/ic_bathtub_ico" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+
+
+                    <!--<TextView
+                        android:id="@+id/prop_bathroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:text="@string/bath"
+                        android:textColor="@color/colorgray"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/Addprop_selectbath"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/prop_bathroom"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:text="@string/sel"
+                        android:textColor="@color/colorblack"
+                        android:textSize="16sp" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_below="@+id/prop_bathroom"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="10dp"
+                        android:tint="@color/appcolor"
+                        app:srcCompat="@drawable/ic_bathtub" />
+-->
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <Button
+
+                android:id="@+id/btnaddprop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_forget"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btnback"
+                android:fontFamily="@font/quicksandmedium"
+                android:text="@string/updp"
+                android:textAllCaps="false"
+                android:textColor="@color/colorwhite"
+                android:textSize="16dp" />
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

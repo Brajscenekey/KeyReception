@@ -1,116 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/splash_bg"
-    tools:context=".Activity.UserTypeActivity">
+    tools:context=".activity.UserTypeActivity">
 
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:overScrollMode="never">
 
-        <ImageView
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:src="@drawable/logo"
-            android:layout_gravity="center"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            />
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="@string/app_wel"
-            android:letterSpacing=".01"
-            android:layout_gravity="center"
-            android:fontFamily="@font/quicksandbold"
-            android:textColor="@color/colororange"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp"
+            android:orientation="vertical">
 
-            />
+            <ImageView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:src="@drawable/logo"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:layout_gravity="center"
-            android:text="@string/app_Keyrec"
-            android:letterSpacing=".01"
-            android:fontFamily="@font/quicksandbold"
-            android:textColor="@color/colorDarkorange"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/app_wel"
+                android:letterSpacing=".01"
+                android:layout_gravity="center"
+                android:fontFamily="@font/quicksandbold"
+                android:textColor="@color/colororange"
+                android:layout_marginTop="18dp"
 
-            />
+                />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_gravity="center"
-            android:text="@string/app_selectut"
-            android:letterSpacing=".01"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:gravity="center"
-            android:fontFamily="@font/quicksandregular"
-            android:textColor="@color/colorwhite"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:text="@string/app_Keyrec"
+                android:letterSpacing=".01"
+                android:fontFamily="@font/quicksandbold"
+                android:textColor="@color/colorDarkorange"
+                android:layout_marginTop="5dp"
 
-        <Button
-            android:id="@+id/btnut_owner"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:text="@string/app_Own"
-            android:textColor="@color/colorwhite"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:textAllCaps="false"
-            android:fontFamily="@font/quicksandmedium"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/whiteboarder"
-            />
+                />
 
-        <Button
-            android:id="@+id/btnut_recep"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:fontFamily="@font/quicksandmedium"
-            android:layout_marginTop="15dp"
-            android:text="@string/app_rec"
-            android:textAllCaps="false"
-            android:background="@drawable/whiteboarder"
-            android:textColor="@color/colorwhite"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:text="@string/app_selectut"
+                android:letterSpacing=".01"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:fontFamily="@font/quicksandregular"
+                android:textColor="@color/colorwhite"
+                android:layout_marginTop="20dp"
+                />
 
-        <ImageView
-            android:id="@+id/ivut_send"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:srcCompat="@drawable/ic_right_arrow_red"
-            android:layout_marginRight="20dp"
-            android:scaleType="center"
-            android:textAllCaps="false"
-            android:background="@drawable/whitecirlce"
-            android:layout_gravity="right"
-            android:layout_marginTop="80dp"
-            />
+            <Button
+                android:id="@+id/btnut_owner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="@string/app_Own"
+                android:textColor="@color/colorwhite"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/quicksandmedium"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/whiteboarder"
+                />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnut_recep"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:fontFamily="@font/quicksandmedium"
+                android:layout_marginTop="15dp"
+                android:text="@string/app_rec"
+                android:textAllCaps="false"
+                android:background="@drawable/whiteboarder"
+                android:textColor="@color/colorwhite"
+                />
 
-</ScrollView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/ivut_send"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/ic_right_arrow_red"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="center"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:textAllCaps="false"
+        android:background="@drawable/whitecirlce"
+        android:layout_marginTop="80dp"
+        />
+
+
+</RelativeLayout>

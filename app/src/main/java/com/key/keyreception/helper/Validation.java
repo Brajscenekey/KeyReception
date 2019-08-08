@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.key.keyreception.R;
 
+import java.io.File;
+
 
 public class Validation {
     private Context context;
@@ -68,6 +70,36 @@ public class Validation {
             return true;
         }
     }
+
+    public boolean isSocialValid(EditText editText) {
+        if (getString(editText).isEmpty()) {
+//            editText.setError(context.getString(R.string.firstNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.ssnEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }  else {
+            return true;
+        }
+    }
+
+    public boolean isCategoryValid(EditText editText) {
+        if (getString(editText).isEmpty()) {
+//            editText.setError(context.getString(R.string.firstNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.categoryEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }  else {
+            return true;
+        }
+    }
+    public boolean isDriverImageUpload(Bitmap profileImageBitmap){
+        if (profileImageBitmap==null){
+            // Utility.showToast(context,"Please select profile picture",0);
+            Toast.makeText(context, context.getString(R.string.dlEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }else return true;
+    }
+
 
 
     // New Code
@@ -163,10 +195,17 @@ public class Validation {
             Toast.makeText(context, context.getString(R.string.passEmptyError), Toast.LENGTH_SHORT).show();
 
             return false;
-        } else if (editText.getText().length() >= 6) {
+        }
+       /* else if (editText.getText().toString().contains(" ")) {
+            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.passspace), Toast.LENGTH_SHORT).show();
+            return false;
+        }*/
+        else if (editText.getText().length() >= 6) {
             editText.requestFocus();
             return true;
-        } else {
+        }
+        else {
 //            editText.setError(context.getString(R.string.passLengthError));
             editText.requestFocus();
             Toast.makeText(context, context.getString(R.string.passLengthError), Toast.LENGTH_SHORT).show();
@@ -286,6 +325,27 @@ public class Validation {
         }
     }
 
+    public boolean isimagefileValid(File s) {
+        if (s == null) {
+//            editText.setError(context.getString(R.string.lastNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.imageEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean isuploadImageModalArrayListValid(int s) {
+        if (s == 0) {
+//            editText.setError(context.getString(R.string.lastNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.imageEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
     public boolean isbedroomValid(String s) {
         if (s.isEmpty()) {
 //            editText.setError(context.getString(R.string.lastNameEmptyError));
@@ -328,6 +388,7 @@ public class Validation {
             return true;
         }
     }
+
 
     public boolean isselectpropValid(String s) {
         if (s.isEmpty()) {

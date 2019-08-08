@@ -2,11 +2,11 @@
 <resources>
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#d42a24</color>
     <color name="colororange">#f28521</color>
     <color name="colorDarkorange">#d63d24</color>
     <color name="colorwhite">#ffffff</color>
-    <color name="colorblack">#1C0D0C</color>
+    <color name="colorblack">#242424</color>
     <color name="colordarkblack">#242424</color>
     <color name="appcolor">#d42a24</color>
     <color name="colorgray">#828282</color>
@@ -16,4 +16,14 @@
     <color name="colorDarkGreen">#066b01</color>
     <color name="colorPending">#f17204</color>
     <color name="colorInprogress">#3d40da</color>
+    <color name="red">#ff0000</color>
+    <color name="colorTransperent">#80000000</color>
+    <color name="match_bg">#f7f7f7</color>
+    <color name="colordarkRed">#f00001</color>
+    <color name="colorexDarkGreen">#00cb00</color>
+    <color name="colorDarkYellow">#e2be00</color>
+    <color name="smileYellow">#ffc10e</color>
+    <color name="happyGreen">#007e18</color>
+    <color name="inactiveColor">#828282</color>
+
 </resources>

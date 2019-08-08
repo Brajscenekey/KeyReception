@@ -54,37 +54,25 @@
         </LinearLayout>
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/sliding_oearning_tabs"
+            android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:tabSelectedTextColor="@color/appcolor"
             app:tabMode="fixed"
+            android:elevation="4dp"
             app:tabIndicatorFullWidth="false"
-            app:tabPaddingStart="25dp"
-            app:tabPaddingEnd="25dp"
             app:tabIndicatorColor="@color/appcolor"
             app:tabTextColor="@color/colorgray"
             app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+
+
             />
 
     </RelativeLayout>
 
-    <!--    <android.support.design.widget.AppBarLayout
-            android:id="@+id/rev_tabsUper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            android:visibility="visible">-->
-
-
-
-
-    <!--
-        </android.support.design.widget.AppBarLayout>-->
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/own_earning_viewPager"
-        android:background="@color/LigthestGraycolor"
+        android:id="@+id/earnrev_viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rev_tabsUper"

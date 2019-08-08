@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_margin="20dp"
+        android:weightSum="4"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/rl_myjob"
         android:orientation="horizontal">
@@ -24,10 +25,11 @@
 
         <EditText
             android:id="@+id/et_jobsearch"
-            android:layout_width="270dp"
+            android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/editback"
             android:hint="@string/search"
+            android:layout_weight="3.5"
             android:inputType="text"
             android:textColorHint="@color/colorgray"
             android:textColor="@color/colorgray"
@@ -42,7 +44,7 @@
             android:layout_height="40dp"
             android:tint="@color/appcolor"
             android:scaleType="center"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/circlercamera"
             app:srcCompat="@drawable/ic_funnel"
             />
@@ -125,22 +127,47 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/ly_complete"
+                    android:id="@+id/ly_all"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_complete"
+                        android:id="@+id/tv_all"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:fontFamily="@font/quicksandmedium"
                         android:gravity="center_vertical"
                         android:layout_marginStart="10dp"
-                        android:text="@string/complete"
+                        android:text="@string/all"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ly_notstarted"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+
+                        android:layout_marginTop="3dp"
+                        android:background="@color/LigthestGraycolor" />
+                    <TextView
+                        android:id="@+id/tv_notstarted"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/confirm"
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp" />
 
@@ -193,7 +220,31 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp" />
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ly_complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@color/LigthestGraycolor" />
+                    <TextView
+                        android:id="@+id/tv_complete"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/complete"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
             </LinearLayout>
+
 
         </android.support.v7.widget.CardView>
     </RelativeLayout>

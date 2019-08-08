@@ -42,6 +42,7 @@ public interface Reginterface {
                                  @Part("billingLatitude") RequestBody billingLatitude,
                                  @Part("billingLongitude") RequestBody billingLongitude,
                                  @Part("paymentType") RequestBody paymentType,
+                                 @Part("notificationStatus") RequestBody notificationStatus,
                                  @Part MultipartBody.Part profileImage);
 
 
@@ -61,7 +62,8 @@ public interface Reginterface {
                                     @Field("jobId") String jobId,
                                     @Field("requestId") String requestId,
                                     @Field("jobCreaterId") String jobCreaterId,
-                                    @Field("status") String status
+                                    @Field("status") String status,
+                                    @Field("requestType") String requestType
     );
 
 
@@ -85,7 +87,9 @@ public interface Reginterface {
     Call<ResponseBody> updateLocation(@Header("authToken") String authToken,
                                       @Part("address") RequestBody add,
                                       @Part("latitude") RequestBody lat,
-                                      @Part("longitude") RequestBody lng);
+                                      @Part("longitude") RequestBody lng,
+                                      @Part("notificationStatus") RequestBody notificationStatus
+    );
 
 
     @GET("userInfo")
@@ -109,6 +113,9 @@ public interface Reginterface {
 
     @GET("propertyList")
     Call<ResponseBody> propertyList(@Header("authToken") String authToken);
+
+    @GET("activePropertyList")
+    Call<ResponseBody> activePropertyList(@Header("authToken") String authToken);
 
     @Multipart
     @POST("registration")
@@ -136,6 +143,8 @@ public interface Reginterface {
             @Part("address") RequestBody address,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
+            @Part("loginUserId") RequestBody loginUserId,
+            @Part("notificationStatus") RequestBody add,
             @Part MultipartBody.Part profileImage
     );
 
@@ -164,7 +173,8 @@ public interface Reginterface {
                                  @Field("checkOut") String checkOut,
                                  @Field("categoryId") String categoryId,
                                  @Field("description") String description,
-                                 @Field("propertyName") String propertyName
+                                 @Field("propertyName") String propertyName,
+                                 @Field("propertyData") String propertyData
     );
 
     @POST("jobList")
@@ -176,11 +186,121 @@ public interface Reginterface {
                                @Field("search") String search
     );
 
+    @GET("notificationList")
+    Call<ResponseBody>notificationList(@Header("authToken") String authToken);
+
+    @POST("earningList")
+    Call<ResponseBody>earningList(@Header("authToken") String authToken);
+
+    @GET("logout")
+    Call<ResponseBody>logout(@Header("authToken") String authToken);
+
     @POST("jobDetail")
     @FormUrlEncoded
     Call<ResponseBody> jobDetail(@Header("authToken") String authToken,
                                  @Field("jobId") String jobId
     );
+
+
+    @POST("updateProfile")
+    @Multipart
+    Call<ResponseBody> notificationStatus(@Header("authToken") String authToken,
+                                      @Part("notificationStatus") RequestBody add);
+
+
+    @POST("jobPayment")
+    @FormUrlEncoded
+    Call<ResponseBody> jobPayment(@Header("authToken") String authToken,
+                                          @Field("jobId") String jobId,
+                                          @Field("receiverId") String receiverId,
+                                          @Field("amount") String amount,
+                                          @Field("paymentType") String paymentType
+    );
+
+    @POST("availabilityStatus")
+    @FormUrlEncoded
+    Call<ResponseBody> availabilityStatus(@Header("authToken") String authToken,
+                                  @Field("availabilityStatus") String jobId
+    );
+
+    @POST("deletePropertyImage")
+    @FormUrlEncoded
+    Call<ResponseBody> deletePropertyImage(@Header("authToken") String authToken,
+                                          @Field("propertyId") String propertyId,
+                                          @Field("imageId") String imageId
+
+    );
+
+ @POST("addProperty")
+    @FormUrlEncoded
+    Call<ResponseBody> addProperty(@Header("authToken") String authToken,
+                                          @Field("isImageAdd") String isImageAdd,
+                                          @Field("propertyName") String propertyName,
+                                          @Field("bedroom") String bedroom,
+                                          @Field("bathroom") String bathroom,
+                                          @Field("propertyAddress") String propertyAddress,
+                                          @Field("propertyLat") String propertyLat,
+                                          @Field("propertyLong") String propertyLong,
+                                          @Field("propertySize") String propertySize,
+                                          @Field("propertyId") String propertyId
+    );
+
+     @POST("updateProperty")
+    @FormUrlEncoded
+    Call<ResponseBody> updateProperty(@Header("authToken") String authToken,
+                                          @Field("propertyName") String propertyName,
+                                          @Field("bedroom") String bedroom,
+                                          @Field("bathroom") String bathroom,
+                                          @Field("propertyAddress") String propertyAddress,
+                                          @Field("propertyLat") String propertyLat,
+                                          @Field("propertyLong") String propertyLong,
+                                          @Field("propertySize") String propertySize,
+                                          @Field("propertyId") String propertyId
+    );
+
+
+    @POST("addPropertyImage")
+    @Multipart
+    Call<ResponseBody> addPropertyImage(@Header("authToken") String authToken,
+                                          @Part("isImageAdd") RequestBody isImageAdd,
+                                          @Part("propertyId") RequestBody propertyId,
+                                          @Part MultipartBody.Part profileImage
+    );
+
+
+
+    @POST("propertyDetail")
+    @FormUrlEncoded
+    Call<ResponseBody> propertyDetail(@Header("authToken") String authToken,
+                                 @Field("propertyId") String propertyId
+    );
+
+    @POST("deleteProperty")
+    @FormUrlEncoded
+    Call<ResponseBody> deleteProperty(@Header("authToken") String authToken,
+                                 @Field("propertyId") String propertyId
+    );
+
+    @POST("switchUser")
+    @FormUrlEncoded
+    Call<ResponseBody> switchUser(@Header("authToken") String authToken,
+                                 @Field("userType") String userType
+    );
+
+    @Multipart
+    @POST("updateSwitchedUserProfile")
+    Call<ResponseBody> updateSwitchedUserProfile(@Header("authToken") String authToken,
+                                 @Part("categoryId") RequestBody categoryId,
+                                 @Part("securityNumber") RequestBody securityNumber,
+                                 @Part("paymentType") RequestBody paymentType,
+                                 @Part("billingAddress") RequestBody billingAddress,
+                                 @Part("billingLatitude") RequestBody billingLatitude,
+                                 @Part("billingLongitude") RequestBody billingLongitude,
+                                 @Part("userType") RequestBody userType,
+                                 @Part MultipartBody.Part profileImage);
+
+
+
 }
 
 

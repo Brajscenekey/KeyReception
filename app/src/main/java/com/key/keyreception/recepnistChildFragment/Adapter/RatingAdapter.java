@@ -14,30 +14,23 @@ import com.key.keyreception.R;
  */
 public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.MyViewHolder> {
 
-    Context context;
-
-
-
+    private Context context;
     public RatingAdapter(Context context)
     {
         this.context = context;
 
     }
-
     @NonNull
     @Override
     public RatingAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.rrating_layout, parent, false);
         return new RatingAdapter.MyViewHolder(v);
     }
-
     @Override
     public void onBindViewHolder(@NonNull final RatingAdapter.MyViewHolder holder, final int position) {
 
 
     }
-
-    //TOTAL SPACECRAFTS
     @Override
     public int getItemCount() {
         return 5;
