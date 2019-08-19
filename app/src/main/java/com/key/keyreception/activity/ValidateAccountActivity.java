@@ -101,7 +101,6 @@ public class ValidateAccountActivity extends BaseActivity implements View.OnClic
 
 
     public void gallerycameramethod() {
-        final boolean result = Utility.checkPermission(ValidateAccountActivity.this);
 
         final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(ValidateAccountActivity.this);
@@ -110,7 +109,6 @@ public class ValidateAccountActivity extends BaseActivity implements View.OnClic
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                if (result) {
                     if (items[i].equals("Camera")) {
                         utility.dispatchTakePictureIntent(ValidateAccountActivity.this);
 
@@ -122,7 +120,7 @@ public class ValidateAccountActivity extends BaseActivity implements View.OnClic
 
                     } else if (items[i].equals("Cancel")) {
                         dialogInterface.dismiss();
-                    }
+
                 }
             }
         });

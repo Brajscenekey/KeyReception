@@ -12,6 +12,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
@@ -90,6 +91,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
     private Boolean isFTSSelected = false;
     private Boolean isFTSSelected1 = false;
     private String propertySize = "0.0";
+    private String propertySize1 = "0";
     private String json = "";
     private List<ActivePropertyData.PropertyImgBean> propertyImgs;
     private Button dialog_addprop;
@@ -110,7 +112,9 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
             if (editable == etpost_property_size.getEditableText()) {
 
                 propertySize = etpost_property_size.getText().toString();
-                pricecalculation(adminPropertyCalc, propertySize);
+                pricecalculation(getPropertysizePrice(propertySize), propertySize1);
+
+
 
 
             }
@@ -160,6 +164,8 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
         btnpost.setOnClickListener(this);
         ftsBedroomSelector = findViewById(R.id.spinner_bedroom_selector);
         ftsBathroomSelector = findViewById(R.id.spinner_bathroom_selector);
+        etpost_property_size.setFilters(new InputFilter[] {Utility.filter});
+
 
 
         etpost_property_size.addTextChangedListener(watcherClass_search);
@@ -286,7 +292,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
             }
             case R.id.btnpost: {
                 if (utility.checkInternetConnection(this)) {
-                    if (validation.isselectpropValid(categorycheck) && validation.isbedroomValid(bed) && validation.isbathroomValid(bath) && validation.ispriceValid(etpost_price) && validation.ispropsizeValid(etpost_property_size) && validation.isdateValid(etdatetime) && validation.isserviceValid(servicecheck) && validation.isdesValid(etpost_Description)) {
+                    if (validation.isselectpropValid(categorycheck) && validation.isbedroomValid(bed) && validation.isbathroomValid(bath) && validation.ispriceValid(etpost_price) && validation.ispropsizeValid(etpost_property_size) && validation.isdateValid(etdatetime) && validation.isserviceValid(servicecheck) && validation.isdesValid(etpost_Description) && validation.ispropsizeinValid(Double.parseDouble(etpost_property_size.getText().toString()))) {
 
                         postApiData();
 
@@ -396,10 +402,10 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
                     lon = propertyList.get(i).getPropertyLong();
                     bathroom = propertyList.get(i).getBathroom();
                     bedroom = propertyList.get(i).getBedroom();
-                    adminPropertyCalc = propertyList.get(i).getAdminPropertyCalc();
+//                    adminPropertyCalc = propertyList.get(i).getAdminPropertyCalc();
                     propertySize = propertyList.get(i).getPropertySize();
                     setPropertyData(bedroom, bathroom, propertySize);
-                    pricecalculation(adminPropertyCalc, propertySize);
+                    pricecalculation(getPropertysizePrice(propertySize), propertySize1);
 
 
                     try {
@@ -761,6 +767,37 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
             etpost_price.setText("");
 
         }
+    }
+
+    public String getPropertysizePrice(String propertySize) {
+        String calculation = "0.0";
+
+        if (propertySize.equals(""))
+        { propertySize ="0"; }
+
+        if (0 <= Double.parseDouble(propertySize) && 750 >= Double.parseDouble(propertySize)) {
+            calculation = String.valueOf(0.11);
+            propertySize1 = String.valueOf(750);
+        } else if (750 <= Double.parseDouble(propertySize) && 1500 >= Double.parseDouble(propertySize)) {
+            calculation = String.valueOf(0.065);
+            propertySize1 = String.valueOf(1500);
+        } else if (1500 <= Double.parseDouble(propertySize) && 2250 >= Double.parseDouble(propertySize)) {
+            calculation = String.valueOf(0.045);
+            propertySize1 = String.valueOf(2250);
+        } else if (2250 <= Double.parseDouble(propertySize) && 3000 >= Double.parseDouble(propertySize)) {
+            calculation = String.valueOf(0.04);
+            propertySize1 = String.valueOf(3000);
+        } else if (3000 <= Double.parseDouble(propertySize) && 3750 >= Double.parseDouble(propertySize)) {
+            calculation = String.valueOf(0.035);
+            propertySize1 = String.valueOf(3750);
+        } else if (3750 <= Double.parseDouble(propertySize) && 4500 >= Double.parseDouble(propertySize)) {
+            calculation = String.valueOf(0.032);
+            propertySize1 = String.valueOf(4500);
+        }else {
+            calculation = String.valueOf(0.032);
+            propertySize1 = String.valueOf(Double.parseDouble(propertySize));
+        }
+        return calculation;
     }
 
 

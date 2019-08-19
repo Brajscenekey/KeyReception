@@ -22,6 +22,8 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -129,13 +131,19 @@ public class AddpropertyActivity extends BaseActivity implements View.OnClickLis
         rl_bedroom.setOnClickListener(this);
         rl_bathroom.setOnClickListener(this);
         iv_leftarrow_addprop.setOnClickListener(this);
+        etpropsize.setFilters(new InputFilter[] {Utility.filter});
+
+
 
 
         rtl_upload_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (uploadImageModalArrayList.size() <= 4) {
-                    gallerycameramethod();
+                    if (Utility.checkCameraPermission(AddpropertyActivity.this)) {
+                        gallerycameramethod();
+                    }
+
                 } else {
 
                     alertImageSizeOption();
@@ -199,7 +207,7 @@ public class AddpropertyActivity extends BaseActivity implements View.OnClickLis
             break;
             case R.id.btnaddprop: {
                 if (utility.checkInternetConnection(this)) {
-                    if (validation.iscoNameValid(etpropname) && validation.isaddNameValid(etaddress) && validation.ispropsizeValid(etpropsize) && validation.isbedroomValid(bed) && validation.isbathroomValid(bath) && validation.isimagefileValid(file)) {
+                    if (validation.iscoNameValid(etpropname) && validation.isaddNameValid(etaddress) && validation.ispropsizeValid(etpropsize) && validation.isbedroomValid(bed) && validation.isbathroomValid(bath) && validation.isimagefileValid(file) && validation.ispropsizeinValid(Double.parseDouble(etpropsize.getText().toString()))) {
 
                         if (uploadImageModalArrayList.size() != 0) {
                             addpropertyApiData();
@@ -235,8 +243,6 @@ public class AddpropertyActivity extends BaseActivity implements View.OnClickLis
     }
 
     public void gallerycameramethod() {
-        final boolean result = Utility.checkPermission(AddpropertyActivity.this);
-
         final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(AddpropertyActivity.this);
         builder.setTitle("Add Image");
@@ -244,17 +250,16 @@ public class AddpropertyActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                if (result) {
+
                     if (items[i].equals("Camera")) {
-                        if (Utility.checkCameraPermission(AddpropertyActivity.this)) {
-                            dispatchTakePictureIntent();
-                        }
+                        dispatchTakePictureIntent();
+
                     } else if (items[i].equals("Gallery")) {
                         callIntent(AppConstants.RESULT_LOAD);
                     } else if (items[i].equals("Cancel")) {
                         dialogInterface.dismiss();
                     }
-                }
+
             }
         });
 
@@ -845,5 +850,7 @@ public class AddpropertyActivity extends BaseActivity implements View.OnClickLis
         });
 
     }
+
+
 
 }

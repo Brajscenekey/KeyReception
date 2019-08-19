@@ -90,7 +90,6 @@ public class EditActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void gallerycameramethod() {
-        final boolean result = Utility.checkPermission(EditActivity.this);
 
         final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(EditActivity.this);
@@ -99,7 +98,6 @@ public class EditActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                if (result) {
                     if (items[i].equals("Camera")) {
                         utility.dispatchTakePictureIntent(EditActivity.this);
                     } else if (items[i].equals("Gallery")) {
@@ -108,7 +106,7 @@ public class EditActivity extends BaseActivity implements View.OnClickListener {
                     } else if (items[i].equals("Cancel")) {
                         dialogInterface.dismiss();
                     }
-                }
+
             }
         });
 
@@ -356,11 +354,11 @@ public class EditActivity extends BaseActivity implements View.OnClickListener {
                         Uri uri1 = Uri.fromFile(new File(Utility.mCurrentPhotoPath));
                         file = new File(utility.getRealPathFromURI(uri1, EditActivity.this));
                         bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri1);
-                        Matrix matrix = new Matrix();
+                        /*Matrix matrix = new Matrix();
                         matrix.postRotate(90);
                         Bitmap rotated = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(),
-                                matrix, true);
-                        profile.setImageBitmap(rotated);
+                                matrix, true);*/
+                        profile.setImageBitmap(bm);
                     } catch (Exception ignored) {
                         ignored.printStackTrace();
                         Log.e("error", ignored + "");

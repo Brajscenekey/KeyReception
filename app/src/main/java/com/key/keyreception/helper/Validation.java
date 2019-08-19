@@ -325,6 +325,17 @@ public class Validation {
         }
     }
 
+    public boolean ispropsizeinValid(Double size) {
+        if (size == 0) {
+//            editText.setError(context.getString(R.string.lastNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.pSizeInvalidError), Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public boolean isimagefileValid(File s) {
         if (s == null) {
 //            editText.setError(context.getString(R.string.lastNameEmptyError));

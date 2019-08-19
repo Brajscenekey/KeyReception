@@ -407,11 +407,12 @@
                     android:layout_height="50dp"
                     android:background="@null"
                     android:textSize="15sp"
+                    android:maxLength="10"
                     android:layout_weight=".9"
                     android:hint="Enter Property Size"
                     android:textColor="@color/colorPrimary"
                     android:fontFamily="@font/quicksandmedium"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     />
                 <TextView
                     android:layout_width="wrap_content"

@@ -23,6 +23,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -274,4 +276,27 @@ public class Utility {
 
 
 
+    public static InputFilter filter = new InputFilter() {
+        final int maxDigitsBeforeDecimalPoint=10;
+        final int maxDigitsAfterDecimalPoint=2;
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end,
+                                   Spanned dest, int dstart, int dend) {
+            StringBuilder builder = new StringBuilder(dest);
+            builder.replace(dstart, dend, source
+                    .subSequence(start, end).toString());
+            if (!builder.toString().matches(
+                    "(([1-9]{1})([0-9]{0,"+(maxDigitsBeforeDecimalPoint-1)+"})?)?(\\.[0-9]{0,"+maxDigitsAfterDecimalPoint+"})?"
+
+            )) {
+                if(source.length()==0)
+                    return dest.subSequence(dstart, dend);
+                return "";
+            }
+
+            return null;
+
+        }
+    };
 }

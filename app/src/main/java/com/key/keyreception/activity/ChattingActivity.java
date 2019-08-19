@@ -448,17 +448,19 @@ public class ChattingActivity extends BaseActivity implements View.OnClickListen
                             super.onScrollStateChanged(recyclerView, newState);
                             if (newState == RecyclerView.SCROLL_STATE_IDLE) {
 
-                                if (chatList.get( mLayoutManager.findFirstVisibleItemPosition()).banner_date != null && chatList.get(mLayoutManager.findFirstVisibleItemPosition()).banner_date.isEmpty()) {
-                                    if (chatList.get(position).isImage == 1) {
-                                        tv_chat_date.setVisibility(View.VISIBLE);
-                                        tv_chat_date.setText(chatList.get(mLayoutManager.findFirstVisibleItemPosition()).banner_date);
+                                if (chatList.size() >  position ) {
+                                    if (chatList.get(mLayoutManager.findFirstVisibleItemPosition()).banner_date != null && chatList.get(mLayoutManager.findFirstVisibleItemPosition()).banner_date.isEmpty()) {
+                                        if (chatList.get(position).isImage == 1) {
+                                            tv_chat_date.setVisibility(View.VISIBLE);
+                                            tv_chat_date.setText(chatList.get(mLayoutManager.findFirstVisibleItemPosition()).banner_date);
 
-                                    } else {
-                                        tv_chat_date.setVisibility(View.GONE);
-                                        tv_chat_date.setText(chatList.get(mLayoutManager.findFirstVisibleItemPosition()).banner_date);
+                                        } else {
+                                            tv_chat_date.setVisibility(View.GONE);
+                                            tv_chat_date.setText(chatList.get(mLayoutManager.findFirstVisibleItemPosition()).banner_date);
+
+                                        }
 
                                     }
-
                                 }
                             }
                         }

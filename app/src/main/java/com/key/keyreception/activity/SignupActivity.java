@@ -88,6 +88,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     private String categoryid = "", categoryname, pass1 = "";
     private String refreshedToken;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +104,6 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     }
 
     public void gallerycameramethod() {
-        final boolean result = Utility.checkPermission(SignupActivity.this);
         final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
         builder.setTitle("Add Image");
@@ -111,7 +111,6 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                if (result) {
                     if (items[i].equals("Camera")) {
                         utility.dispatchTakePictureIntent(SignupActivity.this);
                     } else if (items[i].equals("Gallery")) {
@@ -120,7 +119,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
                     } else if (items[i].equals("Cancel")) {
                         dialogInterface.dismiss();
                     }
-                }
+
             }
         });
 

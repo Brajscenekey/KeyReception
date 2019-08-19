@@ -30,10 +30,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
-import com.key.keyreception.activity.model.MyJobData;
 import com.key.keyreception.activity.owner.MakePaymentActivity;
 import com.key.keyreception.activity.owner.PayOptionActivity;
-import com.key.keyreception.activity.recepnist.AppoDetailActivity;
 import com.key.keyreception.base.BaseActivity;
 import com.key.keyreception.connection.RetrofitClient;
 import com.key.keyreception.helper.PDialog;
@@ -56,14 +54,14 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
     private PDialog pDialog;
     private String usertype, price, receiverId = "";
     private Session session;
-    private TextView spcomdetail_tv_post,tvpropname, tvaddress, tvbedroom, tvbathroom, tvpropsize, tvpropprice, tvserdate, tvstatus, tvservicename, tvdescription, tvvendorname;
+    private TextView spcomdetail_tv_post, tvpropname, tvaddress, tvbedroom, tvbathroom, tvpropsize, tvpropprice, tvserdate, tvstatus, tvservicename, tvdescription, tvvendorname;
     private ImageView serviceimage;
     private ImageView vendorimage, own_detailimg;
     private ImageView ivchat;
     private String jobid, paymenttype = "";
     private Button btn_detail_payment, btn_review_payment;
     private RelativeLayout rl_post_completejob;
-    private String recepid="",recepprofileImage="",recepfullName="";
+    private String recepid = "", recepprofileImage = "", recepfullName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,10 +142,10 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
             }
             break;
             case R.id.iv_myjob_detail_vendorchat: {
-                Intent intent = new Intent(this,ChattingActivity.class);
-                intent.putExtra("id",recepid);
-                intent.putExtra("profileImage",recepprofileImage);
-                intent.putExtra("fullName",recepfullName);
+                Intent intent = new Intent(this, ChattingActivity.class);
+                intent.putExtra("id", recepid);
+                intent.putExtra("profileImage", recepprofileImage);
+                intent.putExtra("fullName", recepfullName);
                 startActivity(intent);
                 finish();
             }
@@ -186,12 +184,12 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                                 JSONObject jsonObject21 = jsonArray.getJSONObject(0);
                                 String title = jsonObject21.getString("title");
                                 String image = jsonObject21.getString("image");
-                                JSONArray jsonArraydata =  jsonObject2.getJSONArray("propertyData");
+                                JSONArray jsonArraydata = jsonObject2.getJSONArray("propertyData");
                                 JSONObject jsonObjectdata = jsonArraydata.getJSONObject(0);
-                                    String bathroom = jsonObjectdata.getString("bathroom");
-                                    String bedroom = jsonObjectdata.getString("bedroom");
-                                    String address = jsonObjectdata.getString("propertyAddress");
-                                    String propertyName = jsonObjectdata.getString("propertyName");
+                                String bathroom = jsonObjectdata.getString("bathroom");
+                                String bedroom = jsonObjectdata.getString("bedroom");
+                                String address = jsonObjectdata.getString("propertyAddress");
+                                String propertyName = jsonObjectdata.getString("propertyName");
                                 JSONArray jsonArray1 = jsonObject2.optJSONArray("receptionistDetail");
                                 if (jsonArray1.length() > 0) {
                                     JSONObject jsonObject22 = jsonArray1.getJSONObject(0);
@@ -212,7 +210,7 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                                     propertyImage = jsonObject5.getString("propertyImage");
 
                                 }
-                                setDetailData(propertyName, address, bedroom, bathroom, propertySize, price, serviceDate, status, title, description, recepfullName, image, propertyImage,recepprofileImage);
+                                setDetailData(propertyName, address, bedroom, bathroom, propertySize, price, serviceDate, status, title, description, recepfullName, image, propertyImage, recepprofileImage);
                             } else {
                                 Toast.makeText(DetailActivity.this, msg, Toast.LENGTH_SHORT).show();
                             }
@@ -251,7 +249,7 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
     }
 
     @SuppressLint({"SetTextI18n", "CheckResult"})
-    private void setDetailData(String pname, String add, String bed, String bath, String psize, String price, String stdate, String status, String sname, String des, String vname, String simage, String propimg,String rimage) {
+    private void setDetailData(String pname, String add, String bed, String bath, String psize, String price, String stdate, String status, String sname, String des, String vname, String simage, String propimg, String rimage) {
         tvpropname.setText(pname);
         tvaddress.setText(add);
         tvbedroom.setText(bed + " Bedroom");
@@ -260,18 +258,15 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
         tvpropprice.setText("$" + price + ".00");
 
         tvvendorname.setText(vname);
-        if (rimage.length() != 0)
-        {
+        if (rimage.length() != 0) {
             Glide.with(this).load(rimage).into(vendorimage);
         }
 
-        if (status.equals("1"))
-        {
+        if (status.equals("1")) {
             rl_post_completejob.setVisibility(View.GONE);
             spcomdetail_tv_post.setVisibility(View.GONE);
             ivchat.setVisibility(View.GONE);
-            }
-            else {
+        } else {
             rl_post_completejob.setVisibility(View.VISIBLE);
             spcomdetail_tv_post.setVisibility(View.VISIBLE);
             ivchat.setVisibility(View.VISIBLE);
@@ -357,7 +352,7 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                 intent.putExtra("payid", "p1");
                 startActivity(intent);
                 dialog.dismiss();
-                }
+            }
         });
 
         alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -423,13 +418,14 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                 @Override
                 public void onClick(View view) {
                     if (sadcheck[0]) {
-                        iv_sadface.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.colordarkRed));;
+                        iv_sadface.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.colordarkRed));
+                        ;
                         tv_sadface.setVisibility(View.VISIBLE);
                         tv_sadface.setTextColor(getResources().getColor(R.color.colordarkRed));
                         sadcheck[0] = false;
-                    }
-                    else {
-                        iv_sadface.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.inactiveColor));;
+                    } else {
+                        iv_sadface.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.inactiveColor));
+                        ;
                         tv_sadface.setVisibility(View.GONE);
                         sadcheck[0] = true;
 
@@ -446,9 +442,9 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                         tv_smalleyesmile.setVisibility(View.VISIBLE);
                         tv_smalleyesmile.setTextColor(getResources().getColor(R.color.colorexDarkGreen));
                         smalleyesmilecheck[0] = false;
-                    }
-                    else {
-                        iv_smalleyesmile.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.inactiveColor));;
+                    } else {
+                        iv_smalleyesmile.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.inactiveColor));
+                        ;
                         tv_smalleyesmile.setVisibility(View.GONE);
                         smalleyesmilecheck[0] = true;
 
@@ -466,9 +462,9 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                         tv_mehface.setVisibility(View.VISIBLE);
                         tv_mehface.setTextColor(getResources().getColor(R.color.colorDarkYellow));
                         mehfacecheck[0] = false;
-                    }
-                    else {
-                        iv_mehface.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.inactiveColor));;
+                    } else {
+                        iv_mehface.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.inactiveColor));
+                        ;
                         tv_mehface.setVisibility(View.GONE);
                         mehfacecheck[0] = true;
 
@@ -486,9 +482,9 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                         tv_bigeyesmile.setVisibility(View.VISIBLE);
                         tv_bigeyesmile.setTextColor(getResources().getColor(R.color.smileYellow));
                         bigeyesmilecheck[0] = false;
-                    }
-                    else {
-                        iv_bigeyesmile.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.inactiveColor));;
+                    } else {
+                        iv_bigeyesmile.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.inactiveColor));
+                        ;
                         tv_bigeyesmile.setVisibility(View.GONE);
                         bigeyesmilecheck[0] = true;
 
@@ -505,9 +501,9 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                         tv_happysmile.setVisibility(View.VISIBLE);
                         tv_happysmile.setTextColor(getResources().getColor(R.color.happyGreen));
                         happysmilecheck[0] = false;
-                    }
-                    else {
-                        iv_happysmile.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.inactiveColor));;
+                    } else {
+                        iv_happysmile.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.inactiveColor));
+                        ;
                         tv_happysmile.setVisibility(View.GONE);
                         happysmilecheck[0] = true;
 
@@ -540,7 +536,6 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
             e.printStackTrace();
         }
     }
-
 
 
 }

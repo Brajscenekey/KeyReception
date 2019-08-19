@@ -179,14 +179,13 @@ public class CompleteValidActivity extends BaseActivity implements View.OnClickL
     }
 
     public void gallerycameramethod() {
-        final boolean result = Utility.checkPermission(CompleteValidActivity.this);
+//        final boolean result = Utility.checkPermission(CompleteValidActivity.this);
         final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(CompleteValidActivity.this);
         builder.setTitle("Add Image");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if (result) {
                     if (items[i].equals("Camera")) {
                         utility.dispatchTakePictureIntent(CompleteValidActivity.this);
                     } else if (items[i].equals("Gallery")) {
@@ -195,7 +194,7 @@ public class CompleteValidActivity extends BaseActivity implements View.OnClickL
                     } else if (items[i].equals("Cancel")) {
                         dialogInterface.dismiss();
                     }
-                }
+
             }
         });
 

@@ -115,6 +115,7 @@
                 android:layout_marginStart="10dp"
                 android:background="@null"
                 android:textSize="15sp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                 android:fontFamily="@font/quicksandmedium"
                 android:hint="@string/enter_property_name"
                 android:textColorHint="@color/colorgray"
@@ -194,7 +195,7 @@
                     android:textColorHint="@color/colorgray"
                     android:textColor="@color/colorPrimary"
                     android:fontFamily="@font/quicksandmedium"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     />
                 <TextView
                     android:layout_width="wrap_content"

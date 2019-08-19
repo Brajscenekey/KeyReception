@@ -213,6 +213,7 @@
     <string name="serEmptyError">Please select service</string>
     <string name="ptypeEmptyError">Please select payment type</string>
     <string name="spEmptyError">Please select property</string>
+    <string name="pSizeInvalidError">Property size invalid</string>
 
 
     <!--filter text-->
