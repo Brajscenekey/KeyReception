@@ -591,8 +591,34 @@
                 android:layout_marginEnd="15dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="30dp"
-                android:layout_below="@+id/calendar"
                 android:scrollbars="none" />
+
+
+            <TextView
+                android:id="@+id/Addservice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Additional Services"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/quicksandbold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17sp"
+                />
+
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view_addservice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:scrollbars="none" />
+
 
 
 
@@ -640,7 +666,6 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="20dp"
-                android:layout_below="@+id/bank_view1"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/quicksandmedium"
                 android:background="@drawable/btnback"
