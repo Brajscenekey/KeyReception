@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorCream"
     android:fitsSystemWindows="true"
     tools:context=".activity.DetailActivity">
 
@@ -12,18 +13,17 @@
         android:id="@+id/own_detailimg"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:src="@drawable/home_image"
         android:scaleType="fitXY"
-        />
+        android:src="@drawable/home_image" />
 
     <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
         android:id="@+id/header"
-        app:elevation="0dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
+        android:layout_marginTop="15dp"
         android:background="@android:color/transparent"
-       >
+        app:elevation="0dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -33,35 +33,34 @@
                 android:id="@+id/iv_myjob_detail_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/arrow"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                />
+                app:srcCompat="@drawable/arrow" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/detail"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="5dp"
-                android:textSize="17sp"
                 android:fontFamily="@font/quicksandmedium"
-                android:textColor="@color/colorwhite"/>
+                android:text="@string/detail"
+                android:textColor="@color/colorwhite"
+                android:textSize="17sp" />
         </RelativeLayout>
     </android.support.design.widget.AppBarLayout>
 
 
-
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_below="@+id/header"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header">
 
         <ScrollView
             android:layout_width="wrap_content"
-            android:scrollbars="none"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
 
 
             <RelativeLayout
@@ -73,416 +72,442 @@
                     android:id="@+id/detail_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="100dp"
                     app:cardBackgroundColor="@color/colorwhite"
                     app:cardCornerRadius="6dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="100dp"
                     app:cardElevation="5dp"
                     app:cardUseCompatPadding="true">
 
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/siimgLabour"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_myjob_detail_pname"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/siimgLabour"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/quicksandbold"
+                            android:gravity="start"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="17sp"
+
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
-                            android:orientation="vertical"
-                            android:layout_marginBottom="30dp"
-                            >
+                            android:orientation="horizontal">
 
-
-
-                            <TextView
-                                android:id="@+id/tv_myjob_detail_pname"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="17sp"
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_marginTop="3dp"
                                 android:gravity="start"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:fontFamily="@font/quicksandbold"
-                                android:textColor="@color/colorPrimary"
-
-                                />
-
-
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                >
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:tint="@color/colorgray"
-                                    android:gravity="start"
-                                    android:layout_marginTop="3dp"
-                                    app:srcCompat="@drawable/ic_placeholder" />
-                                <TextView
-                                    android:id="@+id/tv_myjob_detail_address"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="start"
-                                    android:layout_marginLeft="3dp"
-                                    android:fontFamily="@font/quicksandregular"
-                                    android:textColor="@color/colorgray"
-                                    android:textSize="14sp"
-                                    />
-
-                            </LinearLayout>
-
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="15dp"
-                                android:background="@color/LigthestGraycolor"
-                                />
-
+                                android:tint="@color/colorgray"
+                                app:srcCompat="@drawable/ic_placeholder" />
 
                             <TextView
+                                android:id="@+id/tv_myjob_detail_address"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/info"
-                                android:textSize="17sp"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:fontFamily="@font/quicksandmedium"
-                                android:textColor="@color/colorDarkgray"
-
-                                />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginBottom="10dp"
-                                android:weightSum="2"
-                                android:layout_below="@+id/viewres1">
-
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:layout_weight="1"
-                                    android:layout_alignParentLeft="true"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:id="@+id/detail_badroom"
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        app:srcCompat="@drawable/ic_bed"
-                                        android:elevation="5dp"
-                                        android:textAllCaps="false"
-                                        android:layout_gravity="center"
-                                        />
-
-                                    <TextView
-
-                                        android:id="@+id/tv_myjob_detail_bedroom"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/quicksandmedium"
-                                        android:gravity="center"
-                                        android:textColor="@color/colorgray"
-                                        android:textSize="14sp"
-                                        />
-
-                                </LinearLayout>
-
-                                <View
-                                    android:layout_width="1dp"
-                                    android:layout_height="25dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_centerHorizontal="true"
-                                    android:background="@color/LigthestGraycolor"
-                                    />
-
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_alignParentRight="true"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:id="@+id/detail_bathroom"
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:tint="@color/colorgray"
-                                        app:srcCompat="@drawable/ic_bathtub_ico"
-                                        android:elevation="5dp"
-                                        android:textAllCaps="false"
-                                        android:layout_gravity="center"
-                                        />
-
-                                    <TextView
-                                        android:id="@+id/tv_myjob_detail_bathroom"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/quicksandmedium"
-                                        android:gravity="center"
-                                        android:textColor="@color/colorgray"
-                                        android:textSize="14sp"
-                                        />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="15dp"
-                                android:background="@color/LigthestGraycolor"
-                                />
-
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                >
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/quicksandmedium"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="10dp"
-                                    android:text="@string/psize"
-                                    android:textColor="@color/colordarkblack"
-                                    android:textSize="14sp"
-                                    />
-
-                                <TextView
-                                    android:id="@+id/tv_myjob_detail_psize"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/quicksandbold"
-                                    android:gravity="center"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_marginRight="10dp"
-                                    android:textColor="@color/colordarkblack"
-                                    android:textSize="14sp"
-                                    />
-
-                            </RelativeLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/LigthestGraycolor"
-                                android:layout_marginTop="20dp"
-                                />
-
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                >
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/quicksandmedium"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="10dp"
-                                    android:text="@string/price"
-                                    android:textColor="@color/colordarkblack"
-                                    android:textSize="14sp"
-                                    />
-
-                                <TextView
-                                    android:id="@+id/tv_myjob_detail_price"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/quicksandbold"
-                                    android:gravity="center"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_marginRight="10dp"
-                                    android:textColor="@color/colordarkblack"
-                                    android:textSize="14sp"
-                                    />
-
-                            </RelativeLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/LigthestGraycolor"
-                                android:layout_marginTop="20dp"
-                                />
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                >
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/quicksandmedium"
-                                    android:gravity="center"
-                                    android:layout_marginLeft="10dp"
-                                    android:text="@string/serdate"
-                                    android:textColor="@color/colordarkblack"
-                                    android:textSize="14sp"
-                                    />
-
-                                <TextView
-                                    android:id="@+id/tv_myjob_detail_sdate"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/quicksandbold"
-                                    android:gravity="center"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_marginRight="10dp"
-                                    android:textColor="@color/colordarkblack"
-                                    android:textSize="14sp"
-                                    />
-
-                            </RelativeLayout>
-
-
+                                android:layout_marginLeft="3dp"
+                                android:fontFamily="@font/quicksandregular"
+                                android:gravity="start"
+                                android:textColor="@color/colorgray"
+                                android:textSize="14sp" />
 
                         </LinearLayout>
 
 
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@color/LigthestGraycolor" />
 
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/quicksandmedium"
+                            android:text="@string/info"
+                            android:textColor="@color/colorDarkgray"
+                            android:textSize="17sp"
+
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/viewres1"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="20dp"
+                            android:weightSum="2">
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/detail_badroom"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:elevation="5dp"
+                                    android:textAllCaps="false"
+                                    app:srcCompat="@drawable/ic_bed" />
+
+                                <TextView
+
+                                    android:id="@+id/tv_myjob_detail_bedroom"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/quicksandmedium"
+                                    android:gravity="center"
+                                    android:textColor="@color/colorgray"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="25dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="15dp"
+                                android:background="@color/LigthestGraycolor" />
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/detail_bathroom"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:elevation="5dp"
+                                    android:textAllCaps="false"
+                                    android:tint="@color/colorgray"
+                                    app:srcCompat="@drawable/ic_bathtub_ico" />
+
+                                <TextView
+                                    android:id="@+id/tv_myjob_detail_bathroom"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/quicksandmedium"
+                                    android:gravity="center"
+                                    android:textColor="@color/colorgray"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@color/LigthestGraycolor" />
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:fontFamily="@font/quicksandmedium"
+                                android:gravity="center"
+                                android:text="@string/psize"
+                                android:textColor="@color/colordarkblack"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_myjob_detail_psize"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="10dp"
+                                android:fontFamily="@font/quicksandbold"
+                                android:gravity="center"
+                                android:textColor="@color/colordarkblack"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/LigthestGraycolor" />
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:fontFamily="@font/quicksandmedium"
+                                android:gravity="center"
+                                android:text="@string/serdate"
+                                android:textColor="@color/colordarkblack"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_myjob_detail_sdate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="10dp"
+                                android:fontFamily="@font/quicksandbold"
+                                android:gravity="center"
+                                android:textColor="@color/colordarkblack"
+                                android:textSize="14sp" />
+
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/LigthestGraycolor" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/quicksandmedium"
+                                android:gravity="center"
+                                android:text="@string/service_price"
+                                android:textColor="@color/colordarkblack"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_myjob_detail_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:fontFamily="@font/quicksandbold"
+                                android:gravity="center"
+                                android:textColor="@color/colordarkblack"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/LigthestGraycolor" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/quicksandmedium"
+                                android:gravity="center"
+                                android:text="@string/total_price"
+                                android:textColor="@color/colordarkblack"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_addservice_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:fontFamily="@font/quicksandbold"
+                                android:gravity="center"
+                                android:textColor="@color/colordarkblack"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
 
 
                 </android.support.v7.widget.CardView>
 
 
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
                     android:layout_below="@+id/detail_card"
-                    >
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginStart="25dp">
 
 
                     <TextView
                         android:id="@+id/service"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/services"
                         android:fontFamily="@font/quicksandbold"
+                        android:text="@string/services"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        />
+                        android:textSize="20sp" />
+
                     <TextView
 
                         android:id="@+id/tv_myjob_detail_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/start"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:fontFamily="@font/quicksandbold"
+                        android:text="@string/start"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="16sp"
-                        />
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:id="@+id/detail_li1"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:gravity="center"
-                        android:background="@drawable/cornerwhiteback"
-                        android:layout_marginTop="20dp"
+                        android:layout_alignParentStart="true"
                         android:layout_below="@+id/service"
+                        android:layout_marginTop="20dp"
                         android:layout_weight="1"
-                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/cornerwhiteback"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/iv_myjob_detail_serviceimage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            app:srcCompat="@drawable/ic_plumbering"
-                            android:elevation="5dp"
-                            android:tint="@color/colorDarkgray"
-                            android:layout_marginTop="20dp"
-                            android:textAllCaps="false"
                             android:layout_gravity="center"
-                            />
+                            android:layout_marginTop="20dp"
+                            android:elevation="5dp"
+                            android:textAllCaps="false"
+                            android:tint="@color/colorDarkgray"
+                            app:srcCompat="@drawable/ic_plumbering" />
 
                         <TextView
                             android:id="@+id/tv_myjob_detail_servicename"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
                             android:fontFamily="@font/quicksandmedium"
                             android:gravity="center"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="6dp"
-                            android:layout_marginTop="5dp"
                             android:text="plumber"
                             android:textColor="@color/colorDarkgray"
-                            android:textSize="14sp"
-                            />
+                            android:textSize="14sp" />
 
                     </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/Addservice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/detail_li1"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/quicksandbold"
+                        android:text="@string/additional_services"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="17sp" />
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/Addservice"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        android:scrollbars="none" />
+
 
                     <TextView
                         android:id="@+id/tv_des"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/des"
-                        android:textSize="16sp"
+                        android:layout_below="@+id/recycler_view"
                         android:layout_marginTop="20dp"
-                        android:layout_below="@+id/detail_li1"
                         android:fontFamily="@font/quicksandmedium"
-                        android:textColor="@color/colorPrimary" />
+                        android:text="@string/des"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_myjob_detail_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:gravity="start"
-                        android:layout_marginTop="15dp"
                         android:layout_below="@+id/tv_des"
+                        android:layout_marginTop="5dp"
                         android:fontFamily="@font/quicksandregular"
-                        android:textColor="@color/colorgray" />
+                        android:gravity="start"
+                        android:textColor="@color/colorgray"
+                        android:textSize="14sp" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginBottom="20dp"
                         android:layout_below="@+id/tv_myjob_detail_description"
-                        android:background="@color/LigthestGraycolor"
-                        />
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@color/LigthestGraycolor" />
 
                     <TextView
                         android:id="@+id/spcomdetail_tv_post"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/assign"
-                        android:textSize="16sp"
-                        android:visibility="gone"
-                        android:layout_marginTop="20dp"
                         android:layout_below="@+id/tv_myjob_detail_description"
+                        android:layout_marginTop="20dp"
                         android:fontFamily="@font/quicksandmedium"
-                        android:textColor="@color/colorPrimary" />
+                        android:text="@string/assign"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:visibility="gone" />
 
 
                     <Button
@@ -490,94 +515,93 @@
                         android:id="@+id/btn_detail_payment"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="@string/payment"
-                        android:layout_marginBottom="20dp"
-                        android:visibility="gone"
-                        android:textSize="16dp"
                         android:layout_below="@+id/rl_post_completejob"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="20dp"
-                        android:fontFamily="@font/quicksandmedium"
                         android:background="@drawable/btnback"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:text="@string/payment"
+                        android:textAllCaps="false"
                         android:textColor="@color/colorwhite"
-                        android:textAllCaps="false"/>
+                        android:textSize="16dp"
+                        android:visibility="gone" />
 
                     <Button
 
                         android:id="@+id/btn_review_payment"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="@string/review"
-                        android:layout_marginBottom="20dp"
-                        android:visibility="gone"
-                        android:textSize="16dp"
                         android:layout_below="@+id/rl_post_completejob"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="20dp"
-                        android:fontFamily="@font/quicksandmedium"
                         android:background="@drawable/btnback"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:text="@string/review"
+                        android:textAllCaps="false"
                         android:textColor="@color/colorwhite"
-                        android:textAllCaps="false"/>
+                        android:textSize="16dp"
+                        android:visibility="gone" />
 
 
                     <RelativeLayout
                         android:id="@+id/rl_post_completejob"
                         android:layout_width="wrap_content"
-                        android:visibility="gone"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/spcomdetail_tv_post">
+                        android:layout_below="@+id/spcomdetail_tv_post"
+                        android:visibility="gone">
 
                         <com.makeramen.roundedimageview.RoundedImageView
                             android:id="@+id/iv_myjob_detail_vendorimage"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="20dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginTop="20dp"
                             android:src="@drawable/app_ico"
-                            app:riv_corner_radius="2dp"
-                            />
+                            app:riv_corner_radius="2dp" />
 
                         <TextView
                             android:id="@+id/tv_myjob_detail_vendorname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:textSize="14sp"
                             android:layout_marginTop="22dp"
                             android:layout_toRightOf="@+id/iv_myjob_detail_vendorimage"
                             android:fontFamily="@font/quicksandregular"
-                            android:textColor="@color/colorPrimary" />
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="14sp" />
 
                         <RatingBar
                             android:id="@+id/tv_myjob_detail_vendorrating"
                             style="@style/customRatingBar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:isIndicator="true"
+                            android:layout_below="@+id/tv_myjob_detail_vendorname"
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="5dp"
                             android:layout_toRightOf="@+id/iv_myjob_detail_vendorimage"
-                            android:layout_below="@+id/tv_myjob_detail_vendorname"
+                            android:isIndicator="true"
                             android:numStars="5"
                             android:stepSize="0.1" />
                     </RelativeLayout>
+
                     <ImageView
                         android:id="@+id/iv_myjob_detail_vendorchat"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:scaleType="centerInside"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/spcomdetail_tv_post"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/circlechat"
-                        android:layout_below="@+id/spcomdetail_tv_post"
-                        android:layout_alignParentRight="true"
+                        android:scaleType="centerInside"
                         app:srcCompat="@drawable/ic_chat_ico" />
 
                 </RelativeLayout>
             </RelativeLayout>
-
 
 
         </ScrollView>

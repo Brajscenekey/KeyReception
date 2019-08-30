@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/colorwhite"
         app:cardCornerRadius="6dp"
-        app:cardElevation="5dp"
+        app:cardElevation="3dp"
         app:cardUseCompatPadding="true">
 
 
@@ -80,8 +80,8 @@
                     android:layout_height="12dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="4dp"
                     android:gravity="center"
+                    android:layout_gravity="center"
                     android:tint="@color/colorPrimary"
                     app:srcCompat="@drawable/ic_placeholder" />
                 <TextView
@@ -90,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/quicksandregular"
                     android:gravity="center"
+                    android:layout_marginTop="-2dp"
                     android:maxLines="1"
                     android:layout_marginRight="34dp"
                     android:ellipsize="end"

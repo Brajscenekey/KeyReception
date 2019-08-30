@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorwhite"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rr1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/quicksandmedium"
+            android:letterSpacing=".01"
+            android:text="@string/payment"
+            android:textColor="@color/colorwhite"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lnr_uper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rr1"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_creditcard" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/quicksandlight"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/_5sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            android:text="Contry to popular belief, Lorem lpsum is not simple random text"
+            android:textColor="@color/colorgray"
+            android:textSize="@dimen/_12sdp" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/lnr_uper"
+        android:layout_above="@+id/btnpay"
+        android:layout_marginBottom="@dimen/_10sdp"
+        >
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:scrollbars="none"
+
+                    />
+
+                <LinearLayout
+                    android:id="@+id/rl_newaddcard"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_below="@+id/recycler_view"
+                    android:background="@drawable/cornerback">
+
+
+                    <ImageView
+                        android:id="@+id/iv_add"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/add_ico"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="@font/quicksandbold"
+                        android:text="Add New Credit Card"
+                        android:layout_gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_onetime"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_below="@+id/rl_newaddcard"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:visibility="gone"
+                    android:background="@drawable/cornerback"
+                    >
+
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:src="@drawable/add_ico"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="@font/quicksandbold"
+                        android:text="One Time Payment"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp" />
+
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btnpay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:background="@drawable/btnback"
+        android:fontFamily="@font/quicksandmedium"
+        android:text="@string/pay"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:textAllCaps="false"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:textColor="@color/colorwhite"
+        android:textSize="16sp" />
+
+
+</RelativeLayout>

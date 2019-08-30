@@ -11,10 +11,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
 
-
-        <uses-feature
-            android:name="android.hardware.camera.any"
-            android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
 
     <application
         android:name=".base.KeyReception"
@@ -25,12 +24,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-
-
-
-
-
         <activity
             android:name=".activity.SplashActivity"
             android:screenOrientation="portrait">
@@ -40,7 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -82,15 +74,14 @@
         <activity
             android:name=".activity.recepnist.TabActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
         <activity
             android:name=".activity.DetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="DetailActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -150,9 +141,7 @@
         <activity
             android:name=".activity.owner.OwnerNotifiDetailActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity
             android:name=".activity.owner.PayOptionActivity"
             android:screenOrientation="portrait"
@@ -190,25 +179,21 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!-- <activity android:name=".helper.croper.CropImageActivity"/>-->
+        <!-- <activity android:name=".helper.croper.CropImageActivity"/> -->
 
         <activity
             android:name=".activity.recepnist.CompleteValidActivity"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
-
-
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity
             android:name=".activity.owner.EditPropertyActivity"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity
             android:name=".activity.ChattingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="ChatActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -216,6 +201,11 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="2ec06576d6c5248cca082ad82d40935731f442c4" />
+
+        <activity android:name=".activity.owner.PaymentdetailActivity" />
+        <activity android:name=".activity.owner.AddPayCardActivity" />
+        <activity android:name=".activity.owner.MakePaymentCardActivity" />
+        <activity android:name=".activity.recepnist.BankinfoActivity"></activity>
     </application>
 
 </manifest>

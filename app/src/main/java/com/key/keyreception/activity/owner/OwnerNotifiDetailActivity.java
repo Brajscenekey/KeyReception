@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -45,7 +46,7 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
     private PDialog pDialog;
     private String price, receiverId = "";
     private Session session;
-    private TextView spcomdetail_tv_post, tvpropname, tvaddress, tvbedroom, tvbathroom, tvpropsize, tvpropprice, tvserdate, tvstatus, tvservicename, tvdescription, tvvendorname;
+    private TextView tv_addservice_price,spcomdetail_tv_post, tvpropname, tvaddress, tvbedroom, tvbathroom, tvpropsize, tvpropprice, tvserdate, tvstatus, tvservicename, tvdescription, tvvendorname;
     private ImageView serviceimage, own_detailimg;
     private ImageView vendorimage;
     private ImageView ivchat;
@@ -102,6 +103,11 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
         btn_detail_payment.setOnClickListener(this);
         ivchat.setOnClickListener(this);
         paymenttype = session.getPayment();
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        TextView Addservice = findViewById(R.id.Addservice);
+        tv_addservice_price = findViewById(R.id.tv_addservice_price);
+        recyclerView.setVisibility(View.GONE);
+        Addservice.setVisibility(View.GONE);
     }
 
     @Override
@@ -248,7 +254,8 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
         tvbedroom.setText(bed + " Bedroom");
         tvbathroom.setText(bath + " Bathroom");
         tvpropsize.setText(psize + " Sq Feet");
-        tvpropprice.setText("$" + price + ".00");
+        tvpropprice.setText("$" + price);
+        tv_addservice_price.setText("$" + price);
 
         tvvendorname.setText(vname);
         if (rimage.length() != 0) {

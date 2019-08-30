@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorCream"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
 
@@ -11,7 +13,11 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:id="@+id/rev_tabsUper">
+        android:elevation="@dimen/_4sdp"
+        android:background="@color/colorwhite"
+        android:id="@+id/rev_tabsUper"
+        tools:ignore="UnusedAttribute">
+
 
 
         <LinearLayout
@@ -53,17 +59,31 @@
 
         </LinearLayout>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/sliding_rearning_tabs"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:tabSelectedTextColor="@color/appcolor"
-            app:tabMode="fixed"
-            app:tabIndicatorFullWidth="false"
-            app:tabIndicatorColor="@color/appcolor"
-            app:tabTextColor="@color/colorgray"
-            app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
-            />
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/indicator"
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:background="@drawable/tabline_bg"/>
+            <android.support.design.widget.TabLayout
+                android:id="@+id/sliding_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:tabSelectedTextColor="@color/appcolor"
+                app:tabMode="fixed"
+                app:tabIndicator="@null"
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorColor="@color/appcolor"
+                app:tabTextColor="@color/colorgray"
+                app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+
+
+                />
+        </FrameLayout>
+
 
     </RelativeLayout>
 

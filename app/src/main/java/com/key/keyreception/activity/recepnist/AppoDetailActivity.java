@@ -226,7 +226,7 @@ public class AppoDetailActivity extends BaseActivity implements View.OnClickList
         tvbedroom.setText(bed + " Bedroom");
         tvbathroom.setText(bath + " Bathroom");
         tvpropsize.setText(psize + " Sq Feet");
-        tvpropprice.setText("$" + price + ".00");
+        tvpropprice.setText("$" + price);
         if (propimg.length() != 0) {
             RequestOptions options = new RequestOptions();
             options.placeholder(R.drawable.home_image);

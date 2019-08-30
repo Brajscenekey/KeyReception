@@ -58,8 +58,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class
-TabActivity extends BaseActivity implements View.OnClickListener {
+public class TabActivity extends BaseActivity implements View.OnClickListener {
 
 
     public TextView tv_head;

@@ -92,66 +92,15 @@ public class PayOptionActivity extends BaseActivity implements View.OnClickListe
         rlcredit.setOnClickListener(this);
         iv_pay_back.setOnClickListener(this);
 
-        String paytype = session.getPayment();
-
-        switch (paytype) {
-            case "paypal": {
-                ptype = "paypal";
-                rlpaypal.setBackground(getResources().getDrawable(R.drawable.cornergrayback));
-                rlvenmo.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
-                rlcredit.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
-                ivpaypal.setImageDrawable(getResources().getDrawable(R.drawable.ic_active_paypal_ico));
-                ivvenmo.setImageDrawable(getResources().getDrawable(R.drawable.ic_nvenmo_ico));
-                ivcredit.setImageDrawable(getResources().getDrawable(R.drawable.ic_visa));
-                tvpaypal.setTextColor(getResources().getColor(R.color.colorwhite));
-                tvvenmo.setTextColor(getResources().getColor(R.color.colorDarkgray));
-                tvcredit.setTextColor(getResources().getColor(R.color.colorDarkgray));
-                tvbilling_address.setVisibility(View.GONE);
-                etAddress.setVisibility(View.GONE);
-                btn_paymentmethod.setVisibility(View.VISIBLE);
-
-            }
-            break;
-
-            case "venmo": {
-                ptype = "venmo";
-                rlpaypal.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
-                rlvenmo.setBackground(getResources().getDrawable(R.drawable.cornergrayback));
-                rlcredit.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
-                ivpaypal.setImageDrawable(getResources().getDrawable(R.drawable.ic_paypal_ico));
-                ivvenmo.setImageDrawable(getResources().getDrawable(R.drawable.ic_active_nvenmo_ico));
-                ivcredit.setImageDrawable(getResources().getDrawable(R.drawable.ic_visa));
-                tvpaypal.setTextColor(getResources().getColor(R.color.colorDarkgray));
-                tvvenmo.setTextColor(getResources().getColor(R.color.colorwhite));
-                tvcredit.setTextColor(getResources().getColor(R.color.colorDarkgray));
-                tvbilling_address.setVisibility(View.GONE);
-                etAddress.setVisibility(View.GONE);
-                btn_paymentmethod.setVisibility(View.GONE);
+//        String paytype = session.getPayment();
 
 
-            }
-            break;
-
-            case "visa": {
-                ptype = "visa";
-                rlpaypal.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
-                rlvenmo.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
-                rlcredit.setBackground(getResources().getDrawable(R.drawable.cornergrayback));
-                ivpaypal.setImageDrawable(getResources().getDrawable(R.drawable.ic_paypal_ico));
-                ivvenmo.setImageDrawable(getResources().getDrawable(R.drawable.ic_nvenmo_ico));
-                ivcredit.setImageDrawable(getResources().getDrawable(R.drawable.ic_visa));
-                tvpaypal.setTextColor(getResources().getColor(R.color.colorDarkgray));
-                tvvenmo.setTextColor(getResources().getColor(R.color.colorDarkgray));
-                tvcredit.setTextColor(getResources().getColor(R.color.colorwhite));
-                tvbilling_address.setVisibility(View.VISIBLE);
-                etAddress.setVisibility(View.VISIBLE);
-                etAddress.setText(session.getPaymentAddress());
-                btn_paymentmethod.setVisibility(View.VISIBLE);
-
-            }
-            break;
-
-        }
+        ptype = "visa";
+        etAddress.setText(session.getPaymentAddress());
+        rlcredit.setBackground(getResources().getDrawable(R.drawable.cornergrayback));
+        ivcredit.setImageDrawable(getResources().getDrawable(R.drawable.ic_visa));
+        tvcredit.setTextColor(getResources().getColor(R.color.colorwhite));
+        tvbilling_address.setVisibility(View.VISIBLE);
 
 
     }
@@ -199,7 +148,7 @@ public class PayOptionActivity extends BaseActivity implements View.OnClickListe
 
             case R.id.rl_credit: {
                 ptype = "visa";
-                rlpaypal.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
+               /* rlpaypal.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
                 rlvenmo.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
                 rlcredit.setBackground(getResources().getDrawable(R.drawable.cornergrayback));
                 ivpaypal.setImageDrawable(getResources().getDrawable(R.drawable.ic_paypal_ico));
@@ -210,7 +159,10 @@ public class PayOptionActivity extends BaseActivity implements View.OnClickListe
                 tvcredit.setTextColor(getResources().getColor(R.color.colorwhite));
                 tvbilling_address.setVisibility(View.VISIBLE);
                 etAddress.setVisibility(View.VISIBLE);
-                btn_paymentmethod.setVisibility(View.VISIBLE);
+                btn_paymentmethod.setVisibility(View.VISIBLE);*/
+                Intent intent = new Intent(PayOptionActivity.this, PaymentdetailActivity.class);
+                intent.putExtra("key", "0");
+                startActivity(intent);
 
 
             }
@@ -325,6 +277,7 @@ public class PayOptionActivity extends BaseActivity implements View.OnClickListe
                                 session.putPayment(ptype);
                                 session.putPaymentAddress(billingAddress);
                                 etAddress.setText(billingAddress);
+
                                 if (getIntent().getStringExtra("payid") != null) {
                                     Intent intent = new Intent(PayOptionActivity.this, DetailActivity.class);
                                     startActivity(intent);
@@ -338,6 +291,20 @@ public class PayOptionActivity extends BaseActivity implements View.OnClickListe
                                     Toast.makeText(PayOptionActivity.this, msg, Toast.LENGTH_SHORT).show();
 
                                 }
+                               /* if (getIntent().getStringExtra("payid") != null) {
+                                     Intent intent = new Intent(PayOptionActivity.this, PaymentdetailActivity.class);
+                                     intent.putExtra("key","0");
+                                     startActivity(intent);
+                                } else {
+                                    Intent intent = new Intent(PayOptionActivity.this, OwnerTabActivity.class);
+                                    intent.putExtra("order", "3");
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                    finish();
+
+                                    Toast.makeText(PayOptionActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+                                }*/
                             }
 
                             break;
@@ -383,4 +350,90 @@ public class PayOptionActivity extends BaseActivity implements View.OnClickListe
     }
 
 }
+
+
+
+
+
+
+
+
+/* switch (paytype) {
+            case "paypal": {
+                ptype = "paypal";
+                rlpaypal.setBackground(getResources().getDrawable(R.drawable.cornergrayback));
+                rlvenmo.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
+                rlcredit.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
+                ivpaypal.setImageDrawable(getResources().getDrawable(R.drawable.ic_active_paypal_ico));
+                ivvenmo.setImageDrawable(getResources().getDrawable(R.drawable.ic_nvenmo_ico));
+                ivcredit.setImageDrawable(getResources().getDrawable(R.drawable.ic_visa));
+                tvpaypal.setTextColor(getResources().getColor(R.color.colorwhite));
+                tvvenmo.setTextColor(getResources().getColor(R.color.colorDarkgray));
+                tvcredit.setTextColor(getResources().getColor(R.color.colorDarkgray));
+                tvbilling_address.setVisibility(View.GONE);
+                etAddress.setVisibility(View.GONE);
+                btn_paymentmethod.setVisibility(View.VISIBLE);
+
+            }
+            break;
+
+            case "venmo": {
+                ptype = "venmo";
+                rlpaypal.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
+                rlvenmo.setBackground(getResources().getDrawable(R.drawable.cornergrayback));
+                rlcredit.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
+                ivpaypal.setImageDrawable(getResources().getDrawable(R.drawable.ic_paypal_ico));
+                ivvenmo.setImageDrawable(getResources().getDrawable(R.drawable.ic_active_nvenmo_ico));
+                ivcredit.setImageDrawable(getResources().getDrawable(R.drawable.ic_visa));
+                tvpaypal.setTextColor(getResources().getColor(R.color.colorDarkgray));
+                tvvenmo.setTextColor(getResources().getColor(R.color.colorwhite));
+                tvcredit.setTextColor(getResources().getColor(R.color.colorDarkgray));
+                tvbilling_address.setVisibility(View.GONE);
+                etAddress.setVisibility(View.GONE);
+                btn_paymentmethod.setVisibility(View.GONE);
+
+
+            }
+            break;
+
+            case "visa": {
+                ptype = "visa";
+                rlpaypal.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
+                rlvenmo.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
+                rlcredit.setBackground(getResources().getDrawable(R.drawable.cornergrayback));
+                ivpaypal.setImageDrawable(getResources().getDrawable(R.drawable.ic_paypal_ico));
+                ivvenmo.setImageDrawable(getResources().getDrawable(R.drawable.ic_nvenmo_ico));
+                ivcredit.setImageDrawable(getResources().getDrawable(R.drawable.ic_visa));
+                tvpaypal.setTextColor(getResources().getColor(R.color.colorDarkgray));
+                tvvenmo.setTextColor(getResources().getColor(R.color.colorDarkgray));
+                tvcredit.setTextColor(getResources().getColor(R.color.colorwhite));
+                tvbilling_address.setVisibility(View.VISIBLE);
+                etAddress.setVisibility(View.VISIBLE);
+                etAddress.setText(session.getPaymentAddress());
+                btn_paymentmethod.setVisibility(View.VISIBLE);
+
+            }
+            break;
+
+        }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

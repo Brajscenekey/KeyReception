@@ -7,6 +7,20 @@
     <string name="app_rec">Receptionist</string>
     <string name="app_sign">Sign in to access your account</string>
     <string name="app_selectut">Select your login profile to continue with KeyReception</string>
+    <string name="credit_card">Credit Card</string>
+
+    <!--ActivtyUseNewCard-->
+    <string name="use_new_card">ADD NEW CARD</string>
+    <string name="card_type">Card Type</string>
+    <string name="card_holder_name">Card Holder Name</string>
+    <string name="card_number">Card Number</string>
+    <string name="security_code">Security Code</string>
+    <string name="expiration_date">Expiration Date</string>
+    <string name="billing_zip_code">Billing Zip Code</string>
+    <string name="save_card_future">Save card detail</string>
+    <string name="expiry_date">Expire Date</string>
+    <string name="cvv_code">Cvv Code</string>
+    <string name="sk_test">sk_test_5LBctxgLZlmgYzB2oCWlw36O00OIq2Kfgg</string>
 
 
     <!--Login-->
@@ -53,6 +67,9 @@
 
     <string name="last_name">Last Name</string>
     <string name="firstNameEmptyError">Please enter User name</string>
+    <string name="cnumEmptyError">Please enter card number</string>
+    <string name="edateEmptyError">Please enter expire date</string>
+    <string name="cvvNameEmptyError">Please enter cvv code</string>
     <string name="lastNameEmptyError">Please enter last name</string>
     <string name="firstNameLengthError">first name is too short (minimum 3 characters)</string>
     <string name="lastNameLengthError">last name is too short (minimum 3 characters)</string>
@@ -342,6 +359,12 @@
     <string name="share_your_exprience">Share your exprience</string>
     <string name="availability">Availability</string>
     <string name="email_id">Email Id</string>
+    <string name="additional_services">Additional Services</string>
+    <string name="total_price">Total Price</string>
+    <string name="service_price">Service Price</string>
+    <string name="save_card">Save Card</string>
+    <string name="set">Set</string>
+    <string name="payment_method">Payment Method</string>
 
 
 </resources>

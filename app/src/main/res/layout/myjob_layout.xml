@@ -10,10 +10,10 @@
         android:id="@+id/setting_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         app:cardBackgroundColor="@color/colorwhite"
         app:cardCornerRadius="6dp"
-        app:cardElevation="5dp"
+        app:cardElevation="3dp"
         app:cardUseCompatPadding="true">
 
 
@@ -79,7 +79,7 @@
                     android:layout_height="12dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:tint="@color/colorPrimary"
                     app:srcCompat="@drawable/ic_placeholder" />
@@ -90,6 +90,8 @@
                     android:fontFamily="@font/quicksandregular"
                     android:gravity="center"
                     android:maxLines="1"
+                    android:layout_marginTop="-2dp"
+                    android:layout_gravity="center"
                     android:ellipsize="end"
                     android:layout_marginRight="50dp"
                     android:text="9891 Bridle St.Buffalo, NY 14215"

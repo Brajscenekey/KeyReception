@@ -51,6 +51,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_below="@+id/owner_chomerr"
+        android:scrollbars="none"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -68,8 +69,8 @@
                 app:cardCornerRadius="6dp"
                 android:layout_marginStart="7.7dp"
                 android:layout_marginEnd="7.7dp"
-                android:layout_marginBottom="20dp"
-                app:cardElevation="5dp"
+                android:layout_marginBottom="15dp"
+                app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
 
 
@@ -86,7 +87,7 @@
                     android:layout_height="70dp"
                     android:layout_marginTop="10dp"
                     android:scaleType="fitXY"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/app_ico"
                     app:riv_corner_radius="2dp"
@@ -102,10 +103,9 @@
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:layout_marginTop="15dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/iv_selecttype_image"
-                    android:text="Righthaus Property"
-                    android:layout_marginRight="34dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@+id/iv_selecttype_image"
+                    android:layout_marginEnd="34dp"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp"
                     />
@@ -117,18 +117,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_below="@+id/tv_property_name"
-                    android:layout_toRightOf="@+id/iv_selecttype_image"
+                    android:layout_toEndOf="@+id/iv_selecttype_image"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="15dp"
                     >
                     <ImageView
                         android:id="@+id/iv_property_image"
                         android:layout_width="15dp"
                         android:layout_height="12dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="5dp"
                         android:gravity="center"
+                        android:layout_gravity="center"
                         android:tint="@color/colorPrimary"
                         app:srcCompat="@drawable/ic_placeholder" />
                     <TextView
@@ -137,10 +136,11 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/quicksandregular"
                         android:gravity="center"
-                        android:layout_marginRight="34dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="34dp"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:text="9891 Bridle St.Buffalo, NY 14215"
                         android:textColor="@color/colorDarkgray"
                         android:textSize="14sp"
                         />
@@ -154,21 +154,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:layout_below="@+id/li_property"
                         android:fontFamily="@font/quicksandbold"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:text="@string/cproperty"
                         android:textColor="@color/colorPrimary"
                         android:textSize="10sp"
-                        />
+                        tools:ignore="SmallSp" />
 
                 </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/li_selectproperty1"
                     android:layout_width="match_parent"
-
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     >
@@ -248,7 +247,7 @@
                         <FrameLayout
                             android:id="@+id/llFrame1"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp">
+                            android:layout_height="40dp">
                             <Spinner
                                 android:id="@+id/Spinner_bedroom"
                                 android:layout_width="match_parent"
@@ -306,7 +305,7 @@
                         <FrameLayout
                             android:id="@+id/llFrame2"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp">
+                            android:layout_height="40dp">
                             <Spinner
                                 android:id="@+id/Spinner_bathroom"
                                 android:layout_width="match_parent"
@@ -445,7 +444,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:layout_below="@+id/viewres1">
 
 
@@ -590,7 +589,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:scrollbars="none" />
 
 
@@ -598,7 +597,7 @@
                 android:id="@+id/Addservice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Additional Services"
+                android:text="@string/additional_services"
                 android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
@@ -616,7 +615,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:scrollbars="none" />
 
 

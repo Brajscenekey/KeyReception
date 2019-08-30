@@ -10,6 +10,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -30,8 +33,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
+import com.key.keyreception.activity.ActivityAdapter.AdditionalServiceAdapter;
+import com.key.keyreception.activity.ActivityAdapter.GetAddServiceAdapter;
+import com.key.keyreception.activity.model.Addservicemodel;
+import com.key.keyreception.activity.owner.CreatePostActivity;
 import com.key.keyreception.activity.owner.MakePaymentActivity;
 import com.key.keyreception.activity.owner.PayOptionActivity;
+import com.key.keyreception.activity.owner.PaymentdetailActivity;
 import com.key.keyreception.base.BaseActivity;
 import com.key.keyreception.connection.RetrofitClient;
 import com.key.keyreception.helper.PDialog;
@@ -41,7 +49,9 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -54,14 +64,16 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
     private PDialog pDialog;
     private String usertype, price, receiverId = "";
     private Session session;
-    private TextView spcomdetail_tv_post, tvpropname, tvaddress, tvbedroom, tvbathroom, tvpropsize, tvpropprice, tvserdate, tvstatus, tvservicename, tvdescription, tvvendorname;
+    private TextView tv_addservice_price,spcomdetail_tv_post, tvpropname, tvaddress, tvbedroom, tvbathroom, tvpropsize, tvpropprice, tvserdate, tvstatus, tvservicename, tvdescription, tvvendorname;
     private ImageView serviceimage;
     private ImageView vendorimage, own_detailimg;
     private ImageView ivchat;
     private String jobid, paymenttype = "";
     private Button btn_detail_payment, btn_review_payment;
     private RelativeLayout rl_post_completejob;
+    private RecyclerView recyclerView;
     private String recepid = "", recepprofileImage = "", recepfullName = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +96,7 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
 
         jobdetailApiData();
     }
+
 
 
     private void init() {
@@ -112,9 +125,21 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
         btn_detail_payment.setOnClickListener(this);
         paymenttype = session.getPayment();
         ivchat.setOnClickListener(this);
+        recyclerView = findViewById(R.id.recycler_view);
+        tv_addservice_price = findViewById(R.id.tv_addservice_price);
 
+        serviceAdditional();
+    }
+
+    private void serviceAdditional() {
+        GetAddServiceAdapter adapter = new GetAddServiceAdapter(DetailActivity.this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(DetailActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
 
     }
+
 
     @Override
     public void onClick(View view) {
@@ -124,7 +149,7 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                 backPress();
             }
             break;
-            case R.id.btn_detail_payment: {
+            /*case R.id.btn_detail_payment: {
                 if (!paymenttype.isEmpty()) {
                     Intent intent = new Intent(DetailActivity.this, MakePaymentActivity.class);
                     intent.putExtra("jobId", jobid);
@@ -136,9 +161,11 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                 }
 
             }
-            break;
-            case R.id.btn_review_payment: {
-                Toast.makeText(this, "Under in development", Toast.LENGTH_SHORT).show();
+            break;*/
+            case R.id.btn_detail_payment: {
+                Intent intent = new Intent(DetailActivity.this, PaymentdetailActivity.class);
+                intent.putExtra("key","1");
+                startActivity(intent);
             }
             break;
             case R.id.iv_myjob_detail_vendorchat: {
@@ -255,7 +282,8 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
         tvbedroom.setText(bed + " Bedroom");
         tvbathroom.setText(bath + " Bathroom");
         tvpropsize.setText(psize + " Sq Feet");
-        tvpropprice.setText("$" + price + ".00");
+        tvpropprice.setText("$" + price);
+        tv_addservice_price.setText("$" + price);
 
         tvvendorname.setText(vname);
         if (rimage.length() != 0) {
@@ -297,7 +325,7 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
             case "1":
                 tvstatus.setText(getResources().getString(R.string.Pending));
                 tvstatus.setTextColor(getResources().getColor(R.color.colorPending));
-                btn_detail_payment.setVisibility(View.GONE);
+                btn_detail_payment.setVisibility(View.VISIBLE);
                 btn_review_payment.setVisibility(View.GONE);
 
                 break;
@@ -419,13 +447,11 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                 public void onClick(View view) {
                     if (sadcheck[0]) {
                         iv_sadface.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.colordarkRed));
-                        ;
                         tv_sadface.setVisibility(View.VISIBLE);
                         tv_sadface.setTextColor(getResources().getColor(R.color.colordarkRed));
                         sadcheck[0] = false;
                     } else {
                         iv_sadface.setColorFilter(ContextCompat.getColor(DetailActivity.this, R.color.inactiveColor));
-                        ;
                         tv_sadface.setVisibility(View.GONE);
                         sadcheck[0] = true;
 

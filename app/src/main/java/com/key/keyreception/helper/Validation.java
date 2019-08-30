@@ -60,6 +60,38 @@ public class Validation {
     }
 
 
+    public boolean isCNumValid(EditText editText) {
+        if (getString(editText).isEmpty()) {
+//            editText.setError(context.getString(R.string.firstNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.cnumEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }  else {
+            return true;
+        }
+    }
+
+    public boolean isEDateValid(EditText editText) {
+        if (getString(editText).isEmpty()) {
+//            editText.setError(context.getString(R.string.firstNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.edateEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }  else {
+            return true;
+        }
+    }
+
+    public boolean isCvvValid(EditText editText) {
+        if (getString(editText).isEmpty()) {
+//            editText.setError(context.getString(R.string.firstNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.cvvNameEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }  else {
+            return true;
+        }
+    }
     public boolean iscoNameValid(EditText editText) {
         if (getString(editText).isEmpty()) {
 //            editText.setError(context.getString(R.string.firstNameEmptyError));

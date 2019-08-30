@@ -29,6 +29,7 @@ import com.key.keyreception.R;
 import com.key.keyreception.Session;
 import com.key.keyreception.activity.model.FirebaseUserModel;
 import com.key.keyreception.activity.owner.OwnerTabActivity;
+import com.key.keyreception.activity.owner.PaymentdetailActivity;
 import com.key.keyreception.base.BaseActivity;
 import com.key.keyreception.connection.RetrofitClient;
 import com.key.keyreception.helper.Constant;
@@ -72,6 +73,7 @@ public class RsettingActivity extends BaseActivity implements View.OnClickListen
 
     public void init() {
         RelativeLayout rl_chan_pass = findViewById(R.id.rl_chan_pass);
+        RelativeLayout rl_payment_op = findViewById(R.id.rl_payment_op);
         session = new Session(this);
         validation = new Validation(this);
         pDialog = new PDialog();
@@ -83,6 +85,7 @@ public class RsettingActivity extends BaseActivity implements View.OnClickListen
         log.setOnClickListener(this);
         rl_chan_pass.setOnClickListener(this);
         iv_leftarrow_setting.setOnClickListener(this);
+        rl_payment_op.setOnClickListener(this);
     }
 
     @Override
@@ -102,6 +105,11 @@ public class RsettingActivity extends BaseActivity implements View.OnClickListen
             break;
             case R.id.iv_leftarrow_setting: {
                 backPress();
+            }
+            break;
+
+            case R.id.rl_payment_op: {
+
             }
             break;
             case R.id.switch1:
@@ -128,7 +136,7 @@ public class RsettingActivity extends BaseActivity implements View.OnClickListen
         assert window != null;
         WindowManager.LayoutParams wlp = window.getAttributes();
         dialog.setContentView(R.layout.changelayout);
-        wlp.gravity = Gravity.TOP;
+        wlp.gravity = Gravity.CENTER;
         window.setAttributes(wlp);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ImageView ivdissmis = dialog.findViewById(R.id.change_dissmis);

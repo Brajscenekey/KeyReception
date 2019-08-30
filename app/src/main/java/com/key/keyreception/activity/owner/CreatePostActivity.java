@@ -37,9 +37,11 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
+import com.key.keyreception.activity.ActivityAdapter.AdditionalServiceAdapter;
 import com.key.keyreception.activity.ActivityAdapter.SelecttypeAdapter;
 import com.key.keyreception.activity.ActivityAdapter.ServicetypeAdapter;
 import com.key.keyreception.activity.model.ActivePropertyData;
+import com.key.keyreception.activity.model.Addservicemodel;
 import com.key.keyreception.activity.model.PropertyJson;
 import com.key.keyreception.activity.model.ServiceCategory;
 import com.key.keyreception.base.BaseActivity;
@@ -97,6 +99,8 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
     private Button dialog_addprop;
     private TextView tv_dialog_no_record;
     private LinearLayout ll_btn_dialog;
+    private RecyclerView recyclerViewAddService, recyclerView;
+    private AdditionalServiceAdapter adapter;
     private TextWatcher watcherClass_search = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -113,8 +117,6 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
 
                 propertySize = etpost_property_size.getText().toString();
                 pricecalculation(getPropertysizePrice(propertySize), propertySize1);
-
-
 
 
             }
@@ -145,7 +147,8 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
         CardView card_selcecttype = findViewById(R.id.card_selcecttype);
         etdatetime.setOnClickListener(this);
         card_selcecttype.setOnClickListener(this);
-        RecyclerView recyclerView = findViewById(R.id.post_recycler_view);
+        recyclerView = findViewById(R.id.post_recycler_view);
+        recyclerViewAddService = findViewById(R.id.recycler_view_addservice);
         ImageView iv_leftarrow_post = findViewById(R.id.iv_leftarrow_post);
         TextView tv_change_property = findViewById(R.id.tv_change_property);
         tv_property_name = findViewById(R.id.tv_property_name);
@@ -162,10 +165,53 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
         etpost_Description = findViewById(R.id.post_Description);
         Button btnpost = findViewById(R.id.btnpost);
         btnpost.setOnClickListener(this);
+        spinnerwork();
+        rl_propertydata.setVisibility(View.GONE);
+        tv_change_property.setOnClickListener(this);
+        iv_leftarrow_post.setOnClickListener(this);
+        serviceCategory();
+        serviceAdditional();
+
+    }
+
+    private void serviceAdditional() {
+        Addservicemodel addservicemodel = new Addservicemodel();
+        List<Addservicemodel> list = new ArrayList<>();
+
+        for (int i = 0; i <= 10; i++) {
+            addservicemodel.isselect= false;
+            addservicemodel.count = 1;
+            list.add(i, addservicemodel);
+        }
+
+        adapter = new AdditionalServiceAdapter(CreatePostActivity.this, list);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(CreatePostActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewAddService.setLayoutManager(mLayoutManager);
+        recyclerViewAddService.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewAddService.setAdapter(adapter);
+
+    }
+
+    private void serviceCategory() {
+        servicetypeAdapter = new ServicetypeAdapter(CreatePostActivity.this, categorylist, new ServicetypeAdapter.CatgoryListener() {
+            @Override
+            public void categoryid(String id, String s) {
+                categoryid = id;
+                servicecheck = s;
+            }
+        });
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(CreatePostActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(servicetypeAdapter);
+
+
+    }
+
+    public void spinnerwork() {
         ftsBedroomSelector = findViewById(R.id.spinner_bedroom_selector);
         ftsBathroomSelector = findViewById(R.id.spinner_bathroom_selector);
-        etpost_property_size.setFilters(new InputFilter[] {Utility.filter});
-
+        etpost_property_size.setFilters(new InputFilter[]{Utility.filter});
 
 
         etpost_property_size.addTextChangedListener(watcherClass_search);
@@ -208,7 +254,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
                     v.performClick();
                     bathroom = spinner_bathroom.getSelectedItem().toString();
                     if (isFTSSelected1) {
-                        bath = "1";
+                        bath ="1";
                         ftsBathroomSelector.setVisibility(View.GONE);
                         bathroom = spinner_bathroom.getSelectedItem().toString();
                     }
@@ -250,22 +296,6 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
         });
 
 
-        rl_propertydata.setVisibility(View.GONE);
-        tv_change_property.setOnClickListener(this);
-
-        servicetypeAdapter = new ServicetypeAdapter(CreatePostActivity.this, categorylist, new ServicetypeAdapter.CatgoryListener() {
-            @Override
-            public void categoryid(String id, String s) {
-                categoryid = id;
-                servicecheck = s;
-            }
-        });
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(CreatePostActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(servicetypeAdapter);
-        iv_leftarrow_post.setOnClickListener(this);
-
     }
 
     @Override
@@ -279,11 +309,13 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
             break;
 
             case R.id.tv_change_property: {
+                utility.hideKeyboardFrom(this, view);
                 initiatePopupWindow();
             }
             break;
 
             case R.id.card_selcecttype: {
+                utility.hideKeyboardFrom(this, view);
                 initiatePopupWindow();
             }
             break;
@@ -404,8 +436,6 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
                     bedroom = propertyList.get(i).getBedroom();
 //                    adminPropertyCalc = propertyList.get(i).getAdminPropertyCalc();
                     propertySize = propertyList.get(i).getPropertySize();
-                    setPropertyData(bedroom, bathroom, propertySize);
-                    pricecalculation(getPropertysizePrice(propertySize), propertySize1);
 
 
                     try {
@@ -467,6 +497,9 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
                     Gson gson = new Gson();
                     json = gson.toJson(propertyJsonList);
                     Log.v("projson", json);
+                    setPropertyData(bedroom, bathroom, propertySize);
+                    pricecalculation(getPropertysizePrice(propertySize), propertySize1);
+
 
                 }
             });
@@ -772,8 +805,9 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
     public String getPropertysizePrice(String propertySize) {
         String calculation = "0.0";
 
-        if (propertySize.equals(""))
-        { propertySize ="0"; }
+        if (propertySize.equals("")) {
+            propertySize = "0";
+        }
 
         if (0 <= Double.parseDouble(propertySize) && 750 >= Double.parseDouble(propertySize)) {
             calculation = String.valueOf(0.11);
@@ -793,7 +827,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
         } else if (3750 <= Double.parseDouble(propertySize) && 4500 >= Double.parseDouble(propertySize)) {
             calculation = String.valueOf(0.032);
             propertySize1 = String.valueOf(4500);
-        }else {
+        } else {
             calculation = String.valueOf(0.032);
             propertySize1 = String.valueOf(Double.parseDouble(propertySize));
         }
