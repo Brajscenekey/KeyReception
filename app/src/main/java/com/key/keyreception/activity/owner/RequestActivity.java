@@ -34,6 +34,7 @@ import com.key.keyreception.Session;
 import com.key.keyreception.activity.ActivityAdapter.RequestAdapter;
 import com.key.keyreception.activity.model.MyJobData;
 import com.key.keyreception.activity.model.RequestData;
+import com.key.keyreception.activity.recepnist.BankinfoActivity;
 import com.key.keyreception.activity.recepnist.TabActivity;
 import com.key.keyreception.base.BaseActivity;
 import com.key.keyreception.connection.RetrofitClient;
@@ -337,15 +338,23 @@ public class RequestActivity extends BaseActivity {
             accept.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!session.getJobStatus().isEmpty()) {
-                        if (session.getJobStatus().equals("1")) {
-                            alertJobStatus();
-                        } else {
-                            popUp.dismiss();
-                            acceptRejectApiData("2", popUp);
-                            session.putJobStatus("1");
+                    if (session.getisBankAccountAdd().equals("1")) {
+                        if (!session.getJobStatus().isEmpty()) {
+                            if (session.getJobStatus().equals("1")) {
+                                alertJobStatus();
+                            } else {
+                                popUp.dismiss();
+                                acceptRejectApiData("2", popUp);
+                                session.putJobStatus("1");
+                            }
                         }
                     }
+
+                    else {
+                        alertBankinfo();
+                        popUp.dismiss();
+                    }
+
 
                 }
             });
@@ -555,6 +564,25 @@ public class RequestActivity extends BaseActivity {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+            }
+        });
+        alertDialog.show();
+    }
+
+    public void alertBankinfo()
+    {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(RequestActivity.this);
+        alertDialog.setTitle("Add Bank Account");
+        alertDialog.setMessage("Please add your bank detail first");
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(RequestActivity.this, BankinfoActivity.class);
+                startActivity(intent);
+            }
+        });
+        alertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) { dialog.cancel();
             }
         });
         alertDialog.show();

@@ -126,7 +126,7 @@ public class PaymentdetailActivity extends AppCompatActivity implements View.OnC
                     Map<String, Object> cardParams = new HashMap<String, Object>();
 //                  cardParams.put("limit", 5);
                     cardParams.put("object", "card");
-                    customer = Customer.retrieve("cus_FiBETGHziAzHtS").getSources().all(cardParams);
+                    customer = Customer.retrieve(session.getstripeCustomerId()).getSources().all(cardParams);
                     } catch (StripeException e) {
                     pDialog.dismiss();
                 }return customer;
@@ -200,7 +200,7 @@ public class PaymentdetailActivity extends AppCompatActivity implements View.OnC
                     try {
 
 
-                        customer = Customer.retrieve("cus_FiBETGHziAzHtS");
+                        customer = Customer.retrieve(session.getstripeCustomerId());
                         customer.getSources().retrieve(id).delete();
                     } catch (StripeException e) {
                         e.printStackTrace();

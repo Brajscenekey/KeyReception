@@ -116,9 +116,9 @@ public class MakePaymentCardActivity extends AppCompatActivity implements View.O
                 Customer customer = null;
                 try {
 
-//                  String customer_stripe_id = session.getstripe_customer_id();
+                  String customer_stripe_id = session.getstripeCustomerId();
 
-                    customer = Customer.retrieve("cus_FiBETGHziAzHtS");
+                    customer = Customer.retrieve(customer_stripe_id);
                     Map<String, Object> params = new HashMap<>();
                     params.put("source", id);
                     customer.getSources().create(params);

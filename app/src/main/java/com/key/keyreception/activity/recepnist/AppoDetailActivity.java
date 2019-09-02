@@ -397,7 +397,29 @@ public class AppoDetailActivity extends BaseActivity implements View.OnClickList
                 });
 
             }
-            if (!status.equals("2") && status.equals("3")) {
+            if (status.equals("2") && !status.equals("3") ) {
+                ll_end_service.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        status = "4";
+                        iv_start_service.setBackground(getResources().getDrawable(R.drawable.circletransparent));
+                        iv_start_service.setColorFilter(ContextCompat.getColor(AppoDetailActivity.this, R.color.colorgray));
+                        tv_start_service.setTextColor(getResources().getColor(R.color.colorgray));
+
+                        iv_inprogress_service.setBackground(getResources().getDrawable(R.drawable.circletransparent));
+                        iv_inprogress_service.setColorFilter(ContextCompat.getColor(AppoDetailActivity.this, R.color.colorgray));
+                        tv_inprogress_service.setTextColor(getResources().getColor(R.color.colorgray));
+
+                        iv_end_service.setBackground(getResources().getDrawable(R.drawable.circlechat));
+                        iv_end_service.setColorFilter(ContextCompat.getColor(AppoDetailActivity.this, R.color.colorwhite));
+                        tv_end_service.setTextColor(getResources().getColor(R.color.colorPrimary));
+
+
+                    }
+                });
+
+            }
+            if (!status.equals("2") && status.equals("3") ) {
                 ll_end_service.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

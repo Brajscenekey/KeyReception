@@ -301,6 +301,38 @@ public interface Reginterface {
 
 
 
+    @POST("stripeAddAccount")
+    @FormUrlEncoded
+    Call<ResponseBody> stripeAddAccount(@Header("authToken") String authToken,
+                                       @Field("firstName") String isImageAdd,
+                                   @Field("lastName") String lastName,
+                                   @Field("routingNumber") String routingNumber,
+                                   @Field("accountNo") String accountNo,
+                                   @Field("country") String country,
+                                   @Field("currency") String currency,
+                                   @Field("accountHolderType") String accountHolderType
+    );
+
+    @POST("stripeUpdateAccount")
+    @FormUrlEncoded
+    Call<ResponseBody> stripeUpdateAccount(@Header("authToken") String authToken,
+                                        @Field("firstName") String isImageAdd,
+                                        @Field("lastName") String lastName,
+                                        @Field("routingNumber") String routingNumber,
+                                        @Field("accountNo") String accountNo,
+                                        @Field("country") String country,
+                                        @Field("currency") String currency,
+                                        @Field("accountHolderType") String accountHolderType,
+                                           @Field("accountId") String accountId
+    );
+
+    @POST("stripeGetAccount")
+    @FormUrlEncoded
+    Call<ResponseBody> stripeGetAccount(@Header("authToken") String authToken,
+                                        @Field("accountId") String accountId
+
+    );
+
 }
 
 

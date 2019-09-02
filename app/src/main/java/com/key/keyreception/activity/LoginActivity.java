@@ -149,6 +149,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 String availabilityStatus = jsonObject2.getString("availabilityStatus");
                                 String jobStatus = jsonObject2.getString("jobStatus");
                                 session.putJobStatus(jobStatus);
+                                String stripeAccountId = jsonObject2.getString("stripeAccountId");
+                                session.putaccountId(stripeAccountId);
+                                String stripeCustomerId = jsonObject2.getString("stripeCustomerId");
+                                session.putstripeCustomerId(stripeCustomerId);
                                 session.putAvabilityStatus(availabilityStatus);
                                 session.isSetUpdateLocIn(true);
                                 session.putEmailId(email);
@@ -156,6 +160,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 String _id = String.valueOf(jsonObject2.getInt("_id"));
                                 int notificationStatus = jsonObject2.getInt("notificationStatus");
                                 String paymentType = jsonObject2.getString("paymentType");
+                                int isBankAccountAdd = jsonObject2.getInt("isBankAccountAdd");
+                                session.putisBankAccountAdd(String.valueOf(isBankAccountAdd));
                                 session.putPayment(paymentType);
                                 session.putAuthtoken(authToken);
                                 session.putusertype(userType);

@@ -91,6 +91,7 @@ public class OwnerProfileFragment extends BaseFragment implements View.OnClickLi
             break;
             case R.id.rl_owner_setting: {
                 Intent intent = new Intent(mContext, RsettingActivity.class);
+                intent.putExtra("bi","0");
                 startActivity(intent);
             }
             break;

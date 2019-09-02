@@ -106,6 +106,15 @@ public class Session {
         }
     }
 
+    public void putisBankAccountAdd(String isBankAccountAdd) {
+        editor2.putString("isBankAccountAdd", isBankAccountAdd);
+        editor2.apply();
+    }
+
+    public String getisBankAccountAdd() {
+        return mypref2.getString("isBankAccountAdd", "");
+    }
+
     public void putPayment(String pay) {
         editor2.putString("pay", pay);
         editor2.apply();
@@ -169,6 +178,23 @@ public class Session {
         return mypref2.getString("propertyId", "");
     }
 
+
+    public void putaccountId(String accountId) {
+        editor2.putString("accountId", accountId);
+        editor2.apply();
+    }
+
+    public String getaccountId() {
+        return mypref2.getString("accountId", "");
+    }
+ public void putstripeCustomerId(String stripeCustomerId) {
+        editor2.putString("stripeCustomerId", stripeCustomerId);
+        editor2.apply();
+    }
+
+    public String getstripeCustomerId() {
+        return mypref2.getString("stripeCustomerId", "");
+    }
 
     public void putAuthtoken(String token) {
         editor2.putString("token", token);

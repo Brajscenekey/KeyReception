@@ -122,7 +122,7 @@ public class AddPayCardActivity extends AppCompatActivity implements View.OnClic
 
 //                  String customer_stripe_id = session.getstripe_customer_id();
 
-                    customer = Customer.retrieve("cus_FiBETGHziAzHtS");
+                    customer = Customer.retrieve(session.getstripeCustomerId());
                     Map<String, Object> params = new HashMap<>();
                     params.put("source", id);
                     customer.getSources().create(params);

@@ -69,6 +69,7 @@ public class RsettingActivity extends BaseActivity implements View.OnClickListen
                 aSwitch.setChecked(true);
             }
         }
+
     }
 
     public void init() {
@@ -86,6 +87,11 @@ public class RsettingActivity extends BaseActivity implements View.OnClickListen
         rl_chan_pass.setOnClickListener(this);
         iv_leftarrow_setting.setOnClickListener(this);
         rl_payment_op.setOnClickListener(this);
+        Intent intent = getIntent();
+        if (intent.getStringExtra("bi").equals("1"))
+        {
+            rl_payment_op.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -109,7 +115,8 @@ public class RsettingActivity extends BaseActivity implements View.OnClickListen
             break;
 
             case R.id.rl_payment_op: {
-
+                Intent intent = new Intent(RsettingActivity.this,BankinfoActivity.class);
+                startActivity(intent);
             }
             break;
             case R.id.switch1:

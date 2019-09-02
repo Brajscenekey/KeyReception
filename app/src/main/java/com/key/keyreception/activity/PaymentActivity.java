@@ -19,6 +19,8 @@ import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
 import com.key.keyreception.activity.owner.OwnerTabActivity;
+import com.key.keyreception.activity.owner.PayOptionActivity;
+import com.key.keyreception.activity.owner.PaymentdetailActivity;
 import com.key.keyreception.base.BaseActivity;
 import com.key.keyreception.connection.RetrofitClient;
 import com.key.keyreception.helper.Constant;
@@ -88,18 +90,18 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         rlpaypal.setOnClickListener(this);
         rlvenmo.setOnClickListener(this);
         rlcredit.setOnClickListener(this);
-        ptype = "paypal";
-        rlpaypal.setBackground(getResources().getDrawable(R.drawable.cornergrayback));
+        ptype = "visa";
+        rlpaypal.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
         rlvenmo.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
-        rlcredit.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
-        ivpaypal.setImageDrawable(getResources().getDrawable(R.drawable.ic_active_paypal_ico));
+        rlcredit.setBackground(getResources().getDrawable(R.drawable.cornergrayback));
+        ivpaypal.setImageDrawable(getResources().getDrawable(R.drawable.ic_paypal_ico));
         ivvenmo.setImageDrawable(getResources().getDrawable(R.drawable.ic_nvenmo_ico));
         ivcredit.setImageDrawable(getResources().getDrawable(R.drawable.ic_visa));
-        tvpaypal.setTextColor(getResources().getColor(R.color.colorwhite));
+        tvpaypal.setTextColor(getResources().getColor(R.color.colorDarkgray));
         tvvenmo.setTextColor(getResources().getColor(R.color.colorDarkgray));
-        tvcredit.setTextColor(getResources().getColor(R.color.colorDarkgray));
-        tvbilling_address.setVisibility(View.GONE);
-        etAddress.setVisibility(View.GONE);
+        tvcredit.setTextColor(getResources().getColor(R.color.colorwhite));
+        tvbilling_address.setVisibility(View.VISIBLE);
+        etAddress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -137,7 +139,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
             break;
 
             case R.id.rl_credit: {
-                ptype = "visa";
+               /* ptype = "visa";
                 rlpaypal.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
                 rlvenmo.setBackground(getResources().getDrawable(R.drawable.cornerwhiteback));
                 rlcredit.setBackground(getResources().getDrawable(R.drawable.cornergrayback));
@@ -148,7 +150,11 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
                 tvvenmo.setTextColor(getResources().getColor(R.color.colorDarkgray));
                 tvcredit.setTextColor(getResources().getColor(R.color.colorwhite));
                 tvbilling_address.setVisibility(View.VISIBLE);
-                etAddress.setVisibility(View.VISIBLE);
+                etAddress.setVisibility(View.VISIBLE);*/
+                Intent intent = new Intent(PaymentActivity.this, PaymentdetailActivity.class);
+                intent.putExtra("key", "0");
+                startActivity(intent);
+
             }
             break;
             case R.id.payment_address: {

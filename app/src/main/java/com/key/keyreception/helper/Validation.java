@@ -92,6 +92,49 @@ public class Validation {
             return true;
         }
     }
+    public boolean isAHFNameValid(EditText editText) {
+        if (getString(editText).isEmpty()) {
+//            editText.setError(context.getString(R.string.firstNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.aFirstNameEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }  else {
+            return true;
+        }
+    }
+
+    public boolean isAHLNameValid(EditText editText) {
+        if (getString(editText).isEmpty()) {
+//            editText.setError(context.getString(R.string.firstNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.aLastNameEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }  else {
+            return true;
+        }
+    }
+
+    public boolean isARountingValid(EditText editText) {
+        if (getString(editText).isEmpty()) {
+//            editText.setError(context.getString(R.string.firstNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.aRoutingEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }  else {
+            return true;
+        }
+    }
+    public boolean isANumberValid(EditText editText) {
+        if (getString(editText).isEmpty()) {
+//            editText.setError(context.getString(R.string.firstNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.aNumberEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }  else {
+            return true;
+        }
+    }
+
     public boolean iscoNameValid(EditText editText) {
         if (getString(editText).isEmpty()) {
 //            editText.setError(context.getString(R.string.firstNameEmptyError));
@@ -102,6 +145,8 @@ public class Validation {
             return true;
         }
     }
+
+
 
     public boolean isSocialValid(EditText editText) {
         if (getString(editText).isEmpty()) {

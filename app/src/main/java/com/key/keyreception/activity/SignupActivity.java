@@ -258,6 +258,10 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
                                 String availabilityStatus = jsonObject2.getString("availabilityStatus");
                                 session.putAvabilityStatus(availabilityStatus);
                                 session.putuserdata(_id, fullName, profileImage, userType);
+                                String stripeCustomerId = jsonObject2.getString("stripeCustomerId");
+                                session.putstripeCustomerId(stripeCustomerId);
+                                int isBankAccountAdd = jsonObject2.getInt("isBankAccountAdd");
+                                session.putisBankAccountAdd(String.valueOf(isBankAccountAdd));
                                 String jobStatus = jsonObject2.getString("jobStatus");
                                 session.putJobStatus(jobStatus);
                                 session.putAuthtoken(authToken);
@@ -265,6 +269,9 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
                                 session.putPayment(paymentType);
                                 session.putnotificationStatus(String.valueOf(notificationStatus));
                                 session.putEmailId(email);
+                                String stripeAccountId = jsonObject2.getString("stripeAccountId");
+                                session.putaccountId(stripeAccountId);
+
 
                                 addUserFirebaseDatabase(fullName, email, profileImage, usertype, authToken, _id);
 
@@ -435,6 +442,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
         dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.layout_custom_dialog);
+
 
         Button btn_continoue_dialog = dialog.findViewById(R.id.checksub_btn);
         ImageView clereg_logo = dialog.findViewById(R.id.clereg_logo);

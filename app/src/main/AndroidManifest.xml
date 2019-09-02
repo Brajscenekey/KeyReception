@@ -112,7 +112,7 @@
         <activity
             android:name=".activity.recepnist.AppoDetailActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden|adjustPan" />
 
         <!-- Firebase Notifications -->
         <service android:name=".supportnoti.service.MyFirebaseMessagingService">
@@ -206,6 +206,7 @@
         <activity android:name=".activity.owner.AddPayCardActivity" />
         <activity android:name=".activity.owner.MakePaymentCardActivity" />
         <activity android:name=".activity.recepnist.BankinfoActivity"></activity>
+        <activity android:name=".activity.recepnist.BankinfoEditActivity" />
     </application>
 
 </manifest>

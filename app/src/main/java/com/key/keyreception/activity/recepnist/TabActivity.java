@@ -415,7 +415,7 @@ public class TabActivity extends BaseActivity implements View.OnClickListener {
             final TextView tv_rdetail_timer = layout.findViewById(R.id.tv_rdetail_timer); //Timer text
             TextView tv_rdetail_vname = layout.findViewById(R.id.tv_rdetail_vname);
             ImageView iv_rdetail_vimg = layout.findViewById(R.id.iv_rdetail_vimg);
-            ImageView pop_back = layout.findViewById(R.id.pop_back);
+            final ImageView pop_back = layout.findViewById(R.id.pop_back);
             ImageView iv_selecttype_image = layout.findViewById(R.id.iv_selecttype_image);
             tv_rdetail_propname.setText(propertyName);
             tv_rdetail_propaddress.setText(address);
@@ -463,15 +463,22 @@ public class TabActivity extends BaseActivity implements View.OnClickListener {
             accept.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!session.getJobStatus().isEmpty()) {
-                        if (session.getJobStatus().equals("1")) {
-                            alertJobStatus();
-                        } else {
-                            popUp.dismiss();
-                            acceptRejectApiData("2", popUp);
-                            session.putJobStatus("1");
+                    if (session.getisBankAccountAdd().equals("1")) {
+                        if (!session.getJobStatus().isEmpty()) {
+                            if (session.getJobStatus().equals("1")) {
+                                alertJobStatus();
+                            } else {
+                                popUp.dismiss();
+                                acceptRejectApiData("2", popUp);
+                                session.putJobStatus("1");
+                            }
                         }
                     }
+                    else {
+                        alertBankinfo();
+                        popUp.dismiss();
+                    }
+
 
                 }
             });
@@ -730,6 +737,25 @@ public class TabActivity extends BaseActivity implements View.OnClickListener {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
+            }
+        });
+        alertDialog.show();
+    }
+
+    public void alertBankinfo()
+    {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(TabActivity.this);
+        alertDialog.setTitle("Add Bank Account");
+        alertDialog.setMessage("Please add your bank detail first");
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(TabActivity.this, BankinfoActivity.class);
+                startActivity(intent);
+            }
+        });
+        alertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) { dialog.cancel();
             }
         });
         alertDialog.show();

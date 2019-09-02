@@ -229,6 +229,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
             public void onClick(View view) {
 
                 spinner_bedroom.dispatchTouchEvent(MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 100, 100, 0.5f, 5, 0, 1, 1, 0, 0));
+
             }
         });
         spinner_bathroom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

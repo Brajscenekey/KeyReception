@@ -173,6 +173,7 @@
         android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:background="@drawable/btnback"
+
         android:fontFamily="@font/quicksandmedium"
         android:gravity="center"
         android:layout_alignParentBottom="true"

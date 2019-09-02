@@ -20,7 +20,7 @@
     <string name="save_card_future">Save card detail</string>
     <string name="expiry_date">Expire Date</string>
     <string name="cvv_code">Cvv Code</string>
-    <string name="sk_test">sk_test_5LBctxgLZlmgYzB2oCWlw36O00OIq2Kfgg</string>
+    <string name="sk_test">sk_test_82UMhsygkviBYxQmikCW9Oa1</string>
 
 
     <!--Login-->
@@ -91,6 +91,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="aFirstNameEmptyError">Please enter account holder first name</string>
+    <string name="aLastNameEmptyError">Please enter account holder last name</string>
+    <string name="aRoutingEmptyError">Please enter account holder routing number</string>
+    <string name="aNumberEmptyError">Please enter account holder account number</string>
 
 
     <!--setting text-->
@@ -365,6 +371,8 @@
     <string name="save_card">Save Card</string>
     <string name="set">Set</string>
     <string name="payment_method">Payment Method</string>
+    <string name="bankdetail">Bank Details</string>
+    <string name="update_bank">Update Bank Details</string>
 
 
 </resources>

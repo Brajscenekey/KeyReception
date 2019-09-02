@@ -188,6 +188,7 @@
         android:background="@drawable/btnback"
         android:fontFamily="@font/quicksandmedium"
         android:text="@string/pay"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="@dimen/_20sdp"
         android:textAllCaps="false"

@@ -98,6 +98,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         switch (view.getId()) {
             case R.id.rl_setting: {
                 Intent intent = new Intent(mContext, RsettingActivity.class);
+                intent.putExtra("bi","1");
                 startActivity(intent);
             }
             break;
