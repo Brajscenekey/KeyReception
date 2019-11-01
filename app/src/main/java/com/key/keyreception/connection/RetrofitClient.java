@@ -12,9 +12,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 //    http://3.17.192.198:8042/api/
     private static final String Base_Url = "http://3.17.192.198:8042/api/"; //"http://keyreception.us-east-1.elasticbeanstalk.com/api/";
+//    private static final String Base_Url = "http://3.17.192.198/"; //"http://keyreception.us-east-1.elasticbeanstalk.com/api/";
     private static final String Base_Url1 =  "http://3.17.192.198:8042/api/"; // "http://keyreception.us-east-1.elasticbeanstalk.com/api/";
     private static RetrofitClient minstance;
-    private Retrofit retrofit,retrofit1;
+    public static final String BASE_URL = "https://giglooker.com/dev/livloud_admin/api_v1/";
+    private Retrofit retrofit,retrofit1,retrofit2;
 
     private RetrofitClient() {
 
@@ -37,6 +39,11 @@ public class RetrofitClient {
                 .baseUrl(Base_Url1)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        retrofit2 = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
     public static RetrofitClient getInstance() {
@@ -50,7 +57,7 @@ public class RetrofitClient {
         return retrofit.create(Reginterface.class);
     }
     public AnotherApi getAnotherApi() {
-        return retrofit1.create(AnotherApi.class);
-    }
+        return retrofit2.create(AnotherApi.class);
+   }
 
 }

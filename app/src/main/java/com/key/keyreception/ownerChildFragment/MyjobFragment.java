@@ -4,12 +4,12 @@ package com.key.keyreception.ownerChildFragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -29,7 +29,7 @@ import com.key.keyreception.activity.model.MyJobData;
 import com.key.keyreception.activity.owner.CreatePostActivity;
 import com.key.keyreception.base.BaseFragment;
 import com.key.keyreception.connection.RetrofitClient;
-import com.key.keyreception.helper.PDialog;
+import com.key.keyreception.helper.ProgressDialog;
 import com.key.keyreception.ownerChildFragment.adapterchild.MyjobAdapter;
 
 import org.json.JSONArray;
@@ -50,7 +50,7 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
 
     private MyjobAdapter adapter;
     private Session session;
-    private PDialog pDialog;
+    private ProgressDialog pDialog;
     private RelativeLayout rl_filter;
     private EditText et_jobsearch;
     private TextView tv_complete, tv_pending, tv_inprogress, tv_notstarted, tv_all;
@@ -86,7 +86,7 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        pDialog = new PDialog();
+        pDialog = new ProgressDialog(mContext);
         session = new Session(mContext);
         init(view);
         tv_all.setTextColor(getResources().getColor(R.color.red));
@@ -212,14 +212,13 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
     }
 
     public void switchApi() {
-        myJobListApiData("1", "");
+        myJobListApiData1("1", "");
     }
 
     public void myJobListApiData(String status, String searchdata) {
 
         String authtoken = session.getAuthtoken();
         String type = session.getusertype();
-        pDialog.pdialog(mContext);
         Call<ResponseBody> call = RetrofitClient.getInstance()
                 .getApi().jobList(authtoken, type, "10", status, searchdata);
         call.enqueue(new retrofit2.Callback<ResponseBody>() {
@@ -227,7 +226,6 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull retrofit2.Response<ResponseBody> response) {
                 try {
-                    pDialog.hideDialog();
 
                     switch (response.code()) {
                         case 200: {
@@ -245,8 +243,11 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
 
                                     MyJobData myJobData;
                                     JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                    int propertyId = 0;
                                     int _id = jsonObject2.getInt("_id");
-                                    int propertyId = jsonObject2.getInt("propertyId");
+                                    if (jsonObject2.has("propertyId")) {
+                                        propertyId = jsonObject2.getInt("propertyId");
+                                    }
                                     String propertyName = jsonObject2.getString("propertyName");
                                     String bedroom = jsonObject2.getString("bedroom");
                                     String bathroom = jsonObject2.getString("bathroom");
@@ -265,15 +266,32 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
                                     JSONArray jsonArraydata = jsonObject2.getJSONArray("propertyData");
                                     JSONObject jsonObjectdata = jsonArraydata.getJSONObject(0);
                                     {
+                                        String propertyId1 = "";
+                                        String propertyAddress1 = "", propertyLat1 = "", propertyLong1 = "", propertyName1 = "", propertySize1 = "";
+
                                         String bathroom1 = jsonObjectdata.getString("bathroom");
                                         String bedroom1 = jsonObjectdata.getString("bedroom");
                                         String isImageAdd1 = jsonObjectdata.getString("isImageAdd");
-                                        String propertyAddress1 = jsonObjectdata.getString("propertyAddress");
-                                        String propertyId1 = jsonObjectdata.getString("propertyId");
-                                        String propertyLat1 = jsonObjectdata.getString("propertyLat");
-                                        String propertyLong1 = jsonObjectdata.getString("propertyLong");
-                                        String propertyName1 = jsonObjectdata.getString("propertyName");
-                                        String propertySize1 = jsonObjectdata.getString("propertySize");
+
+                                        if (jsonObjectdata.has("propertyAddress")) {
+                                            propertyAddress1 = jsonObjectdata.getString("propertyAddress");
+                                        }
+                                        if (jsonObjectdata.has("propertyId")) {
+                                            propertyId1 = jsonObjectdata.getString("propertyId");
+                                        }
+
+                                        if (jsonObjectdata.has("propertyLat")) {
+                                            propertyLat1 = jsonObjectdata.getString("propertyLat");
+                                        }
+                                        if (jsonObjectdata.has("propertyLong")) {
+                                            propertyLong1 = jsonObjectdata.getString("propertyLong");
+                                        }
+                                        if (jsonObjectdata.has("propertyName")) {
+                                            propertyName1 = jsonObjectdata.getString("propertyName");
+                                        }
+                                        if (jsonObjectdata.has("propertySize")) {
+                                            propertySize1 = jsonObjectdata.getString("propertySize");
+                                        }
                                         MyJobData.PropertyDataBean propertyDataBean = new MyJobData.PropertyDataBean(bathroom1, bedroom1, isImageAdd1, propertyAddress1, propertyId1, propertyLat1, propertyLong1, propertyName1, propertySize1);
                                         propertyDatalist.add(propertyDataBean);
                                     }
@@ -353,7 +371,6 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                pDialog.hideDialog();
             }
         });
 
@@ -361,6 +378,7 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
 
     public void myJobListApiData1(String status, String searchdata) {
 
+        pDialog.show();
         String authtoken = session.getAuthtoken();
         String type = session.getusertype();
         Call<ResponseBody> call = RetrofitClient.getInstance()
@@ -371,6 +389,7 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull retrofit2.Response<ResponseBody> response) {
                 try {
 
+                    pDialog.hide();
                     switch (response.code()) {
                         case 200: {
                             String stresult = Objects.requireNonNull(response.body()).string();
@@ -419,16 +438,31 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
                                     JSONArray jsonArraydata = jsonObject2.getJSONArray("propertyData");
                                     JSONObject jsonObjectdata = jsonArraydata.getJSONObject(0);
                                     {
+                                        String propertyAddress1 = "", propertyLat1 = "", propertyLong1 = "", propertyName1 = "", propertySize1 = "";
+                                        int propertyId1 = 0;
                                         String bathroom1 = jsonObjectdata.getString("bathroom");
                                         String bedroom1 = jsonObjectdata.getString("bedroom");
                                         String isImageAdd1 = jsonObjectdata.getString("isImageAdd");
-                                        String propertyAddress1 = jsonObjectdata.getString("propertyAddress");
-                                        String propertyId1 = jsonObjectdata.getString("propertyId");
-                                        String propertyLat1 = jsonObjectdata.getString("propertyLat");
-                                        String propertyLong1 = jsonObjectdata.getString("propertyLong");
-                                        String propertyName1 = jsonObjectdata.getString("propertyName");
-                                        String propertySize1 = jsonObjectdata.getString("propertySize");
-                                        MyJobData.PropertyDataBean propertyDataBean = new MyJobData.PropertyDataBean(bathroom1, bedroom1, isImageAdd1, propertyAddress1, propertyId1, propertyLat1, propertyLong1, propertyName1, propertySize1);
+                                        if (jsonObjectdata.has("propertyAddress")) {
+                                            propertyAddress1 = jsonObjectdata.getString("propertyAddress");
+                                        }
+                                        if (jsonObjectdata.has("propertyId")) {
+                                            propertyId1 = jsonObjectdata.getInt("propertyId");
+                                        }
+
+                                        if (jsonObjectdata.has("propertyLat")) {
+                                            propertyLat1 = jsonObjectdata.getString("propertyLat");
+                                        }
+                                        if (jsonObjectdata.has("propertyLong")) {
+                                            propertyLong1 = jsonObjectdata.getString("propertyLong");
+                                        }
+                                        if (jsonObjectdata.has("propertyName")) {
+                                            propertyName1 = jsonObjectdata.getString("propertyName");
+                                        }
+                                        if (jsonObjectdata.has("propertySize")) {
+                                            propertySize1 = jsonObjectdata.getString("propertySize");
+                                        }
+                                        MyJobData.PropertyDataBean propertyDataBean = new MyJobData.PropertyDataBean(bathroom1, bedroom1, isImageAdd1, propertyAddress1, String.valueOf(propertyId1), propertyLat1, propertyLong1, propertyName1, propertySize1);
                                         propertyDatalist.add(propertyDataBean);
                                     }
                                     List<MyJobData.PropertyImgBean> imglist = new ArrayList<>();
@@ -454,6 +488,7 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
                                     myJobData = new MyJobData(_id, propertyId, propertyName, bedroom, bathroom, price, propertySize, serviceDate, checkIn, checkOut, address, latitude, longitude, description, status, crd, propertyDatalist, imglist, ownerlist, categorylist);
                                     jobDataList.add(myJobData);
                                 }
+                                adapter.filter();
                                 adapter.notifyDataSetChanged();
                             } else {
                                 recyclerView.setVisibility(View.GONE);
@@ -490,10 +525,16 @@ public class MyjobFragment extends BaseFragment implements View.OnClickListener 
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                pDialog.hideDialog();
+                pDialog.hide();
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        myJobListApiData1(status, et_jobsearch.getText().toString());
     }
 }
 

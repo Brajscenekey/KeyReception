@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -44,6 +44,7 @@ public class AddPayCardActivity extends AppCompatActivity implements View.OnClic
     private int width, year1, month1;
     private Utility utility;
     private Validation validation;
+    private int lastClick = 0;
 
 
     @Override
@@ -86,7 +87,8 @@ public class AddPayCardActivity extends AppCompatActivity implements View.OnClic
                 onBackPressed();
                 break;
             case R.id.btn_addcard:
-                cardpaymanage();
+                    cardpaymanage();
+
                 break;
 
         }
@@ -98,10 +100,14 @@ public class AddPayCardActivity extends AppCompatActivity implements View.OnClic
 
         if (utility.checkInternetConnection(this)) {
             if (validation.isCNumValid(etcardnum) && validation.isEDateValid(etexdate) && validation.isCvvValid(etcvv)) {
-                AsyncTaskRunner asyncTaskRunner = new AsyncTaskRunner();
-                asyncTaskRunner.execute();
+                if (lastClick != R.id.btn_addcard) {
+                    lastClick = R.id.btn_addcard;
+                    AsyncTaskRunner asyncTaskRunner = new AsyncTaskRunner();
+                    asyncTaskRunner.execute();
+                }
             }
         } else {
+            lastClick =0;
 
             Toast.makeText(this, "Please check your network", Toast.LENGTH_SHORT).show();
 
@@ -143,6 +149,7 @@ public class AddPayCardActivity extends AppCompatActivity implements View.OnClic
                     setResult(RESULT_OK, intent);
                     finish();
                 } else {
+                    lastClick =0;
                     Toast.makeText(AddPayCardActivity.this, "Stripe Error", Toast.LENGTH_SHORT).show();
 
                 }
@@ -233,6 +240,7 @@ public class AddPayCardActivity extends AppCompatActivity implements View.OnClic
             if (token != null) {
                 saveCreditCard(token.getId());
             } else {
+                lastClick = 0;
                 Toast.makeText(AddPayCardActivity.this, error, Toast.LENGTH_SHORT).show();
             }
 

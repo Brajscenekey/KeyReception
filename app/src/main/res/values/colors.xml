@@ -10,7 +10,9 @@
     <color name="colordarkblack">#242424</color>
     <color name="appcolor">#d42a24</color>
     <color name="colorgray">#828282</color>
+    <color name="colorgray2">#f4f4f4</color>
     <color name="LigthestGraycolor">#f1f1f1</color>
+    <color name="colorgray1">#9f9f9f</color>
     <color name="Ligthestwhitecolor">#e8e8e8</color>
     <color name="colorCream">#f8f8f8</color>
     <color name="colorDarkgray">#626262</color>
@@ -19,6 +21,7 @@
     <color name="colorInprogress">#3d40da</color>
     <color name="red">#ff0000</color>
     <color name="colorTransperent">#80000000</color>
+    <color name="colorTransperent1">#FF000000</color>
     <color name="match_bg">#f7f7f7</color>
     <color name="colordarkRed">#f00001</color>
     <color name="colorexDarkGreen">#00cb00</color>

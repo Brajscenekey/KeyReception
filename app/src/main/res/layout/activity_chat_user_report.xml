@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorwhite"
+    tools:context=".activity.ChatUserReportActivity">
+
+    <RelativeLayout
+        android:id="@+id/rr1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentLeft="true">
+
+
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/arrow" />
+
+
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/quicksandmedium"
+            android:text="@string/valid"
+            android:letterSpacing=".01"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorwhite"
+            android:textSize="17sp"
+            />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_report_comment"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_140sdp"
+        android:layout_margin="@dimen/_20sdp"
+        android:gravity="start"
+        android:hint="Write your comment"
+        android:inputType="textMultiLine"
+        android:fontFamily="@font/quicksandregular"
+        android:background="@drawable/editback"
+        android:padding="@dimen/_8sdp"
+        android:textColor="@color/colorgray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rr1" />
+
+    <TextView
+        android:id="@+id/tv_caution"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
+        android:gravity="center"
+        android:fontFamily="@font/quicksandmedium"
+        android:text="@string/report_caution_text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_report_comment" />
+
+    <TextView
+        android:id="@+id/tv_btn_submit_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@drawable/btnback"
+        android:paddingBottom="@dimen/_6sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingTop="@dimen/_5sdp"
+        android:text="@string/submit_report"
+        android:textColor="@color/colorwhite"
+        android:textSize="12sp"
+        android:fontFamily="@font/quicksandmedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_caution" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

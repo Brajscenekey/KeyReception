@@ -2,8 +2,8 @@ package com.key.keyreception.activity.ActivityAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,15 +51,15 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
         holder.requestarrow.setVisibility(View.VISIBLE);
 
         RequestOptions option = new RequestOptions();
-        option.placeholder(R.drawable.ic_user_ico);
+        option.placeholder(R.drawable.ic_new_property_img);
         option.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
         if (requestData.getPropertyImg().size() > 0) {
             Glide.with(context).load(requestData.getPropertyImg().get(0).getPropertyImage()).apply(option).into(holder.iv_Myjobhome);
         }
 
         if (!requestData.getJobDetail().isEmpty()) {
-            holder.tv_Myjob_address.setText(requestData.getJobDetail().get(0).getAddress());
-            holder.tv_reserv_proname.setText(requestData.getJobDetail().get(0).getPropertyName());
+            holder.tv_Myjob_address.setText(requestData.getJobDetail().get(position).getAddress());
+            holder.tv_reserv_proname.setText(requestData.getJobDetail().get(position).getPropertyName());
         }
         try {
             if (!requestData.getJobDetail().isEmpty()) {
@@ -80,7 +80,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
 
         if (requestData.getSenderDetail().get(position).getProfileImage().length() != 0) {
             RequestOptions options = new RequestOptions();
-            options.placeholder(R.drawable.ic_user_ico);
+            options.placeholder(R.drawable.user_img);
             options.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
             Glide.with(context).load(requestData.getSenderDetail().get(position).getProfileImage()).apply(options).into(holder.iv_rprof_img);
         }

@@ -250,7 +250,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/sub"
                 android:layout_marginBottom="30dp"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
                 android:layout_below="@+id/forgot_emailaddress"

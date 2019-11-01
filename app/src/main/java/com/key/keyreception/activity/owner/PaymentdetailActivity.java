@@ -1,29 +1,33 @@
 package com.key.keyreception.activity.owner;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
 import com.key.keyreception.activity.ActivityAdapter.CardInfoAdapter;
+import com.key.keyreception.activity.DetailActivity;
 import com.key.keyreception.activity.model.StripeSaveCardResponce;
-import com.key.keyreception.helper.PDialog;
+import com.key.keyreception.connection.RetrofitClient;
 import com.key.keyreception.helper.ProgressDialog;
 import com.key.keyreception.helper.Utility;
 import com.stripe.Stripe;
@@ -31,8 +35,14 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.Customer;
 import com.stripe.model.ExternalAccountCollection;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 
 public class PaymentdetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,8 +53,12 @@ public class PaymentdetailActivity extends AppCompatActivity implements View.OnC
     private RecyclerView recyclerView;
     private Session session;
     private ImageView iv_back;
-    private LinearLayout rl_newaddcard,ll_onetime;
+    private LinearLayout rl_newaddcard, ll_onetime;
     private Intent intent;
+    private String paymenttype = "paypal", jobId, receiverId, amount, cardId = "";
+    private Button btnpay;
+    private int lastClick = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,22 +75,26 @@ public class PaymentdetailActivity extends AppCompatActivity implements View.OnC
         recyclerView = findViewById(R.id.recycler_view);
         rl_newaddcard = findViewById(R.id.rl_newaddcard);
         ll_onetime = findViewById(R.id.ll_onetime);
+        btnpay = findViewById(R.id.btnpay);
         iv_back = findViewById(R.id.iv_back);
         rl_newaddcard.setOnClickListener(this);
         iv_back.setOnClickListener(this);
+        btnpay.setOnClickListener(this);
         ll_onetime.setOnClickListener(this);
         showCreditCardInfo();
 
         intent = getIntent();
-
-        if (intent.getStringExtra("key").equals("1"))
-        {
+        jobId = intent.getStringExtra("jobId");
+        receiverId = intent.getStringExtra("receiverId");
+        amount = session.getamount();
+        if (intent.getStringExtra("key").equals("1")) {
             ll_onetime.setVisibility(View.VISIBLE);
-        }
-        else {
+            btnpay.setVisibility(View.VISIBLE);
+        } else {
             ll_onetime.setVisibility(View.GONE);
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -89,21 +107,32 @@ public class PaymentdetailActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.rl_newaddcard:
-            {
+        switch (view.getId()) {
+            case R.id.rl_newaddcard: {
                 Intent i = new Intent(PaymentdetailActivity.this, AddPayCardActivity.class);
                 startActivityForResult(i, 100);
             }
             break;
-            case R.id.ll_onetime:
-            {
+            case R.id.ll_onetime: {
                 Intent i = new Intent(PaymentdetailActivity.this, MakePaymentCardActivity.class);
                 startActivityForResult(i, 100);
             }
             break;
-            case R.id.iv_back:{
+            case R.id.iv_back: {
                 onBackPressed();
+            }
+            break;
+            case R.id.btnpay: {
+                if (!cardId.isEmpty()) {
+                    if (lastClick != R.id.btnpay) {
+                        lastClick = R.id.btnpay;
+
+                        jobPaymentApi();
+                    }
+                } else {
+                    alertPayOption();
+                }
+
             }
             break;
         }
@@ -114,7 +143,8 @@ public class PaymentdetailActivity extends AppCompatActivity implements View.OnC
     protected void showCreditCardInfo() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            pDialog.show(); }
+            pDialog.show();
+        }
         cardResponce = new StripeSaveCardResponce();
         new AsyncTask<Void, Void, ExternalAccountCollection>() {
             @Override
@@ -127,9 +157,10 @@ public class PaymentdetailActivity extends AppCompatActivity implements View.OnC
 //                  cardParams.put("limit", 5);
                     cardParams.put("object", "card");
                     customer = Customer.retrieve(session.getstripeCustomerId()).getSources().all(cardParams);
-                    } catch (StripeException e) {
+                } catch (StripeException e) {
                     pDialog.dismiss();
-                }return customer;
+                }
+                return customer;
             }
 
             @Override
@@ -148,14 +179,14 @@ public class PaymentdetailActivity extends AppCompatActivity implements View.OnC
                                 cardResponce.getData().get(i).setMoreDetail(true);
                             }
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(PaymentdetailActivity.this);
-                            cardAdapter = new CardInfoAdapter(PaymentdetailActivity.this, cardResponce.getData(),intent.getStringExtra("key"), new CardInfoAdapter.CardDetailInterface() {
+                            cardAdapter = new CardInfoAdapter(PaymentdetailActivity.this, cardResponce.getData(), intent.getStringExtra("key"), new CardInfoAdapter.CardDetailInterface() {
                                 @Override
                                 //"""""""""" click on holo circle img and then show card details """"""""""//
                                 public void oncardDetail(int pos, boolean b) {
                                     for (int j = 0; j < cardResponce.getData().size(); j++) {
                                         if (j == pos) {
                                             cardResponce.getData().get(pos).setMoreDetail(b);
-//                                            cardId = cardResponce.getData().get(pos).getId();
+                                            cardId = cardResponce.getData().get(pos).getId();
                                         } else {
                                             cardResponce.getData().get(j).setMoreDetail(true);
                                         }
@@ -205,6 +236,7 @@ public class PaymentdetailActivity extends AppCompatActivity implements View.OnC
                     } catch (StripeException e) {
                         e.printStackTrace();
                         pDialog.show();
+                        lastClick =0;
                         Toast.makeText(PaymentdetailActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                     }
 
@@ -222,5 +254,103 @@ public class PaymentdetailActivity extends AppCompatActivity implements View.OnC
             }.execute();
         }
     }
+
+    private void jobPaymentApi() {
+        pDialog.show();
+        String token = session.getAuthtoken();
+        String accid = session.getaccountId();
+        String cusid = session.getstripeCustomerId();
+        Call<ResponseBody> call = RetrofitClient.getInstance().getApi().jobPayment(token,
+                jobId, receiverId, amount, paymenttype, cardId, "card", accid, cusid);
+
+        call.enqueue(new retrofit2.Callback<ResponseBody>() {
+            @SuppressLint("NewApi")
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull retrofit2.Response<ResponseBody> response) {
+
+                try {
+                    pDialog.dismiss();
+
+
+                    switch (response.code()) {
+                        case 200: {
+
+                            String stresult = Objects.requireNonNull(response.body()).string();
+                            Log.d("response", stresult);
+                            JSONObject jsonObject = new JSONObject(stresult);
+                            String statusCode = jsonObject.optString("status");
+                            String msg = jsonObject.optString("message");
+                            if (statusCode.equals("success")) {
+                                Toast.makeText(PaymentdetailActivity.this, msg, Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(PaymentdetailActivity.this, DetailActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+
+                            } else {
+                                lastClick =0;
+                                Toast.makeText(PaymentdetailActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            break;
+                        }
+                        case 400: {
+                            @SuppressLint({"NewApi", "LocalSuppress"}) String result = Objects.requireNonNull(response.errorBody()).string();
+                            Log.d("response400", result);
+                            JSONObject jsonObject = new JSONObject(result);
+                            String statusCode = jsonObject.optString("status");
+                            String msg = jsonObject.optString("message");
+                            if (statusCode.equals("true")) {
+                                Toast.makeText(PaymentdetailActivity.this, msg, Toast.LENGTH_SHORT).show();
+                            }
+
+                            break;
+                        }
+                        case 401:
+
+                            try {
+                                session.logout();
+                                Toast.makeText(PaymentdetailActivity.this, "Session expired, please login again.", Toast.LENGTH_SHORT).show();
+                                Log.d("ResponseInvalid", Objects.requireNonNull(response.errorBody()).string());
+
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                            break;
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+
+                pDialog.dismiss();
+
+
+            }
+        });
+
+    }
+
+    public void alertPayOption() {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(PaymentdetailActivity.this);
+
+        alertDialog.setTitle("Alert");
+        alertDialog.setMessage("Please select payment card");
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+
+        alertDialog.show();
+    }
+
 
 }

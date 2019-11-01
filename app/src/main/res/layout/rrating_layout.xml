@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/setting_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,26 +22,27 @@
             android:layout_height="wrap_content">
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/iv_Myjobhome"
+                android:id="@+id/iv_proimg"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
+                android:scaleType="fitXY"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_new_property_img"
+                android:src="@drawable/user_img"
                 app:riv_corner_radius="2dp"
-                />
+                tools:ignore="VectorDrawableCompat" />
 
 
             <TextView
-                android:id="@+id/tv_Myjob_proname"
+                android:id="@+id/tv_proname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/quicksandmedium"
                 android:gravity="center"
                 android:layout_marginTop="12dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/iv_Myjobhome"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_proimg"
                 android:text="Righthaus Property"
 
                 android:textColor="@color/colordarkblack"
@@ -63,7 +65,7 @@
                     app:srcCompat="@drawable/ic_star_black_24dp"
                     />
                 <TextView
-                    android:id="@+id/rprof_img"
+                    android:id="@+id/tv_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.5"
@@ -80,15 +82,15 @@
 
 
                 <TextView
-                    android:id="@+id/tv_Myjob_address"
+                    android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/quicksandregular"
                     android:gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_below="@+id/tv_Myjob_proname"
+                    android:layout_marginStart="10dp"
+                    android:layout_below="@+id/tv_proname"
                     android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@+id/iv_Myjobhome"
+                    android:layout_toEndOf="@+id/iv_proimg"
                     android:text="12 min ago"
                     android:textColor="@color/colorDarkgray"
                     android:textSize="14sp"
@@ -97,12 +99,12 @@
 
 
                     <TextView
-                        android:id="@+id/tv_Myjob_time"
+                        android:id="@+id/tv_review"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/quicksandregular"
-                        android:gravity="center"
-                        android:layout_below="@+id/iv_Myjobhome"
+                        android:gravity="start"
+                        android:layout_below="@+id/iv_proimg"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
@@ -115,7 +117,7 @@
 
 
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

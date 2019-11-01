@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/setting_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,15 +44,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:layout_marginStart="5dp"
+                android:layout_margin="15dp"
                 android:weightSum="5"
-                android:layout_marginEnd="5dp"
+                android:layout_marginTop="20dp"
                 android:layout_height="wrap_content">
 
 
 
                 <LinearLayout
-                    android:id="@+id/ll_sadface"
+                    android:id="@+id/ll_face1"
                     android:layout_width="0dp"
                     android:orientation="vertical"
                     android:layout_weight="1"
@@ -60,20 +60,19 @@
 
 
                     <ImageView
-                        android:id="@+id/iv_sadface"
+                        android:id="@+id/iv_face1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/ic_inactive_sad_ico"
                         android:scaleType="centerInside"
                         android:tint="@color/colorgray"
-                        android:layout_marginTop="20dp"
                         android:textAllCaps="false"
                         android:layout_gravity="center"
                         />
 
 
                     <TextView
-                        android:id="@+id/tv_sadface"
+                        android:id="@+id/tv_face1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -81,7 +80,7 @@
                         android:padding="5dp"
                         android:fontFamily="@font/quicksandmedium"
                         android:textColor="@color/colorgray"
-                        android:text="@string/happy"
+                        android:text="@string/sad"
                         android:textSize="14sp"
                         android:visibility="gone"
                         />
@@ -92,7 +91,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/ll_smalleyesmile"
+                    android:id="@+id/ll_face2"
                     android:layout_width="0dp"
                     android:orientation="vertical"
                     android:layout_marginStart="-15dp"
@@ -101,62 +100,19 @@
 
 
                     <ImageView
-                        android:id="@+id/iv_smalleyesmile"
+                        android:id="@+id/iv_face2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_inactive_smile3_ico"
-                        android:scaleType="centerInside"
-                        android:tint="@color/colorgray"
-                        android:layout_marginTop="20dp"
-                        android:textAllCaps="false"
-                        android:layout_gravity="center"
-                        />
-
-
-                    <TextView
-                        android:id="@+id/tv_smalleyesmile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:padding="5dp"
-                        android:fontFamily="@font/quicksandmedium"
-                        android:textColor="@color/colorgray"
-                        android:text="@string/happy"
-                        android:textSize="14sp"
-                        android:visibility="gone"
-                        />
-
-
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:id="@+id/ll_mehface"
-                    android:layout_width="0dp"
-                    android:layout_marginStart="-15dp"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content">
-
-
-                    <ImageView
-                        android:id="@+id/iv_mehface"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:tint="@color/colorgray"
                         app:srcCompat="@drawable/ic_inactive_meh_ico"
                         android:scaleType="centerInside"
-                        android:layout_marginTop="20dp"
+                        android:tint="@color/colorgray"
                         android:textAllCaps="false"
                         android:layout_gravity="center"
-
                         />
 
 
                     <TextView
-                        android:id="@+id/tv_mehface"
+                        android:id="@+id/tv_face2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -164,15 +120,18 @@
                         android:padding="5dp"
                         android:fontFamily="@font/quicksandmedium"
                         android:textColor="@color/colorgray"
-                        android:text="@string/happy"
+                        android:text="@string/Not_Satisfied"
                         android:textSize="14sp"
                         android:visibility="gone"
                         />
 
 
                 </LinearLayout>
+
+
+
                 <LinearLayout
-                    android:id="@+id/ll_bigeyesmile"
+                    android:id="@+id/ll_face3"
                     android:layout_width="0dp"
                     android:layout_marginStart="-15dp"
                     android:orientation="vertical"
@@ -181,20 +140,57 @@
 
 
                     <ImageView
-                        android:id="@+id/iv_bigeyesmile"
+                        android:id="@+id/iv_face3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/colorgray"
+                        app:srcCompat="@drawable/ic_inactive_smile3_ico"
+                        android:scaleType="centerInside"
+                        android:textAllCaps="false"
+                        android:layout_gravity="center"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/tv_face3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:fontFamily="@font/quicksandmedium"
+                        android:textColor="@color/colorgray"
+                        android:text="@string/Average"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_face4"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="-15dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/iv_face4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:tint="@color/colorgray"
                         app:srcCompat="@drawable/ic_inactive_smile_ico"
                         android:scaleType="centerInside"
-                        android:layout_marginTop="20dp"
                         android:textAllCaps="false"
                         android:layout_gravity="center"
                         />
 
 
                     <TextView
-                        android:id="@+id/tv_bigeyesmile"
+                        android:id="@+id/tv_face4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -202,7 +198,7 @@
                         android:padding="5dp"
                         android:fontFamily="@font/quicksandmedium"
                         android:textColor="@color/colorgray"
-                        android:text="@string/happy"
+                        android:text="@string/Satisfied"
                         android:textSize="14sp"
                         android:visibility="gone"
 
@@ -213,7 +209,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/ll_happysmile"
+                    android:id="@+id/ll_face5"
                     android:layout_width="0dp"
                     android:layout_marginStart="-15dp"
                     android:orientation="vertical"
@@ -222,20 +218,19 @@
 
 
                     <ImageView
-                        android:id="@+id/iv_happysmile"
+                        android:id="@+id/iv_face5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:tint="@color/colorgray"
                         app:srcCompat="@drawable/ic_inactive_happy_ico"
                         android:scaleType="centerInside"
-                        android:layout_marginTop="20dp"
                         android:textAllCaps="false"
                         android:layout_gravity="center"
                         />
 
 
                     <TextView
-                        android:id="@+id/tv_happysmile"
+                        android:id="@+id/tv_face5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -268,7 +263,7 @@
                 />
 
             <EditText
-                android:id="@+id/rsignet_name"
+                android:id="@+id/et_exprience"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="10dp"
@@ -335,7 +330,7 @@
             </LinearLayout>
 
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

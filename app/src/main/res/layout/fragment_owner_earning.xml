@@ -68,7 +68,7 @@
                 android:layout_width="1dp"
                 android:layout_height="50dp"
                 android:background="@drawable/tabline_bg"/>
-            <android.support.design.widget.TabLayout
+            <com.google.android.material.tabs.TabLayout
                 android:id="@+id/sliding_tabs"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -89,7 +89,7 @@
     </RelativeLayout>
 
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/earnrev_viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

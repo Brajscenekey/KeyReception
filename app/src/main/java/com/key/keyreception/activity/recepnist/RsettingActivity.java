@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -27,9 +27,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
+import com.key.keyreception.activity.TearmsAndConditionActivity;
 import com.key.keyreception.activity.model.FirebaseUserModel;
 import com.key.keyreception.activity.owner.OwnerTabActivity;
-import com.key.keyreception.activity.owner.PaymentdetailActivity;
 import com.key.keyreception.base.BaseActivity;
 import com.key.keyreception.connection.RetrofitClient;
 import com.key.keyreception.helper.Constant;
@@ -75,6 +75,9 @@ public class RsettingActivity extends BaseActivity implements View.OnClickListen
     public void init() {
         RelativeLayout rl_chan_pass = findViewById(R.id.rl_chan_pass);
         RelativeLayout rl_payment_op = findViewById(R.id.rl_payment_op);
+        RelativeLayout rl_term = findViewById(R.id.rl_term);
+        RelativeLayout rl_privacy = findViewById(R.id.rl_privacy);
+        RelativeLayout rl_about = findViewById(R.id.rl_abo);
         session = new Session(this);
         validation = new Validation(this);
         pDialog = new PDialog();
@@ -87,9 +90,11 @@ public class RsettingActivity extends BaseActivity implements View.OnClickListen
         rl_chan_pass.setOnClickListener(this);
         iv_leftarrow_setting.setOnClickListener(this);
         rl_payment_op.setOnClickListener(this);
+        rl_term.setOnClickListener(this);
+        rl_privacy.setOnClickListener(this);
+        rl_about.setOnClickListener(this);
         Intent intent = getIntent();
-        if (intent.getStringExtra("bi").equals("1"))
-        {
+        if (intent.getStringExtra("bi").equals("1")) {
             rl_payment_op.setVisibility(View.VISIBLE);
         }
     }
@@ -109,13 +114,31 @@ public class RsettingActivity extends BaseActivity implements View.OnClickListen
                 openAuthorizationDialog();
             }
             break;
+            case R.id.rl_term: {
+                Intent intent = new Intent(RsettingActivity.this, TearmsAndConditionActivity.class);
+                intent.putExtra("terms", "terms");
+                startActivity(intent);
+            }
+            break;
+            case R.id.rl_privacy: {
+                Intent intent = new Intent(RsettingActivity.this, TearmsAndConditionActivity.class);
+                intent.putExtra("terms", "policy");
+                startActivity(intent);
+            }
+            break;
+            case R.id.rl_abo: {
+                Intent intent = new Intent(RsettingActivity.this, TearmsAndConditionActivity.class);
+                intent.putExtra("terms", "abo");
+                startActivity(intent);
+            }
+            break;
             case R.id.iv_leftarrow_setting: {
                 backPress();
             }
             break;
 
             case R.id.rl_payment_op: {
-                Intent intent = new Intent(RsettingActivity.this,BankinfoActivity.class);
+                Intent intent = new Intent(RsettingActivity.this, BankinfoActivity.class);
                 startActivity(intent);
             }
             break;
@@ -290,6 +313,9 @@ public class RsettingActivity extends BaseActivity implements View.OnClickListen
                         }
                         case 401:
                             try {
+                                session.logout();
+                                Toast.makeText(RsettingActivity.this, "Session expired, please login again.", Toast.LENGTH_SHORT).show();
+
                                 Log.d("ResponseInvalid", Objects.requireNonNull(response.errorBody()).string());
                             } catch (Exception e1) {
                                 e1.printStackTrace();

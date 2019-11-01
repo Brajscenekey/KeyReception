@@ -151,6 +151,24 @@ public class Session {
         editor3.apply();
     }
 
+    public void putPaymentData(String jobId, String receiverId, String amount) {
+        editor3.putString("jobId", jobId);
+        editor3.putString("receiverId", receiverId);
+        editor3.putString("amount", amount);
+        editor3.apply();
+    }
+
+    public String getjobId() {
+        return mypref3.getString("jobId", "");
+    }
+    public String getreceiverId() {
+        return mypref3.getString("receiverId", "");
+    }
+    public String getamount() {
+        return mypref3.getString("amount", "");
+    }
+
+
     public String getusername() {
         return mypref3.getString("username", "");
     }

@@ -7,12 +7,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,15 +65,17 @@ public class RequestActivity extends BaseActivity {
     private RequestAdapter adapter;
     private PDialog pDialog;
     private Session session;
+    private String ownerRatingCount="";
+    private String ownerReviewCount="";
     private TextView tv_request_no_record;
     private Utility utility;
-    private List<RequestData> requestDataList = new ArrayList<>();
+    private List<RequestData> requestDataList;
     private List<RequestData.CategoryBean> categoryList = new ArrayList<>();
     private List<RequestData.ReciverDetailBean> recievelist = new ArrayList<>();
     private List<RequestData.SenderDetailBean> sendlist = new ArrayList<>();
     private List<RequestData.JobDetailBean> joblist = new ArrayList<>();
     private String propertyName, address, sdfullName, sdprofileImage, serviceDate, reqid, currentTime, jobid, senderid;
-
+    private int pos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,11 +98,12 @@ public class RequestActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-
+        requestDataList = new ArrayList<>();
         adapter = new RequestAdapter(this, requestDataList, new RequestAdapter.ListenerActiveData() {
             @Override
             public void pos(int id, View view) {
 
+                pos = id;
                 reqid = String.valueOf(requestDataList.get(id).get_id());
                 jobid = String.valueOf(requestDataList.get(id).getJobId());
                 senderid = String.valueOf(requestDataList.get(id).getSenderId());
@@ -293,6 +297,7 @@ public class RequestActivity extends BaseActivity {
             ImageView iv_rdetail_vimg = layout.findViewById(R.id.iv_rdetail_vimg);
             ImageView iv_selecttype_image = layout.findViewById(R.id.iv_selecttype_image);
             ImageView pop_back = layout.findViewById(R.id.pop_back);
+            RatingBar rating = layout.findViewById(R.id.rating);
             tv_rdetail_propname.setText(propertyName);
             tv_rdetail_propaddress.setText(address);
             try {
@@ -317,7 +322,7 @@ public class RequestActivity extends BaseActivity {
             });
             if (sdprofileImage.length() != 0) {
                 RequestOptions options = new RequestOptions();
-                options.placeholder(R.drawable.ic_user_ico);
+                options.placeholder(R.drawable.user_img);
                 options.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
                 Glide.with(RequestActivity.this).load(sdprofileImage).apply(options).into(iv_rdetail_vimg);
             }
@@ -327,6 +332,12 @@ public class RequestActivity extends BaseActivity {
                 options.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
                 Glide.with(RequestActivity.this).load(propertyImage).apply(options).into(iv_selecttype_image);
             }
+
+            if (!ownerRatingCount.isEmpty())
+            {
+                rating.setRating(Float.parseFloat(ownerRatingCount));
+            }
+
             tv_rdetail_vname.setText(sdfullName);
             popUp.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
@@ -346,6 +357,7 @@ public class RequestActivity extends BaseActivity {
                                 popUp.dismiss();
                                 acceptRejectApiData("2", popUp);
                                 session.putJobStatus("1");
+                                popUp.dismiss();
                             }
                         }
                     }
@@ -421,6 +433,7 @@ public class RequestActivity extends BaseActivity {
                             String statusCode = jsonObject.optString("status");
                             String msg = jsonObject.optString("message");
                             if (statusCode.equals("success")) {
+
                                 JSONObject jsonObject1 = jsonObject.getJSONObject("data");
                                 expireTime = jsonObject1.getString("expireTime");
                                 currentTime = jsonObject1.getString("currentTime");
@@ -429,6 +442,14 @@ public class RequestActivity extends BaseActivity {
                                     JSONObject jsonObject3 = jsonArray2.getJSONObject(k);
                                     sdprofileImage = jsonObject3.getString("profileImage");
                                     sdfullName = jsonObject3.getString("fullName");
+
+                                    if (jsonObject3.has("ownerRatingCount")) {
+                                        ownerRatingCount = String.valueOf(jsonObject3.getInt("ownerRatingCount"));
+                                    }
+
+                                    if (jsonObject3.has("ownerReviewCount")) {
+                                        ownerReviewCount = String.valueOf(jsonObject3.getInt("ownerReviewCount"));
+                                    }
                                 }
                                 JSONArray jsonArray3 = jsonObject1.getJSONArray("propertyImg");
                                 if (jsonArray3.length() > 0) {
@@ -512,9 +533,13 @@ public class RequestActivity extends BaseActivity {
                             String statusCode = jsonObject.optString("status");
                             String msg = jsonObject.optString("message");
                             if (statusCode.equals("success")) {
-                                requestApiData();
+
                                 popUp.dismiss();
                                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+                                requestDataList.remove(pos);
+                                joblist.remove(pos);
+                                adapter.notifyDataSetChanged();
 
 
                             } else {

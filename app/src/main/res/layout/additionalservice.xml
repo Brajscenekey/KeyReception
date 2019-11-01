@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_service"
-        android:layout_width="@dimen/_120sdp"
+        android:layout_width="@dimen/_125sdp"
         android:layout_height="@dimen/_45sdp"
         android:background="@drawable/cornerwhiteback"
         android:orientation="vertical">
@@ -49,7 +49,8 @@
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_7sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:src="@drawable/inactive_ceck_ico"
 
@@ -58,7 +59,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_quantity"
-        android:layout_width="@dimen/_120sdp"
+        android:layout_width="@dimen/_125sdp"
         android:layout_height="@dimen/_30sdp"
         android:visibility="gone"
         android:layout_marginTop="-5dp"

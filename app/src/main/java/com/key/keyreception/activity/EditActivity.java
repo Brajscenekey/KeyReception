@@ -6,16 +6,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.location.Address;
 import android.location.Geocoder;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -144,7 +143,7 @@ public class EditActivity extends BaseActivity implements View.OnClickListener {
             break;
 
             case R.id.iv_edit_profile: {
-                if (Utility.checkCameraPermission(EditActivity.this)) {
+                if (Utility.checkCameraPermission(EditActivity.this) && Utility.checkCameraPermission(EditActivity.this)) {
                     gallerycameramethod();
                 }
             }
@@ -175,6 +174,7 @@ public class EditActivity extends BaseActivity implements View.OnClickListener {
         RequestBody longitude1 = RequestBody.create(text, longitude);
         RequestBody logid1 = RequestBody.create(text, logid);
         RequestBody notstatus1 = RequestBody.create(text, notstatus);
+        RequestBody availabilityStatus = RequestBody.create(text, session.getAvabilityStatus());
         MultipartBody.Part fileToUpload1 = null;
         if (file != null) {
             RequestBody mFile1 = RequestBody.create(MediaType.parse("image/*"), file);
@@ -182,7 +182,7 @@ public class EditActivity extends BaseActivity implements View.OnClickListener {
         }
 
         Call<ResponseBody> call = RetrofitClient.getInstance()
-                .getApi().updateProfile(token, name1, add1, latitude1, longitude1, logid1, notstatus1, fileToUpload1);
+                .getApi().updateProfile(token, name1, add1, latitude1, longitude1, logid1, notstatus1,availabilityStatus, fileToUpload1);
         call.enqueue(new Callback<ResponseBody>() {
 
             @SuppressLint("NewApi")
@@ -339,12 +339,12 @@ public class EditActivity extends BaseActivity implements View.OnClickListener {
                         String picturePath = cursor.getString(columnIndex);
                         cursor.close();
                         file = new File(picturePath);
-                        exif = new ExifInterface(picturePath);
+                        /*exif = new ExifInterface(picturePath);
                         int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                                 ExifInterface.ORIENTATION_UNDEFINED);
-                        Bitmap bmRotated = Utility.rotateBitmap(bm, orientation);
-                        profile.setImageBitmap(bmRotated);
-                        img = utility.saveImage(bmRotated, EditActivity.this);
+                        Bitmap bmRotated = Utility.rotateBitmap(bm, orientation);*/
+                        profile.setImageBitmap(bm);
+                        img = utility.saveImage(bm, EditActivity.this);
 
                     } catch (IOException e) {
                         e.printStackTrace();

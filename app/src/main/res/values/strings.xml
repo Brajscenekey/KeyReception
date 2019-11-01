@@ -20,7 +20,7 @@
     <string name="save_card_future">Save card detail</string>
     <string name="expiry_date">Expire Date</string>
     <string name="cvv_code">Cvv Code</string>
-    <string name="sk_test">sk_test_82UMhsygkviBYxQmikCW9Oa1</string>
+    <string name="sk_test">sk_test_FmpQyFD9mv8urIP3jt4NXts000JzroVWiq</string>
 
 
     <!--Login-->
@@ -87,6 +87,8 @@
     <string name="ssnEmptyError">Please enter social security number</string>
     <string name="dlEmptyError">Please choose driver licence</string>
     <string name="addNameEmptyError">Please enter address</string>
+    <string name="ratingEmptyError">Please select rating</string>
+    <string name="reviewEmptyError">Please enter review</string>
     <string name="Lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -116,6 +118,7 @@
     <!--tab text-->
     <string name="appo">Appointment</string>
     <string name="reserv">Reservation</string>
+    <string name="myjob">My Job</string>
     <string name="mess">Messages</string>
     <string name="earn">Earning</string>
     <string name="not">Notifications</string>
@@ -151,7 +154,7 @@
     <string name="serdate">Service Date</string>
     <string name="servicess">Services</string>
     <string name="start">Start</string>
-    <string name="des">Description</string>
+    <string name="des">Additional Information</string>
     <string name="assign">Assign Vendor</string>
     <string name="postby">Posted By</string>
     <string name="cstatus">Change Status</string>
@@ -242,6 +245,7 @@
     <!--filter text-->
     <string name="complete">Completed</string>
     <string name="paymentcomplete">Paid</string>
+    <string name="paidcompleted">Complete and paid</string>
     <string name="nostart">Not Started</string>
     <string name="Pending">Pending</string>
     <string name="inpro">In Progress</string>
@@ -367,12 +371,30 @@
     <string name="email_id">Email Id</string>
     <string name="additional_services">Additional Services</string>
     <string name="total_price">Total Price</string>
-    <string name="service_price">Service Price</string>
+    <string name="service_price">Services Price</string>
     <string name="save_card">Save Card</string>
     <string name="set">Set</string>
     <string name="payment_method">Payment Method</string>
     <string name="bankdetail">Bank Details</string>
     <string name="update_bank">Update Bank Details</string>
+    <string name="additional_services_price">Additional Services Price</string>
+    <string name="smile">Smile</string>
+    <string name="Satisfied">Satisfied</string>
+    <string name="Average">Average</string>
+    <string name="Not_Satisfied">Not Satisfied</string>
+    <string name="sad">Sad</string>
+
+
+    <string name="termuse">By creating an account,you agree to</string>
+    <string name="hls">KeyReception</string>
+    <string name="pp">Privacy Policy</string>
+    <string name="tuses">Terms Of Use</string>
+    <string name="reviews">Reviews</string>
+    <string name="sent">Sent</string>
+    <string name="receive">Received</string>
+    <string name="report_user">Report User</string>
+    <string name="submit_report">Submit Report</string>
+    <string name="report_caution_text">If a user has posted objectionable content or otherwise behaves inappropriately you may report it here. Clearly state in the text box above the nature of behaviour. Users that violates Apoim\'s policies will be removed.</string>
 
 
 </resources>

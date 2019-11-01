@@ -3,8 +3,8 @@ package com.key.keyreception.ownerChildFragment.adapterchild;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +21,8 @@ import com.key.keyreception.activity.model.MyJobData;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -36,6 +38,11 @@ public class MyjobAdapter extends RecyclerView.Adapter<MyjobAdapter.MyViewHolder
     public MyjobAdapter(Context context, List<MyJobData> jobDataList) {
         this.context = context;
         this.jobDataList = jobDataList;
+        Collections.sort(jobDataList, new Comparator<MyJobData>() {
+            public int compare(MyJobData o1, MyJobData o2) {
+                return o2.getServiceDate().compareTo(o1.getServiceDate());
+            }
+        });
     }
 
     @NonNull
@@ -55,7 +62,7 @@ public class MyjobAdapter extends RecyclerView.Adapter<MyjobAdapter.MyViewHolder
         holder.rprof_img.setVisibility(View.GONE);
         if (myJobData.getPropertyImg().size() > 0) {
             RequestOptions options = new RequestOptions();
-            options.placeholder(R.drawable.ic_user_ico);
+            options.placeholder(R.drawable.ic_new_property_img);
             options.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
             Glide.with(context).load(myJobData.getPropertyImg().get(0).getPropertyImage()).apply(options).into(holder.iv_Myjobhome);
         }
@@ -99,6 +106,14 @@ public class MyjobAdapter extends RecyclerView.Adapter<MyjobAdapter.MyViewHolder
     @Override
     public int getItemCount() {
         return jobDataList.size();
+    }
+
+    public void filter() {
+        Collections.sort(jobDataList, new Comparator<MyJobData>() {
+            public int compare(MyJobData o1, MyJobData o2) {
+                return o2.getServiceDate().compareTo(o1.getServiceDate());
+            }
+        });
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

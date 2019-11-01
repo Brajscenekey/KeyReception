@@ -13,14 +13,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -535,14 +535,14 @@ public class EditPropertyActivity extends BaseActivity implements View.OnClickLi
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     v.performClick();
-                    bathroom = spinnerbath.getSelectedItem().toString();
+                  /*  bathroom = spinnerbath.getSelectedItem().toString();
                     if (isFTSSelected1) {
                         bath = "1";
                         ftsBathroomSelector.setVisibility(View.GONE);
                         bathroom = spinnerbath.getSelectedItem().toString();
                         bathroom1 = bathroom;
 
-                    }
+                    }*/
                 }
                 return true;
             }
@@ -570,13 +570,13 @@ public class EditPropertyActivity extends BaseActivity implements View.OnClickLi
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     v.performClick();
-                    bedroom = spinnerbed.getSelectedItem().toString();
+                  /*  bedroom = spinnerbed.getSelectedItem().toString();
                     if (isFTSSelected1) {
                         bed = "1";
                         ftsBedroomSelector.setVisibility(View.GONE);
                         bedroom = spinnerbed.getSelectedItem().toString();
                         bedroom1 = bedroom;
-                    }
+                    }*/
                 }
                 return true;
             }

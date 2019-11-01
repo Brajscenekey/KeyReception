@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_5sdp"
+    android:layout_marginEnd="@dimen/_5sdp"
+    android:layout_marginTop="@dimen/_8sdp">
+
+    <RelativeLayout
+        android:id="@+id/rl_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/faq_border">
+
+        <RelativeLayout
+            android:id="@+id/rltv_question"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp">
+
+            <TextView
+                android:id="@+id/tv_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toStartOf="@+id/iv_collaps"
+                android:layout_centerInParent="true"
+                android:lineSpacingExtra="@dimen/_5sdp"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/quicksandmedium"
+                android:textColor="@color/colorPrimary"/>
+
+            <ImageView
+                android:id="@+id/iv_collaps"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                app:srcCompat="@drawable/add_ico" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_ans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rltv_question"
+            android:animateLayoutChanges="true"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="#ECE9E9" />
+
+            <TextView
+                android:id="@+id/tv_ans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12sdp"
+                android:lineSpacingExtra="@dimen/_5sdp"
+                android:fontFamily="@font/quicksandregular"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textColor="#434343" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

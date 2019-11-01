@@ -71,6 +71,27 @@ public class Validation {
         }
     }
 
+    public boolean isRatingValid(String s) {
+        if (s.isEmpty()) {
+//            editText.setError(context.getString(R.string.firstNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.ratingEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }  else {
+            return true;
+        }
+    }
+    public boolean isReviewValid(EditText editText) {
+        if (getString(editText).isEmpty()) {
+//            editText.setError(context.getString(R.string.firstNameEmptyError));
+//            editText.requestFocus();
+            Toast.makeText(context, context.getString(R.string.reviewEmptyError), Toast.LENGTH_SHORT).show();
+            return false;
+        }  else {
+            return true;
+        }
+    }
+
     public boolean isEDateValid(EditText editText) {
         if (getString(editText).isEmpty()) {
 //            editText.setError(context.getString(R.string.firstNameEmptyError));

@@ -10,11 +10,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -82,6 +84,8 @@ public class TabActivity extends BaseActivity implements View.OnClickListener {
     private String senderid;
     private String reqid;
     private int lastClick = 0;
+    private String ownerRatingCount="";
+    private String ownerReviewCount="";
 
     private BroadcastReceiver myReceiver = new BroadcastReceiver() {
 
@@ -362,7 +366,7 @@ public class TabActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void displaySelectedFragment(Fragment fragment) {
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
     }
@@ -417,6 +421,7 @@ public class TabActivity extends BaseActivity implements View.OnClickListener {
             ImageView iv_rdetail_vimg = layout.findViewById(R.id.iv_rdetail_vimg);
             final ImageView pop_back = layout.findViewById(R.id.pop_back);
             ImageView iv_selecttype_image = layout.findViewById(R.id.iv_selecttype_image);
+            RatingBar rating = layout.findViewById(R.id.rating);
             tv_rdetail_propname.setText(propertyName);
             tv_rdetail_propaddress.setText(address);
             try {
@@ -441,10 +446,16 @@ public class TabActivity extends BaseActivity implements View.OnClickListener {
             });
             if (sdprofileImage.length() != 0) {
                 RequestOptions options = new RequestOptions();
-                options.placeholder(R.drawable.ic_user_ico);
+                options.placeholder(R.drawable.user_img);
                 options.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
                 Glide.with(TabActivity.this).load(sdprofileImage).apply(options).into(iv_rdetail_vimg);
             }
+
+            if (!ownerRatingCount.isEmpty())
+            {
+                rating.setRating(Float.parseFloat(ownerRatingCount));
+            }
+
 
             if (propertyImage.length() != 0) {
                 RequestOptions options = new RequestOptions();
@@ -561,6 +572,13 @@ public class TabActivity extends BaseActivity implements View.OnClickListener {
                                     JSONObject jsonObject3 = jsonArray2.getJSONObject(k);
                                     sdprofileImage = jsonObject3.getString("profileImage");
                                     sdfullName = jsonObject3.getString("fullName");
+                                    if (jsonObject3.has("ownerRatingCount")) {
+                                        ownerRatingCount = String.valueOf(jsonObject3.getInt("ownerRatingCount"));
+                                    }
+
+                                    if (jsonObject3.has("ownerReviewCount")) {
+                                        ownerReviewCount = String.valueOf(jsonObject3.getInt("ownerReviewCount"));
+                                    }
                                 }
 
 

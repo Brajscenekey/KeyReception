@@ -5,16 +5,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +28,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
+import com.key.keyreception.activity.ActivityAdapter.DetailRatingAdapter;
+import com.key.keyreception.activity.ActivityAdapter.GetAddServiceAdapter;
+import com.key.keyreception.activity.model.GetAdditionalModel;
+import com.key.keyreception.activity.model.RatingInfo;
 import com.key.keyreception.base.BaseActivity;
 import com.key.keyreception.connection.RetrofitClient;
 import com.key.keyreception.helper.PDialog;
@@ -33,7 +41,9 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -46,7 +56,7 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
     private PDialog pDialog;
     private String price, receiverId = "";
     private Session session;
-    private TextView tv_addservice_price,spcomdetail_tv_post, tvpropname, tvaddress, tvbedroom, tvbathroom, tvpropsize, tvpropprice, tvserdate, tvstatus, tvservicename, tvdescription, tvvendorname;
+    private TextView tv_des,tv_subcategoryprice, Addservice, tv_addservice_price, spcomdetail_tv_post, tvpropname, tvaddress, tvbedroom, tvbathroom, tvpropsize, tvpropprice, tvserdate, tvstatus, tvservicename, tvdescription, tvvendorname;
     private ImageView serviceimage, own_detailimg;
     private ImageView vendorimage;
     private ImageView ivchat;
@@ -54,6 +64,16 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
     private Button btn_detail_payment, btn_review_payment;
     private RelativeLayout rl_post_completejob;
     private String recepid = "", recepprofileImage = "", recepfullName = "";
+    private RecyclerView recyclerView,recyclerView1;
+    private List<GetAdditionalModel> subCategoryList = new ArrayList<>();
+    private List<RatingInfo> ratingList  = new ArrayList<>();
+    private GetAddServiceAdapter adapter;
+    private double totalprice = 0.0;
+    private RelativeLayout rl_subcategory;
+    private View view,view1;
+    private LinearLayout ll_rating;
+    private DetailRatingAdapter ratingAdapter;
+    private RatingBar rating;
 
 
     @Override
@@ -103,12 +123,44 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
         btn_detail_payment.setOnClickListener(this);
         ivchat.setOnClickListener(this);
         paymenttype = session.getPayment();
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        TextView Addservice = findViewById(R.id.Addservice);
+        recyclerView = findViewById(R.id.recycler_view);
+        Addservice = findViewById(R.id.Addservice);
+        tv_des = findViewById(R.id.tv_des);
         tv_addservice_price = findViewById(R.id.tv_addservice_price);
-        recyclerView.setVisibility(View.GONE);
-        Addservice.setVisibility(View.GONE);
+        tv_subcategoryprice = findViewById(R.id.tv_subcategoryprice);
+        rl_subcategory = findViewById(R.id.rl_subcategory);
+        view = findViewById(R.id.view);
+        view1 = findViewById(R.id.view1);
+        recyclerView1 = findViewById(R.id.recycler_view1);
+        view1 = findViewById(R.id.view1);
+        ll_rating = findViewById(R.id.ll_rating);
+        rating = findViewById(R.id.rating);
+
+
+        serviceAdditional();
+        setReviewAdapter();
+
     }
+
+    private void serviceAdditional() {
+
+        adapter = new GetAddServiceAdapter(OwnerNotifiDetailActivity.this, subCategoryList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(OwnerNotifiDetailActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+
+    }
+    private void setReviewAdapter() {
+
+        ratingAdapter = new DetailRatingAdapter(OwnerNotifiDetailActivity.this, ratingList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(OwnerNotifiDetailActivity.this);
+        recyclerView1.setLayoutManager(mLayoutManager);
+        recyclerView1.setItemAnimator(new DefaultItemAnimator());
+        recyclerView1.setAdapter(ratingAdapter);
+
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -187,12 +239,25 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
                                 String propertySize = jsonObjectdata.getString("propertySize");
 
                                 JSONArray jsonarrrecep = jsonObject2.getJSONArray("receptionistDetail");
+                                String recRatingCount="";
+                                String recReviewCount="";
                                 if (jsonarrrecep.length() > 0) {
                                     JSONObject jsonobjrecep = jsonarrrecep.getJSONObject(0);
-                                    recepid = jsonobjrecep.getString("_id");
+                                    recepid = String.valueOf(jsonobjrecep.getInt("_id"));
                                     recepprofileImage = jsonobjrecep.getString("profileImage");
+                                    String stripeAccountId = jsonobjrecep.getString("stripeAccountId");
+                                    session.putaccountId(stripeAccountId);
                                     recepfullName = jsonobjrecep.getString("fullName");
+                                    if (jsonobjrecep.has("recRatingCount")) {
+                                        recRatingCount = String.valueOf(jsonobjrecep.getInt("recRatingCount"));
+                                    }
+                                    if (jsonobjrecep.has("recRatingCount")) {
+                                        recReviewCount = String.valueOf(jsonobjrecep.getInt("recReviewCount"));
+                                    }
+
+
                                 }
+
                                 JSONArray jsonArray1 = jsonObject2.optJSONArray("receptionistDetail");
                                 if (jsonArray1.length() > 0) {
                                     JSONObject jsonObject22 = jsonArray1.getJSONObject(0);
@@ -205,7 +270,55 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
                                     propertyImage = jsonObject5.getString("propertyImage");
                                 }
 
-                                setDetailData(propertyName, address, bedroom, bathroom, propertySize, price, serviceDate, status, title, description, recepfullName, image, propertyImage, recepprofileImage);
+
+                                JSONArray ratingarray = jsonObject2.getJSONArray("ratingInfo");
+                                for (int i = 0; i < ratingarray.length(); i++) {
+                                    JSONObject ratingobject = ratingarray.getJSONObject(i);
+                                    int _id = ratingobject.getInt("_id");
+                                    int rating = ratingobject.getInt("rating");
+                                    String review = ratingobject.getString("review");
+                                    String givenTo = ratingobject.getString("givenTo");
+                                    String crd = ratingobject.getString("crd");
+                                    int jobId = ratingobject.getInt("jobId");
+                                    int ownerId = ratingobject.getInt("ownerId");
+                                    int receptionistId = ratingobject.getInt("receptionistId");
+                                    int __v = ratingobject.getInt("__v");
+
+                                    RatingInfo model = new RatingInfo(_id, rating, review, givenTo,crd,jobId,ownerId,receptionistId,__v);
+                                    ratingList.add(model);
+                                }
+
+
+                                if (!jsonObject2.getString("subCategoryData").isEmpty()) {
+                                    JSONArray subCategoryData = jsonObject2.getJSONArray("subCategoryData");
+                                    for (int i = 0; i < subCategoryData.length(); i++) {
+                                        String title1 = "";
+                                        JSONObject subobject = subCategoryData.getJSONObject(i);
+                                        String id = subobject.getString("id");
+                                        String price = subobject.getString("price");
+                                        String quantity = "0.0";
+                                        if (subobject.has("quantity")) {
+                                            quantity = subobject.getString("quantity");
+                                        }
+                                        if (subobject.has("quntity")) {
+                                            quantity = subobject.getString("quntity");
+                                        }
+
+                                        calculatePrice(Double.valueOf(price), Double.valueOf(quantity));
+
+
+                                        if (subobject.has("title")) {
+                                            title1 = subobject.getString("title");
+                                        }
+                                        GetAdditionalModel model = new GetAdditionalModel(id, quantity, price, title1);
+                                        subCategoryList.add(model);
+                                    }
+                                }
+                                adapter.notifyDataSetChanged();
+                                ratingAdapter.notifyDataSetChanged();
+
+
+                                setDetailData(propertyName, address, bedroom, bathroom, propertySize, price, serviceDate, status, title, description, recepfullName, image, propertyImage, recepprofileImage,recRatingCount,recReviewCount);
                             } else {
                                 Toast.makeText(OwnerNotifiDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
                             }
@@ -248,7 +361,7 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
     }
 
     @SuppressLint({"SetTextI18n", "CheckResult"})
-    private void setDetailData(String pname, String add, String bed, String bath, String psize, String price, String stdate, String status, String sname, String des, String vname, String simage, String propimg, String rimage) {
+    private void setDetailData(String pname, String add, String bed, String bath, String psize, String price, String stdate, String status, String sname, String des, String vname, String simage, String propimg, String rimage,String recRatingCount,String recReviewCount) {
         tvpropname.setText(pname);
         tvaddress.setText(add);
         tvbedroom.setText(bed + " Bedroom");
@@ -257,8 +370,22 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
         tvpropprice.setText("$" + price);
         tv_addservice_price.setText("$" + price);
 
+        if (!recRatingCount.isEmpty()) {
+            rating.setRating(Float.parseFloat(recRatingCount));
+        }
+
+
+        if (des.isEmpty()){
+            tv_des.setVisibility(View.GONE);
+            tvdescription.setVisibility(View.GONE);
+            view1.setVisibility(View.GONE);
+        }
+
         tvvendorname.setText(vname);
         if (rimage.length() != 0) {
+            RequestOptions options = new RequestOptions();
+            options.placeholder(R.drawable.user_img);
+            options.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
             Glide.with(this).load(rimage).into(vendorimage);
         }
 
@@ -275,7 +402,7 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
 
         if (propimg.length() != 0) {
             RequestOptions options = new RequestOptions();
-            options.placeholder(R.drawable.home_image);
+            options.placeholder(R.drawable.ic_new_big_placeholder_img);
             options.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
             Glide.with(OwnerNotifiDetailActivity.this).load(propimg).apply(options).into(own_detailimg);
         }
@@ -319,16 +446,22 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
 
                 break;
             case "5":
-                tvstatus.setText(getResources().getString(R.string.paymentcomplete));
+                tvstatus.setText(getResources().getString(R.string.paidcompleted));
                 tvstatus.setTextColor(getResources().getColor(R.color.colorDarkGreen));
                 btn_detail_payment.setVisibility(View.GONE);
-                btn_review_payment.setVisibility(View.VISIBLE);
+                btn_review_payment.setVisibility(View.GONE);
+                if (ratingList.size() != 0){
+                    ll_rating.setVisibility(View.VISIBLE);
+                    btn_review_payment.setVisibility(View.GONE);
+                    }
+
+
 
                 break;
             default:
                 tvstatus.setText(getResources().getString(R.string.complete));
                 tvstatus.setTextColor(getResources().getColor(R.color.colorDarkGreen));
-                btn_detail_payment.setVisibility(View.VISIBLE);
+                btn_detail_payment.setVisibility(View.GONE);
                 btn_review_payment.setVisibility(View.GONE);
 
                 break;
@@ -337,6 +470,23 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
         tvdescription.setText(des);
         tvvendorname.setText(vname);
         Glide.with(OwnerNotifiDetailActivity.this).load(simage).into(serviceimage);
+
+
+        if (subCategoryList.size() != 0) {
+            recyclerView.setVisibility(View.VISIBLE);
+            rl_subcategory.setVisibility(View.VISIBLE);
+            view.setVisibility(View.VISIBLE);
+            Addservice.setVisibility(View.VISIBLE);
+            tv_subcategoryprice.setText("$" + String.valueOf(totalprice));
+
+            double totprice = Double.valueOf(price) + totalprice;
+            tv_addservice_price.setText("$" + String.valueOf(totprice));
+
+        } else {
+            tv_addservice_price.setText("$" + price);
+
+        }
+
     }
 
     public void alertPayOption() {
@@ -362,5 +512,11 @@ public class OwnerNotifiDetailActivity extends BaseActivity implements View.OnCl
             }
         });
         alertDialog.show();
+    }
+
+    public void calculatePrice(double price, double quntity) {
+
+        totalprice += price * quntity;
+        Log.e("totalprice", String.valueOf(totalprice));
     }
 }

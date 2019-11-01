@@ -14,9 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:scaleType="fitXY"
-        android:src="@drawable/home_image" />
+        app:srcCompat="@drawable/ic_new_big_placeholder_img" />
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
@@ -49,7 +49,7 @@
                 android:textColor="@color/colorwhite"
                 android:textSize="17sp" />
         </RelativeLayout>
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <RelativeLayout
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content">
 
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:id="@+id/detail_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -342,6 +342,45 @@
                             android:layout_marginTop="20dp"
                             android:background="@color/LigthestGraycolor" />
 
+
+                        <RelativeLayout
+                            android:id="@+id/rl_subcategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:layout_marginTop="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/quicksandmedium"
+                                android:gravity="center"
+                                android:text="@string/additional_services_price"
+                                android:textColor="@color/colordarkblack"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_subcategoryprice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:fontFamily="@font/quicksandbold"
+                                android:gravity="center"
+                                android:textColor="@color/colordarkblack"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:visibility="gone"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/LigthestGraycolor" />
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -374,233 +413,299 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/detail_card"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginStart="25dp">
-
-
-                    <TextView
-                        android:id="@+id/service"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/quicksandbold"
-                        android:text="@string/services"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp" />
-
-                    <TextView
-
-                        android:id="@+id/tv_myjob_detail_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:fontFamily="@font/quicksandbold"
-                        android:text="@string/start"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
-
-                    <LinearLayout
-                        android:id="@+id/detail_li1"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_below="@+id/service"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/cornerwhiteback"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/iv_myjob_detail_serviceimage"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="20dp"
-                            android:elevation="5dp"
-                            android:textAllCaps="false"
-                            android:tint="@color/colorDarkgray"
-                            app:srcCompat="@drawable/ic_plumbering" />
-
-                        <TextView
-                            android:id="@+id/tv_myjob_detail_servicename"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="6dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="5dp"
-                            android:fontFamily="@font/quicksandmedium"
-                            android:gravity="center"
-                            android:text="plumber"
-                            android:textColor="@color/colorDarkgray"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-
-                    <TextView
-                        android:id="@+id/Addservice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/detail_li1"
-                        android:layout_marginTop="15dp"
-                        android:fontFamily="@font/quicksandbold"
-                        android:text="@string/additional_services"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="17sp" />
-
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/Addservice"
-                        android:layout_marginTop="20dp"
-                        android:orientation="horizontal"
-                        android:scrollbars="none" />
-
-
-                    <TextView
-                        android:id="@+id/tv_des"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/recycler_view"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="@font/quicksandmedium"
-                        android:text="@string/des"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tv_myjob_detail_description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_des"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/quicksandregular"
-                        android:gravity="start"
-                        android:textColor="@color/colorgray"
-                        android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@+id/tv_myjob_detail_description"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginTop="7dp"
-                        android:background="@color/LigthestGraycolor" />
-
-                    <TextView
-                        android:id="@+id/spcomdetail_tv_post"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_myjob_detail_description"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="@font/quicksandmedium"
-                        android:text="@string/assign"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="16sp"
-                        android:visibility="gone" />
-
-
-                    <Button
-
-                        android:id="@+id/btn_detail_payment"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/rl_post_completejob"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/btnback"
-                        android:fontFamily="@font/quicksandmedium"
-                        android:text="@string/payment"
-                        android:textAllCaps="false"
-                        android:textColor="@color/colorwhite"
-                        android:textSize="16dp"
-                        android:visibility="gone" />
-
-                    <Button
-
-                        android:id="@+id/btn_review_payment"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/rl_post_completejob"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/btnback"
-                        android:fontFamily="@font/quicksandmedium"
-                        android:text="@string/review"
-                        android:textAllCaps="false"
-                        android:textColor="@color/colorwhite"
-                        android:textSize="16dp"
-                        android:visibility="gone" />
-
+                    android:background="@color/colorCream"
+                    >
 
                     <RelativeLayout
-                        android:id="@+id/rl_post_completejob"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/spcomdetail_tv_post"
-                        android:visibility="gone">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginStart="25dp">
 
-                        <com.makeramen.roundedimageview.RoundedImageView
-                            android:id="@+id/iv_myjob_detail_vendorimage"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginTop="20dp"
-                            android:src="@drawable/app_ico"
-                            app:riv_corner_radius="2dp" />
 
                         <TextView
-                            android:id="@+id/tv_myjob_detail_vendorname"
+                            android:id="@+id/service"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="22dp"
-                            android:layout_toRightOf="@+id/iv_myjob_detail_vendorimage"
-                            android:fontFamily="@font/quicksandregular"
+                            android:fontFamily="@font/quicksandbold"
+                            android:text="@string/services"
                             android:textColor="@color/colorPrimary"
+                            android:textSize="20sp" />
+
+                        <TextView
+
+                            android:id="@+id/tv_myjob_detail_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:fontFamily="@font/quicksandbold"
+                            android:text="@string/start"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:id="@+id/detail_li1"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/service"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/cornerwhiteback"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/iv_myjob_detail_serviceimage"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="20dp"
+                                android:elevation="5dp"
+                                android:textAllCaps="false"
+                                android:tint="@color/colorDarkgray"
+                                app:srcCompat="@drawable/ic_plumbering" />
+
+                            <TextView
+                                android:id="@+id/tv_myjob_detail_servicename"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="6dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/quicksandmedium"
+                                android:gravity="center"
+                                android:text="plumber"
+                                android:textColor="@color/colorDarkgray"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/Addservice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/detail_li1"
+                            android:layout_marginTop="15dp"
+                            android:visibility="gone"
+                            android:fontFamily="@font/quicksandbold"
+                            android:text="@string/additional_services"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="17sp" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/Addservice"
+                            android:layout_marginTop="20dp"
+                            android:visibility="gone"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:orientation="horizontal"
+                            android:scrollbars="none" />
+
+
+                        <TextView
+                            android:id="@+id/tv_des"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/recycler_view"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="@font/quicksandmedium"
+                            android:text="@string/des"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tv_myjob_detail_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_des"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/quicksandregular"
+                            android:gravity="start"
+                            android:textColor="@color/colorgray"
                             android:textSize="14sp" />
 
-                        <RatingBar
-                            android:id="@+id/tv_myjob_detail_vendorrating"
-                            style="@style/customRatingBar"
+                        <View
+                            android:id="@+id/view1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/tv_myjob_detail_description"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginTop="7dp"
+                            android:background="@color/LigthestGraycolor" />
+
+                        <TextView
+                            android:id="@+id/spcomdetail_tv_post"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_myjob_detail_vendorname"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/iv_myjob_detail_vendorimage"
-                            android:isIndicator="true"
-                            android:numStars="5"
-                            android:stepSize="0.1" />
+                            android:layout_below="@+id/tv_myjob_detail_description"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/quicksandmedium"
+                            android:text="@string/assign"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp"
+                            android:visibility="gone" />
+
+
+                        <Button
+
+                            android:id="@+id/btn_detail_payment"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/rl_post_completejob"
+                            android:layout_marginBottom="30dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/btnback"
+                            android:fontFamily="@font/quicksandmedium"
+                            android:text="@string/makepayment"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorwhite"
+                            android:textSize="16sp"
+                            android:visibility="gone" />
+
+                        <Button
+
+                            android:id="@+id/btn_review_payment"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/ll_rating"
+                            android:layout_marginBottom="30dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/btnback"
+                            android:fontFamily="@font/quicksandmedium"
+                            android:text="@string/review"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorwhite"
+                            android:textSize="16sp"
+                            android:visibility="gone" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/rl_post_completejob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/spcomdetail_tv_post"
+                            android:visibility="gone">
+
+                            <com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/iv_myjob_detail_vendorimage"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitXY"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="20dp"
+                                android:layout_marginTop="20dp"
+                                android:src="@drawable/user_img"
+                                app:riv_corner_radius="2dp" />
+
+                            <TextView
+                                android:id="@+id/tv_myjob_detail_vendorname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="22dp"
+                                android:layout_toRightOf="@+id/iv_myjob_detail_vendorimage"
+                                android:fontFamily="@font/quicksandregular"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="14sp" />
+
+                            <RatingBar
+                                android:id="@+id/rating"
+                                android:theme="@style/RatingBar"
+                                style="@style/customRatingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_myjob_detail_vendorname"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_toRightOf="@+id/iv_myjob_detail_vendorimage"
+                                android:isIndicator="true"
+                                android:numStars="5"
+                                android:stepSize="0.1" />
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:id="@+id/iv_myjob_detail_vendorchat"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:visibility="gone"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/spcomdetail_tv_post"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/circlechat"
+                            android:scaleType="centerInside"
+                            app:srcCompat="@drawable/ic_chat_ico" />
+
+
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_rating"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:layout_below="@+id/rl_post_completejob"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            >
+
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/LigthestGraycolor" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/quicksandmedium"
+                                android:text="@string/reviews"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="16sp"
+                                />
+
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycler_view1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                android:orientation="horizontal"
+                                android:scrollbars="none" />
+
+
+
+                        </LinearLayout>
+
                     </RelativeLayout>
 
-                    <ImageView
-                        android:id="@+id/iv_myjob_detail_vendorchat"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/spcomdetail_tv_post"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/circlechat"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/ic_chat_ico" />
 
                 </RelativeLayout>
+
+
+
+
             </RelativeLayout>
 
 

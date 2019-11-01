@@ -142,7 +142,7 @@
         </RelativeLayout>
 
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/setting_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -275,10 +275,102 @@
 
 
                     <RelativeLayout
+                        android:id="@+id/rl_reg"
+                        android:layout_width="wrap_content"
+                        android:layout_below="@+id/rbtn_signup"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/quicksandregular"
+                            android:textSize="12sp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:text="@string/termuse"
+                            android:textColor="@color/colorPrimary" />
+
+                        <TextView
+                            android:id="@+id/tv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_below="@+id/tv1"
+                            android:fontFamily="@font/quicksandregular"
+                            android:textSize="12sp"
+                            android:text="@string/hls"
+                            android:textColor="@color/colorPrimary" />
+
+                        <TextView
+                            android:id="@+id/ctv3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_below="@+id/tv1"
+                            android:layout_toRightOf="@+id/tv2"
+                            android:fontFamily="@font/quicksandregular"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/pp"
+                            android:textColor="@color/colorgray" />
+
+                        <View
+                            android:layout_width="75dp"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/ctv3"
+                            android:layout_toRightOf="@+id/tv2"
+                            android:layout_marginLeft="5dp"
+                            android:background="@color/colorgray" />
+
+                        <TextView
+                            android:id="@+id/tv4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_below="@+id/tv1"
+                            android:layout_toRightOf="@+id/ctv3"
+                            android:fontFamily="@font/quicksandregular"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/and"
+                            android:textColor="@color/colorPrimary" />
+
+                        <TextView
+                            android:id="@+id/ctv5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_below="@+id/tv1"
+                            android:layout_toRightOf="@+id/tv4"
+                            android:fontFamily="@font/quicksandregular"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/tuses"
+                            android:textColor="@color/colorgray" />
+
+                        <View
+                            android:layout_width="75dp"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/ctv3"
+                            android:layout_toRightOf="@+id/tv4"
+                            android:layout_marginLeft="5dp"
+                            android:background="@color/colorgray" />
+
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
                         android:id="@+id/linear4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/rbtn_signup"
+                        android:layout_below="@+id/rl_reg"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="30dp"
                         android:layout_marginTop="20dp"
@@ -322,7 +414,7 @@
             </ScrollView>
 
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
     </RelativeLayout>

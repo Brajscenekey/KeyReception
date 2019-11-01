@@ -76,7 +76,7 @@
             android:orientation="vertical"
             >
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_one"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -105,7 +105,7 @@
             android:layout_weight="1"
             >
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_two"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -136,7 +136,7 @@
             android:background="@color/colorwhite"
             >
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_three"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -166,7 +166,7 @@
             android:background="@color/colorwhite"
             >
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_four"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -198,7 +198,7 @@
             >
 
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_five"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

@@ -9,9 +9,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.media.ExifInterface;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.exifinterface.media.ExifInterface;
+import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -90,7 +90,7 @@ public class ValidateAccountActivity extends BaseActivity implements View.OnClic
             break;
 
             case R.id.iv_plusbox: {
-                if (Utility.checkCameraPermission(ValidateAccountActivity.this)) {
+                if (Utility.checkCameraPermission(ValidateAccountActivity.this)&&Utility.checkPermission(ValidateAccountActivity.this)) {
                     gallerycameramethod();
                 }
 
@@ -216,6 +216,7 @@ public class ValidateAccountActivity extends BaseActivity implements View.OnClic
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri filePath = data.getData();
+            file = new File(utility.getRealPathFromURI(filePath, ValidateAccountActivity.this));
             ExifInterface exif;
             try {
                 bm = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
@@ -227,12 +228,13 @@ public class ValidateAccountActivity extends BaseActivity implements View.OnClic
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 String picturePath = cursor.getString(columnIndex);
                 cursor.close();
-                file = new File(picturePath);
+
+                /*
                 exif = new ExifInterface(picturePath);
                 int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                         ExifInterface.ORIENTATION_UNDEFINED);
                 Bitmap bmRotated = Utility.rotateBitmap(bm, orientation);
-                iv_plusbox.setImageBitmap(bmRotated);
+          */      iv_plusbox.setImageBitmap(bm);
             } catch (IOException e) {
                 e.printStackTrace();
             }

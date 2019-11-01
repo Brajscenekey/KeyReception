@@ -4,9 +4,9 @@ package com.key.keyreception.recepnistFragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +23,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
 import com.key.keyreception.activity.EditActivity;
+import com.key.keyreception.activity.FaqActivity;
+import com.key.keyreception.activity.HelpActivity;
 import com.key.keyreception.activity.owner.OwnerTabActivity;
 import com.key.keyreception.activity.recepnist.GetValidatedataActivity;
 import com.key.keyreception.activity.recepnist.RsettingActivity;
@@ -65,17 +67,13 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         pDialog = new PDialog();
         session = new Session(mContext);
         init(view);
-        if (!session.getAvabilityStatus().isEmpty()) {
-            if (session.getAvabilityStatus().equals("0")) {
-                ava_switch.setChecked(false);
-            } else {
-                ava_switch.setChecked(true);
-            }
-        }
+
     }
 
     public void init(View view) {
         RelativeLayout setting = view.findViewById(R.id.rl_setting);
+        RelativeLayout rl_faq = view.findViewById(R.id.rl_faq);
+        RelativeLayout rl_help = view.findViewById(R.id.rl_help);
         ImageView iv_edit = view.findViewById(R.id.iv_editprofile);
         ivprofile = view.findViewById(R.id.rprof_img);
         name = view.findViewById(R.id.rpro_name);
@@ -88,6 +86,8 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         rl_valid_your_acc.setOnClickListener(this);
         ava_switch.setOnClickListener(this);
         setting.setOnClickListener(this);
+        rl_faq.setOnClickListener(this);
+        rl_help.setOnClickListener(this);
         rl_owner_switch_resep.setOnClickListener(this);
         iv_edit.setOnClickListener(this);
         ProfileApiData();
@@ -104,6 +104,19 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
             break;
             case R.id.rl_valid_your_acc: {
                 Intent intent = new Intent(mContext, GetValidatedataActivity.class);
+                startActivity(intent);
+            }
+            break;
+
+
+            case R.id.rl_faq: {
+                Intent intent = new Intent(mContext, FaqActivity.class);
+                startActivity(intent);
+            }
+            break;
+
+            case R.id.rl_help: {
+                Intent intent = new Intent(mContext, HelpActivity.class);
                 startActivity(intent);
             }
             break;
@@ -167,11 +180,15 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                                 JSONObject jsonObject2 = jsonObject.getJSONObject("data");
                                 fullName = jsonObject2.getString("fullName");
                                 mail = jsonObject2.getString("email");
+                                String availabilityStatus = jsonObject2.getString("availabilityStatus");
+                                session.putAvabilityStatus(availabilityStatus);
                                 address = jsonObject2.getString("address");
                                 profileImage = jsonObject2.getString("profileImage");
                                 latitude = jsonObject2.getString("latitude");
                                 longitude = jsonObject2.getString("longitude");
-                                setData(fullName, mail, address, profileImage);
+
+
+                                setData(fullName, mail, address, profileImage,availabilityStatus);
                             } else {
                                 Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
 
@@ -286,10 +303,18 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     }
 
     @SuppressLint("CheckResult")
-    public void setData(String name1, String email1, String address1, String image1) {
+    public void setData(String name1, String email1, String address1, String image1,String avability) {
         name.setText(name1);
         email.setText(email1);
         add.setText(address1);
+
+        if (!session.getAvabilityStatus().isEmpty()) {
+            if (avability.equals("0")) {
+                ava_switch.setChecked(false);
+            } else {
+                ava_switch.setChecked(true);
+            }
+        }
 
         if (image1.length() != 0) {
             RequestOptions options = new RequestOptions();

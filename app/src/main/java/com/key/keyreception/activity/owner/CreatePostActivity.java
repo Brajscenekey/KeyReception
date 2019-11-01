@@ -6,11 +6,11 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -41,9 +41,10 @@ import com.key.keyreception.activity.ActivityAdapter.AdditionalServiceAdapter;
 import com.key.keyreception.activity.ActivityAdapter.SelecttypeAdapter;
 import com.key.keyreception.activity.ActivityAdapter.ServicetypeAdapter;
 import com.key.keyreception.activity.model.ActivePropertyData;
-import com.key.keyreception.activity.model.Addservicemodel;
+import com.key.keyreception.activity.model.GetAdditionalModel;
 import com.key.keyreception.activity.model.PropertyJson;
 import com.key.keyreception.activity.model.ServiceCategory;
+import com.key.keyreception.activity.model.SubSevices;
 import com.key.keyreception.base.BaseActivity;
 import com.key.keyreception.connection.RetrofitClient;
 import com.key.keyreception.helper.PDialog;
@@ -74,10 +75,12 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
     private Spinner spinner_bedroom;
     private ServicetypeAdapter servicetypeAdapter;
     private List<ServiceCategory> categorylist = new ArrayList<>();
+    private List<GetAdditionalModel> additionallist = new ArrayList<>();
+    private List<SubSevices> subservicelist = new ArrayList<>();
     private List<ActivePropertyData> propertyList = new ArrayList<>();
     private SelecttypeAdapter selecttypeAdapter;
     private EditText etdatetime, etpost_price, etpost_property_size, etpost_Description;
-    private String adminPropertyCalc = "0.0", name, address, tin, tout, image, lat, lon, categoryid = "", bathroom, bedroom, propertyid, servicecheck = "", categorycheck = "", bath = "", bed = "";
+    private String adminPropertyCalc = "0.0", name, address, tin, tout, image, lat, lon, categoryid = "", bathroom="", bedroom="", propertyid, servicecheck = "", categorycheck = "", bath = "", bed = "";
     private Session session;
     private PDialog pDialog;
     private TextView tv_property_name, tv_property_address, tv_post_intime, tv_post_outtime;
@@ -89,18 +92,24 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
     private String oDate;
     private List<ActivePropertyData.OwnerDetailBean> ownerDetaillist = new ArrayList<>();
     private List<PropertyJson> propertyJsonList = new ArrayList<>();
-    private TextView ftsBedroomSelector, ftsBathroomSelector;
+    private TextView ftsBedroomSelector, ftsBathroomSelector, Addservice;
     private Boolean isFTSSelected = false;
     private Boolean isFTSSelected1 = false;
     private String propertySize = "0.0";
     private String propertySize1 = "0";
     private String json = "";
+    private String subjson = "";
+    private String subjson1 = "";
     private List<ActivePropertyData.PropertyImgBean> propertyImgs;
     private Button dialog_addprop;
     private TextView tv_dialog_no_record;
     private LinearLayout ll_btn_dialog;
     private RecyclerView recyclerViewAddService, recyclerView;
     private AdditionalServiceAdapter adapter;
+    private String propselect = "";
+    private Calendar calendar;
+    private int year1,month1,day1;
+
     private TextWatcher watcherClass_search = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -132,8 +141,17 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
         pDialog = new PDialog();
         utility = new Utility();
         validation = new Validation(this);
+        getCalender();
         init();
         serviceCategoryApiData();
+    }
+
+    private void getCalender()
+    {
+        calendar = Calendar.getInstance();
+         year1 = calendar.get(Calendar.YEAR);
+         month1 = calendar.get(Calendar.MONTH);
+         day1 = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     @Override
@@ -163,6 +181,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
         etpost_price = findViewById(R.id.post_price);
         etpost_property_size = findViewById(R.id.post_property_size);
         etpost_Description = findViewById(R.id.post_Description);
+        Addservice = findViewById(R.id.Addservice);
         Button btnpost = findViewById(R.id.btnpost);
         btnpost.setOnClickListener(this);
         spinnerwork();
@@ -175,16 +194,34 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
     }
 
     private void serviceAdditional() {
-        Addservicemodel addservicemodel = new Addservicemodel();
-        List<Addservicemodel> list = new ArrayList<>();
 
-        for (int i = 0; i <= 10; i++) {
-            addservicemodel.isselect= false;
-            addservicemodel.count = 1;
-            list.add(i, addservicemodel);
-        }
 
-        adapter = new AdditionalServiceAdapter(CreatePostActivity.this, list);
+
+        adapter = new AdditionalServiceAdapter(CreatePostActivity.this, subservicelist, new AdditionalServiceAdapter.ListenerAdditionaldata() {
+            @Override
+            public void getpos(int i,View view) {
+
+
+                utility.hideKeyboardFrom(CreatePostActivity.this,view);
+
+                subjson = "";
+                additionallist.clear();
+                for (int j = 0; j < subservicelist.size(); j++) {
+
+                    if (subservicelist.get(j).isselect) {
+
+                        GetAdditionalModel model = new GetAdditionalModel(String.valueOf(subservicelist.get(j).get_id()),
+                                String.valueOf(subservicelist.get(j).count), subservicelist.get(j).getPrice(), subservicelist.get(j).getTitle());
+
+                        additionallist.add(model);
+                        Gson gson = new Gson();
+                        subjson = gson.toJson(additionallist);
+                        Log.e("cartjson", subjson);
+                    }
+                }
+            }
+        });
+
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(CreatePostActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewAddService.setLayoutManager(mLayoutManager);
         recyclerViewAddService.setItemAnimator(new DefaultItemAnimator());
@@ -195,9 +232,35 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
     private void serviceCategory() {
         servicetypeAdapter = new ServicetypeAdapter(CreatePostActivity.this, categorylist, new ServicetypeAdapter.CatgoryListener() {
             @Override
-            public void categoryid(String id, String s) {
+            public void categoryid(String id, String s,View view) {
+
+                utility.hideKeyboardFrom(CreatePostActivity.this,view);
+
                 categoryid = id;
                 servicecheck = s;
+                subjson = "";
+                if (id.equals("1") || id.equals("4")) {
+                    recyclerViewAddService.setVisibility(View.VISIBLE);
+                    Addservice.setVisibility(View.VISIBLE);
+
+
+                } else {
+                    recyclerViewAddService.setVisibility(View.GONE);
+                    Addservice.setVisibility(View.GONE);
+
+
+
+                }
+
+                for (int j = 0; j < subservicelist.size(); j++) {
+
+                    subservicelist.get(j).isselect = false;
+                    subservicelist.get(j).count = 1;
+
+                }
+                adapter.notifyDataSetChanged();
+
+
             }
         });
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(CreatePostActivity.this, LinearLayoutManager.HORIZONTAL, false);
@@ -246,6 +309,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+                Log.e("","log print");
             }
         });
 
@@ -253,12 +317,13 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     v.performClick();
-                    bathroom = spinner_bathroom.getSelectedItem().toString();
-                    if (isFTSSelected1) {
-                        bath ="1";
-                        ftsBathroomSelector.setVisibility(View.GONE);
-                        bathroom = spinner_bathroom.getSelectedItem().toString();
-                    }
+//                    bathroom = spinner_bathroom.getSelectedItem().toString();
+//                    if (isFTSSelected1) {
+//                        bath = "1";
+//                        ftsBathroomSelector.setVisibility(View.GONE);
+//                        if (bathroom.isEmpty()){
+//                        bathroom = spinner_bathroom.getSelectedItem().toString();}
+//                    }
                 }
                 return true;
             }
@@ -284,13 +349,13 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     v.performClick();
-                    bedroom = spinner_bedroom.getSelectedItem().toString();
+                   /* bedroom = spinner_bedroom.getSelectedItem().toString();
                     if (isFTSSelected1) {
                         bed = "1";
                         ftsBedroomSelector.setVisibility(View.GONE);
                         bedroom = spinner_bedroom.getSelectedItem().toString();
 
-                    }
+                    }*/
                 }
                 return true;
             }
@@ -325,7 +390,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
             }
             case R.id.btnpost: {
                 if (utility.checkInternetConnection(this)) {
-                    if (validation.isselectpropValid(categorycheck) && validation.isbedroomValid(bed) && validation.isbathroomValid(bath) && validation.ispriceValid(etpost_price) && validation.ispropsizeValid(etpost_property_size) && validation.isdateValid(etdatetime) && validation.isserviceValid(servicecheck) && validation.isdesValid(etpost_Description) && validation.ispropsizeinValid(Double.parseDouble(etpost_property_size.getText().toString()))) {
+                    if (validation.isselectpropValid(categorycheck) && validation.isbedroomValid(bed) && validation.isbathroomValid(bath) && validation.ispriceValid(etpost_price) && validation.ispropsizeValid(etpost_property_size) && validation.isdateValid(etdatetime) && validation.isserviceValid(servicecheck) &&  validation.ispropsizeinValid(Double.parseDouble(etpost_property_size.getText().toString()))) {
 
                         postApiData();
 
@@ -339,10 +404,10 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
     }
 
     public void startdatemathod() {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(CreatePostActivity.this,
                 new DatePickerDialog.OnDateSetListener() {
                     @SuppressLint("SetTextI18n")
@@ -361,9 +426,12 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
                         oDate = Utility.formatDate(tmpDate, "dd/MMM/yyyy hh:mm a", "yyyy-MM-dd HH:mm:ss");
                         //2019-04-02 16:21:44
                         Log.e("What", disDate + "  ==  " + oDate);
+                        year1 = year;
+                        month1 = month;
+                        day1 = day;
 
                     }
-                }, year, month, day);
+                }, year1, month1, day1);
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.show();
     }
@@ -395,6 +463,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
             // Button done = layout.findViewById(R.id.dialog_done);
+            propselect = "";
             Button cancel = layout.findViewById(R.id.dialog_cancel);
             dialog_addprop = layout.findViewById(R.id.dialog_addprop);
             ImageView iv_dialogarrow_post = layout.findViewById(R.id.iv_dialogarrow_post);
@@ -424,6 +493,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
                 @Override
                 public void pos(int i) {
                     propertyid = String.valueOf(propertyList.get(i).get_id());
+                    propselect = "1";
                     name = propertyList.get(i).getPropertyName();
                     address = propertyList.get(i).getPropertyAddress();
                     tin = propertyList.get(i).getPropertyCheckIn();
@@ -477,29 +547,33 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
                 @Override
                 public void onClick(View view) {
                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                    rl_propertydata.setVisibility(View.VISIBLE);
-                    li_selectproperty1.setVisibility(View.GONE);
-                    tv_post_intime.setVisibility(View.VISIBLE);
-                    tv_post_outtime.setVisibility(View.VISIBLE);
-                    categorycheck = "dfs";
-                    Glide.with(CreatePostActivity.this).load(image).into(iv_property_image);
-                    popUp.dismiss();
-                    PropertyJson propertyJson = new PropertyJson();
-                    propertyJson.setPropertyName(name);
-                    propertyJson.setPropertyAddress(address);
-                    propertyJson.setPropertyId(propertyid);
-                    propertyJson.setPropertyLat(lat);
-                    propertyJson.setPropertyLong(lon);
-                    propertyJson.setBathroom(bathroom);
-                    propertyJson.setBedroom(bedroom);
-                    propertyJson.setPropertySize(propertySize);
-                    propertyJson.setIsImageAdd("1");
-                    propertyJsonList.add(propertyJson);
-                    Gson gson = new Gson();
-                    json = gson.toJson(propertyJsonList);
-                    Log.v("projson", json);
-                    setPropertyData(bedroom, bathroom, propertySize);
-                    pricecalculation(getPropertysizePrice(propertySize), propertySize1);
+                    if (!propselect.isEmpty()) {
+                        rl_propertydata.setVisibility(View.VISIBLE);
+                        li_selectproperty1.setVisibility(View.GONE);
+                        tv_post_intime.setVisibility(View.VISIBLE);
+                        tv_post_outtime.setVisibility(View.VISIBLE);
+                        categorycheck = "dfs";
+                        Glide.with(CreatePostActivity.this).load(image).into(iv_property_image);
+                        popUp.dismiss();
+                        PropertyJson propertyJson = new PropertyJson();
+                        propertyJson.setPropertyName(name);
+                        propertyJson.setPropertyAddress(address);
+                        propertyJson.setPropertyId(propertyid);
+                        propertyJson.setPropertyLat(lat);
+                        propertyJson.setPropertyLong(lon);
+                        propertyJson.setBathroom(bathroom);
+                        propertyJson.setBedroom(bedroom);
+                        propertyJson.setPropertySize(propertySize);
+                        propertyJson.setIsImageAdd("1");
+                        propertyJsonList.add(propertyJson);
+                        Gson gson = new Gson();
+                        json = gson.toJson(propertyJsonList);
+                        Log.v("projson", json);
+                        setPropertyData(bedroom, bathroom, propertySize);
+                        pricecalculation(getPropertysizePrice(propertySize), propertySize1);
+                    } else {
+                        Toast.makeText(CreatePostActivity.this, "Please select property", Toast.LENGTH_SHORT).show();
+                    }
 
 
                 }
@@ -535,7 +609,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
     public void serviceCategoryApiData() {
         pDialog.pdialog(CreatePostActivity.this);
         Call<ResponseBody> call = RetrofitClient.getInstance()
-                .getAnotherApi().categoryList();
+                .getApi().categoryList();
         call.enqueue(new Callback<ResponseBody>() {
             @SuppressLint("NewApi")
             @Override
@@ -550,6 +624,19 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
                             String statusCode = jsonObject.optString("status");
                             String msg = jsonObject.optString("message");
                             if (statusCode.equals("success")) {
+
+                                JSONArray subServices = jsonObject.getJSONArray("subServices");
+                                for (int i = 0; i < subServices.length(); i++) {
+
+                                    SubSevices sevices;
+                                    JSONObject jsonObject3 = subServices.getJSONObject(i);
+                                    int _id = jsonObject3.getInt("_id");
+                                    String title = jsonObject3.getString("title");
+                                    String price = jsonObject3.getString("price");
+                                    sevices = new SubSevices(_id, title, price, 1, false);
+                                    subservicelist.add(sevices);
+
+                                }
                                 JSONArray jsonArray = jsonObject.getJSONArray("data");
                                 for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -563,6 +650,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
                                     categorylist.add(serviceCategory);
 
                                 }
+                                adapter.notifyDataSetChanged();
                                 servicetypeAdapter.notifyDataSetChanged();
                             } else {
                                 Toast.makeText(CreatePostActivity.this, msg, Toast.LENGTH_SHORT).show();
@@ -720,7 +808,7 @@ public class CreatePostActivity extends BaseActivity implements View.OnClickList
         String authtoken = session.getAuthtoken();
         pDialog.pdialog(this);
         Call<ResponseBody> call = RetrofitClient.getInstance()
-                .getApi().createJob(authtoken, propertyid, bedroom, bathroom, address, lat, lon, price, propsize, oDate, intime, outtime, categoryid, des, name, json);
+                .getApi().createJob(authtoken, propertyid, bedroom, bathroom, address, lat, lon, price, propsize, oDate, intime, outtime, categoryid, des, name, json, subjson);
         call.enqueue(new Callback<ResponseBody>() {
             @SuppressLint("NewApi")
             @Override

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:keepScreenOn="true"
     android:background="@color/colorCream"
     >
 
@@ -78,7 +79,7 @@
             android:orientation="vertical"
             >
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/owner_img_one"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -107,7 +108,7 @@
             android:layout_weight="1"
             >
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/owner_img_two"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -138,7 +139,7 @@
             android:background="@color/colorwhite"
             >
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/owner_img_three"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -168,7 +169,7 @@
             android:background="@color/colorwhite"
             >
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/owner_img_four"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -200,7 +201,7 @@
             >
 
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/owner_img_five"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

@@ -5,8 +5,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
+import com.key.keyreception.activity.DetailActivity;
+import com.key.keyreception.connection.RetrofitClient;
 import com.key.keyreception.helper.ProgressDialog;
 import com.key.keyreception.helper.Utility;
 import com.key.keyreception.helper.Validation;
@@ -29,10 +32,15 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.Customer;
 import com.stripe.model.Token;
 
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 
 public class MakePaymentCardActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,7 +51,8 @@ public class MakePaymentCardActivity extends AppCompatActivity implements View.O
     private int width, year1, month1;
     private Utility utility;
     private Validation validation;
-
+    private String paymenttype = "paypal", jobId, receiverId, amount, token = "";
+    private int lastClick = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +76,10 @@ public class MakePaymentCardActivity extends AppCompatActivity implements View.O
         ivBack.setOnClickListener(this);
         etexdate.setOnClickListener(this);
         btn_addcard.setOnClickListener(this);
+        jobId = session.getjobId();
+        receiverId = session.getreceiverId();
+        amount = session.getamount();
+
 
 
     }
@@ -82,7 +95,8 @@ public class MakePaymentCardActivity extends AppCompatActivity implements View.O
                 onBackPressed();
                 break;
             case R.id.btn_addcard:
-                cardpaymanage();
+                     cardpaymanage();
+
                 break;
 
         }
@@ -94,8 +108,11 @@ public class MakePaymentCardActivity extends AppCompatActivity implements View.O
 
         if (utility.checkInternetConnection(this)) {
             if (validation.isCNumValid(etcardnum) && validation.isEDateValid(etexdate) && validation.isCvvValid(etcvv)) {
-                MakePaymentCardActivity.AsyncTaskRunner asyncTaskRunner = new MakePaymentCardActivity.AsyncTaskRunner();
-                asyncTaskRunner.execute();
+                if (lastClick != R.id.btn_addcard) {
+                    lastClick = R.id.btn_addcard;
+
+                    MakePaymentCardActivity.AsyncTaskRunner asyncTaskRunner = new MakePaymentCardActivity.AsyncTaskRunner();
+                asyncTaskRunner.execute();}
             }
         } else {
 
@@ -138,6 +155,7 @@ public class MakePaymentCardActivity extends AppCompatActivity implements View.O
 
                     finish();
                 } else {
+                    lastClick =0;
                     Toast.makeText(MakePaymentCardActivity.this, "Stripe Error", Toast.LENGTH_SHORT).show();
 
                 }
@@ -226,11 +244,92 @@ public class MakePaymentCardActivity extends AppCompatActivity implements View.O
         protected void onPostExecute(Token token) {
             super.onPostExecute(token);
             if (token != null) {
-                saveCreditCard(token.getId());
+                jobPaymentApi(token.getId());
             } else {
+                lastClick =0;
                 Toast.makeText(MakePaymentCardActivity.this, error, Toast.LENGTH_SHORT).show();
             }
 
         }
+    }
+
+    private void jobPaymentApi(String tokenid) {
+        pDialog.show();
+        String token = session.getAuthtoken();
+        String accid = session.getaccountId();
+        String cusid = session.getstripeCustomerId();
+        Call<ResponseBody> call = RetrofitClient.getInstance().getApi().jobPayment(token,
+                jobId, receiverId, amount, paymenttype, tokenid, "token", accid, cusid);
+
+        call.enqueue(new retrofit2.Callback<ResponseBody>() {
+            @SuppressLint("NewApi")
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull retrofit2.Response<ResponseBody> response) {
+
+                try {
+                    pDialog.dismiss();
+
+
+                    switch (response.code()) {
+                        case 200: {
+
+                            @SuppressLint({"NewApi", "LocalSuppress"}) String stresult = Objects.requireNonNull(response.body()).string();
+                            Log.d("response", stresult);
+                            JSONObject jsonObject = new JSONObject(stresult);
+                            String statusCode = jsonObject.optString("status");
+                            String msg = jsonObject.optString("message");
+                            if (statusCode.equals("success")) {
+                                Toast.makeText(MakePaymentCardActivity.this, msg, Toast.LENGTH_SHORT).show();
+                                Intent intent  = new Intent(MakePaymentCardActivity.this, DetailActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                lastClick =0;
+                                Toast.makeText(MakePaymentCardActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            break;
+                        }
+                        case 400: {
+                            @SuppressLint({"NewApi", "LocalSuppress"}) String result = Objects.requireNonNull(response.errorBody()).string();
+                            Log.d("response400", result);
+                            JSONObject jsonObject = new JSONObject(result);
+                            String statusCode = jsonObject.optString("status");
+                            String msg = jsonObject.optString("message");
+                            if (statusCode.equals("true")) {
+                                Toast.makeText(MakePaymentCardActivity.this, msg, Toast.LENGTH_SHORT).show();
+                            }
+
+                            break;
+                        }
+                        case 401:
+
+                            try {
+                                session.logout();
+                                Toast.makeText(MakePaymentCardActivity.this, "Session expired, please login again.", Toast.LENGTH_SHORT).show();
+                                Log.d("ResponseInvalid", Objects.requireNonNull(response.errorBody()).string());
+
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                            break;
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+
+                pDialog.dismiss();
+
+
+            }
+        });
+
     }
 }

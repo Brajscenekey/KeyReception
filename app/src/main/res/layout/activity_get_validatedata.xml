@@ -200,7 +200,7 @@
                 android:text="@string/sub"
                 android:layout_marginBottom="30dp"
                 android:visibility="gone"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:layout_below="@+id/forgot_emailaddress"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/quicksandmedium"

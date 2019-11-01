@@ -3,7 +3,7 @@ package com.key.keyreception.activity.owner;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -59,7 +59,7 @@ public class PayOptionActivity extends BaseActivity implements View.OnClickListe
     private Validation validation;
     private Utility utility;
     private Button btn_paymentmethod;
-
+    private int lastClick = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

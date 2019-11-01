@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.key.keyreception">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -23,7 +24,8 @@
         android:roundIcon="@drawable/app_ico"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".activity.SplashActivity"
             android:screenOrientation="portrait">
@@ -78,6 +80,7 @@
         <activity
             android:name=".activity.DetailActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/SliderTheme"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="DetailActivity" />
@@ -169,7 +172,7 @@
             android:theme="@style/CropImage" />
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:enabled="true"
             android:exported="false"
@@ -205,8 +208,15 @@
         <activity android:name=".activity.owner.PaymentdetailActivity" />
         <activity android:name=".activity.owner.AddPayCardActivity" />
         <activity android:name=".activity.owner.MakePaymentCardActivity" />
-        <activity android:name=".activity.recepnist.BankinfoActivity"></activity>
-        <activity android:name=".activity.recepnist.BankinfoEditActivity" />
+        <activity
+            android:name=".activity.recepnist.BankinfoActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity android:name=".activity.TearmsAndConditionActivity" />
+        <activity android:name=".activity.FaqActivity" />
+        <activity android:name=".activity.HelpActivity" />
+        <activity android:name=".activity.ChatUserReportActivity">
+
+        </activity>
     </application>
 
 </manifest>

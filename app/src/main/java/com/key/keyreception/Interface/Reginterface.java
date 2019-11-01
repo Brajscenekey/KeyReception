@@ -5,7 +5,6 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -30,6 +29,10 @@ public interface Reginterface {
                              @Field("firebaseToken") String firebaseToken
     );
 
+    @GET("categoryList")
+    Call<ResponseBody> categoryList();
+
+
     @POST("forgotPassword")
     @FormUrlEncoded
     Call<ResponseBody> forgot(@Field("email") String email);
@@ -48,7 +51,7 @@ public interface Reginterface {
 
     @Multipart
     @POST("updateProfile")
-    Call<ResponseBody> updatepayment(@Header("authToken") String authToken,@Header("Content-Type") String ContentType,
+    Call<ResponseBody> updatepayment(@Header("authToken") String authToken, @Header("Content-Type") String ContentType,
                                      @Part("billingAddress") RequestBody billingAddress,
                                      @Part("billingLatitude") RequestBody billingLatitude,
                                      @Part("billingLongitude") RequestBody billingLongitude,
@@ -88,7 +91,8 @@ public interface Reginterface {
                                       @Part("address") RequestBody add,
                                       @Part("latitude") RequestBody lat,
                                       @Part("longitude") RequestBody lng,
-                                      @Part("notificationStatus") RequestBody notificationStatus
+                                      @Part("notificationStatus") RequestBody notificationStatus,
+                                      @Part("availabilityStatus") RequestBody availabilityStatus
     );
 
 
@@ -145,6 +149,7 @@ public interface Reginterface {
             @Part("longitude") RequestBody longitude,
             @Part("loginUserId") RequestBody loginUserId,
             @Part("notificationStatus") RequestBody add,
+            @Part("availabilityStatus") RequestBody availabilityStatus,
             @Part MultipartBody.Part profileImage
     );
 
@@ -174,7 +179,8 @@ public interface Reginterface {
                                  @Field("categoryId") String categoryId,
                                  @Field("description") String description,
                                  @Field("propertyName") String propertyName,
-                                 @Field("propertyData") String propertyData
+                                 @Field("propertyData") String propertyData,
+                                 @Field("subCategoryData") String subCategoryData
     );
 
     @POST("jobList")
@@ -187,13 +193,16 @@ public interface Reginterface {
     );
 
     @GET("notificationList")
-    Call<ResponseBody>notificationList(@Header("authToken") String authToken);
+    Call<ResponseBody> notificationList(@Header("authToken") String authToken);
 
     @POST("earningList")
-    Call<ResponseBody>earningList(@Header("authToken") String authToken);
+    Call<ResponseBody> earningList(@Header("authToken") String authToken);
+
+    @GET("ratingList")
+    Call<ResponseBody> ratingList(@Header("authToken") String authToken);
 
     @GET("logout")
-    Call<ResponseBody>logout(@Header("authToken") String authToken);
+    Call<ResponseBody> logout(@Header("authToken") String authToken);
 
     @POST("jobDetail")
     @FormUrlEncoded
@@ -201,128 +210,141 @@ public interface Reginterface {
                                  @Field("jobId") String jobId
     );
 
+    @POST("reviewRating")
+    @FormUrlEncoded
+    Call<ResponseBody> reviewRating(@Header("authToken") String authToken,
+                                    @Field("jobId") String jobId,
+                                    @Field("ownerId") String ownerId,
+                                    @Field("receptionistId") String receptionistId,
+                                    @Field("rating") String rating,
+                                    @Field("review") String review,
+                                    @Field("givenTo") String givenTo
+    );
+
 
     @POST("updateProfile")
     @Multipart
     Call<ResponseBody> notificationStatus(@Header("authToken") String authToken,
-                                      @Part("notificationStatus") RequestBody add);
+                                          @Part("notificationStatus") RequestBody add);
 
 
     @POST("jobPayment")
     @FormUrlEncoded
     Call<ResponseBody> jobPayment(@Header("authToken") String authToken,
-                                          @Field("jobId") String jobId,
-                                          @Field("receiverId") String receiverId,
-                                          @Field("amount") String amount,
-                                          @Field("paymentType") String paymentType
+                                  @Field("jobId") String jobId,
+                                  @Field("receiverId") String receiverId,
+                                  @Field("amount") String amount,
+                                  @Field("paymentType") String paymentType,
+                                  @Field("sourceId") String sourceId,
+                                  @Field("sourceType") String sourceType,
+                                  @Field("accountId") String accountId,
+                                  @Field("customerId") String customerId
     );
 
     @POST("availabilityStatus")
     @FormUrlEncoded
     Call<ResponseBody> availabilityStatus(@Header("authToken") String authToken,
-                                  @Field("availabilityStatus") String jobId
+                                          @Field("availabilityStatus") String jobId
     );
 
     @POST("deletePropertyImage")
     @FormUrlEncoded
     Call<ResponseBody> deletePropertyImage(@Header("authToken") String authToken,
-                                          @Field("propertyId") String propertyId,
-                                          @Field("imageId") String imageId
+                                           @Field("propertyId") String propertyId,
+                                           @Field("imageId") String imageId
 
     );
 
- @POST("addProperty")
+    @POST("addProperty")
     @FormUrlEncoded
     Call<ResponseBody> addProperty(@Header("authToken") String authToken,
-                                          @Field("isImageAdd") String isImageAdd,
-                                          @Field("propertyName") String propertyName,
-                                          @Field("bedroom") String bedroom,
-                                          @Field("bathroom") String bathroom,
-                                          @Field("propertyAddress") String propertyAddress,
-                                          @Field("propertyLat") String propertyLat,
-                                          @Field("propertyLong") String propertyLong,
-                                          @Field("propertySize") String propertySize,
-                                          @Field("propertyId") String propertyId
+                                   @Field("isImageAdd") String isImageAdd,
+                                   @Field("propertyName") String propertyName,
+                                   @Field("bedroom") String bedroom,
+                                   @Field("bathroom") String bathroom,
+                                   @Field("propertyAddress") String propertyAddress,
+                                   @Field("propertyLat") String propertyLat,
+                                   @Field("propertyLong") String propertyLong,
+                                   @Field("propertySize") String propertySize,
+                                   @Field("propertyId") String propertyId
     );
 
-     @POST("updateProperty")
+    @POST("updateProperty")
     @FormUrlEncoded
     Call<ResponseBody> updateProperty(@Header("authToken") String authToken,
-                                          @Field("propertyName") String propertyName,
-                                          @Field("bedroom") String bedroom,
-                                          @Field("bathroom") String bathroom,
-                                          @Field("propertyAddress") String propertyAddress,
-                                          @Field("propertyLat") String propertyLat,
-                                          @Field("propertyLong") String propertyLong,
-                                          @Field("propertySize") String propertySize,
-                                          @Field("propertyId") String propertyId
+                                      @Field("propertyName") String propertyName,
+                                      @Field("bedroom") String bedroom,
+                                      @Field("bathroom") String bathroom,
+                                      @Field("propertyAddress") String propertyAddress,
+                                      @Field("propertyLat") String propertyLat,
+                                      @Field("propertyLong") String propertyLong,
+                                      @Field("propertySize") String propertySize,
+                                      @Field("propertyId") String propertyId
     );
 
 
     @POST("addPropertyImage")
     @Multipart
     Call<ResponseBody> addPropertyImage(@Header("authToken") String authToken,
-                                          @Part("isImageAdd") RequestBody isImageAdd,
-                                          @Part("propertyId") RequestBody propertyId,
-                                          @Part MultipartBody.Part profileImage
+                                        @Part("isImageAdd") RequestBody isImageAdd,
+                                        @Part("propertyId") RequestBody propertyId,
+                                        @Part MultipartBody.Part profileImage
     );
-
 
 
     @POST("propertyDetail")
     @FormUrlEncoded
     Call<ResponseBody> propertyDetail(@Header("authToken") String authToken,
-                                 @Field("propertyId") String propertyId
+                                      @Field("propertyId") String propertyId
     );
 
     @POST("deleteProperty")
     @FormUrlEncoded
     Call<ResponseBody> deleteProperty(@Header("authToken") String authToken,
-                                 @Field("propertyId") String propertyId
+                                      @Field("propertyId") String propertyId
     );
 
     @POST("switchUser")
     @FormUrlEncoded
     Call<ResponseBody> switchUser(@Header("authToken") String authToken,
-                                 @Field("userType") String userType
+                                  @Field("userType") String userType
     );
 
     @Multipart
     @POST("updateSwitchedUserProfile")
     Call<ResponseBody> updateSwitchedUserProfile(@Header("authToken") String authToken,
-                                 @Part("categoryId") RequestBody categoryId,
-                                 @Part("securityNumber") RequestBody securityNumber,
-                                 @Part("paymentType") RequestBody paymentType,
-                                 @Part("billingAddress") RequestBody billingAddress,
-                                 @Part("billingLatitude") RequestBody billingLatitude,
-                                 @Part("billingLongitude") RequestBody billingLongitude,
-                                 @Part("userType") RequestBody userType,
-                                 @Part MultipartBody.Part profileImage);
-
+                                                 @Part("categoryId") RequestBody categoryId,
+                                                 @Part("securityNumber") RequestBody securityNumber,
+                                                 @Part("paymentType") RequestBody paymentType,
+                                                 @Part("billingAddress") RequestBody billingAddress,
+                                                 @Part("billingLatitude") RequestBody billingLatitude,
+                                                 @Part("billingLongitude") RequestBody billingLongitude,
+                                                 @Part("userType") RequestBody userType,
+                                                 @Part MultipartBody.Part profileImage);
 
 
     @POST("stripeAddAccount")
     @FormUrlEncoded
     Call<ResponseBody> stripeAddAccount(@Header("authToken") String authToken,
-                                       @Field("firstName") String isImageAdd,
-                                   @Field("lastName") String lastName,
-                                   @Field("routingNumber") String routingNumber,
-                                   @Field("accountNo") String accountNo,
-                                   @Field("country") String country,
-                                   @Field("currency") String currency,
-                                   @Field("accountHolderType") String accountHolderType
-    );
-
-    @POST("stripeUpdateAccount")
-    @FormUrlEncoded
-    Call<ResponseBody> stripeUpdateAccount(@Header("authToken") String authToken,
                                         @Field("firstName") String isImageAdd,
                                         @Field("lastName") String lastName,
                                         @Field("routingNumber") String routingNumber,
                                         @Field("accountNo") String accountNo,
                                         @Field("country") String country,
                                         @Field("currency") String currency,
-                                        @Field("accountHolderType") String accountHolderType,
+                                        @Field("accountHolderType") String accountHolderType
+    );
+
+    @POST("stripeUpdateAccount")
+    @FormUrlEncoded
+    Call<ResponseBody> stripeUpdateAccount(@Header("authToken") String authToken,
+                                           @Field("firstName") String isImageAdd,
+                                           @Field("lastName") String lastName,
+                                           @Field("routingNumber") String routingNumber,
+                                           @Field("accountNo") String accountNo,
+                                           @Field("country") String country,
+                                           @Field("currency") String currency,
+                                           @Field("accountHolderType") String accountHolderType,
                                            @Field("accountId") String accountId
     );
 

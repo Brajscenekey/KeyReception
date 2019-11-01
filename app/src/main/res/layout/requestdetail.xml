@@ -6,7 +6,7 @@
     android:background="#80000000"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/setting_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -224,7 +224,7 @@
                 android:layout_marginTop="20dp"
                 android:scaleType="fitXY"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/app_ico"
+                android:src="@drawable/user_img"
                 app:riv_corner_radius="2dp"
                 />
 
@@ -242,8 +242,9 @@
                 />
 
             <RatingBar
-                android:id="@+id/tv_rdetail_vendorrating"
+                android:id="@+id/rating"
                 style="@style/customRatingBar"
+                android:theme="@style/RatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:isIndicator="true"
@@ -270,7 +271,7 @@
                     android:layout_height="40dp"
                     android:text="@string/reject"
                     android:layout_marginBottom="10dp"
-                    android:textSize="16dp"
+
                     android:gravity="center"
                     android:backgroundTint="@color/appcolor"
                     android:fontFamily="@font/quicksandmedium"
@@ -303,6 +304,6 @@
             </LinearLayout>
 
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

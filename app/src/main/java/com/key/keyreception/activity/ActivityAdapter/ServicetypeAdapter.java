@@ -2,8 +2,8 @@ package com.key.keyreception.activity.ActivityAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +67,8 @@ public class ServicetypeAdapter extends RecyclerView.Adapter<ServicetypeAdapter.
     }
 
     public interface CatgoryListener {
-        void categoryid(String id, String s);
+        void categoryid(String id, String s,View view);
+
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -96,7 +97,7 @@ public class ServicetypeAdapter extends RecyclerView.Adapter<ServicetypeAdapter.
                             categoryList.get(i).isselect = false;
                         }
                         serviceCategory.isselect = true;
-                        catgoryListener.categoryid(String.valueOf(serviceCategory.get_id()), "check");
+                        catgoryListener.categoryid(String.valueOf(serviceCategory.get_id()), "check",view);
                         notifyDataSetChanged();
 
 

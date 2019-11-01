@@ -12,7 +12,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/app_ico"
+        android:src="@drawable/user_img"
         app:riv_corner_radius="2dp"
         />
 

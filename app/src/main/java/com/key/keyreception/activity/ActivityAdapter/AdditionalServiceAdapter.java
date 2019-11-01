@@ -1,9 +1,8 @@
 package com.key.keyreception.activity.ActivityAdapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.key.keyreception.R;
-import com.key.keyreception.activity.model.Addservicemodel;
+import com.key.keyreception.activity.model.SubSevices;
 
 import java.util.List;
 
@@ -23,11 +22,17 @@ import java.util.List;
 public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalServiceAdapter.MyViewHolder> {
 
     private Context context;
-    private List<Addservicemodel> list;
+    private List<SubSevices> list;
+    private ListenerAdditionaldata listenerAdditionaldata;
 
-    public AdditionalServiceAdapter(Context context, List<Addservicemodel> list) {
+    public interface ListenerAdditionaldata{
+         void getpos(int i,View view);
+    }
+
+    public AdditionalServiceAdapter(Context context, List<SubSevices> list,ListenerAdditionaldata listenerAdditionaldata) {
         this.context = context;
         this.list = list;
+        this.listenerAdditionaldata =listenerAdditionaldata;
     }
 
     @NonNull
@@ -41,19 +46,18 @@ public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalSer
     public void onBindViewHolder(@NonNull final AdditionalServiceAdapter.MyViewHolder holder, final int position) {
 
 
+        SubSevices sevices = list.get(position);
 
-        Addservicemodel addservicemodel = list.get(position);
-
-        if (addservicemodel.count < 10)
-        {
-            holder.tv_quantity.setText(String.valueOf("0"+addservicemodel.count));
-        }
-        else {
-            holder.tv_quantity.setText(String.valueOf(addservicemodel.count));
+        if (sevices.count < 10) {
+            holder.tv_quantity.setText(String.valueOf("0" + sevices.getCount()));
+        } else {
+            holder.tv_quantity.setText(String.valueOf(sevices.getCount()));
 
         }
 
-        if (addservicemodel.isIsselect()) {
+        holder.tv_addcategory.setText(sevices.getTitle());
+        holder.tv_categoryprice.setText(String.format("$%s", sevices.getPrice()));
+        if (sevices.isselect) {
             holder.rl_service.setBackground(context.getResources().getDrawable(R.drawable.activeservice));
             holder.iv_circle.setImageDrawable(context.getResources().getDrawable(R.drawable.active_check_ico));
             holder.tv_addcategory.setTextColor(context.getResources().getColor(R.color.colorwhite));
@@ -104,14 +108,16 @@ public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalSer
             switch (view.getId()) {
                 case R.id.rl_service: {
                     if (getAdapterPosition() != -1) {
-                        int pos = getAdapterPosition();
+                        SubSevices sevices = list.get(getAdapterPosition());
                         if (list.get(getAdapterPosition()).isIsselect()) {
-                            list.set(pos, new Addservicemodel(list.get(pos).getCount(),false));
-                            notifyItemChanged(pos);
+                            sevices.isselect = false;
+                            listenerAdditionaldata.getpos(getAdapterPosition(),view);
+                            notifyItemChanged(getAdapterPosition());
                             notifyDataSetChanged();
                         } else {
-                            list.set(pos, new Addservicemodel(list.get(pos).getCount(),true));
-                            notifyItemChanged(pos);
+                            sevices.isselect = true;
+                            listenerAdditionaldata.getpos(getAdapterPosition(),view);
+                            notifyItemChanged(getAdapterPosition());
                             notifyDataSetChanged();
                         }
                     }
@@ -120,21 +126,23 @@ public class AdditionalServiceAdapter extends RecyclerView.Adapter<AdditionalSer
                 break;
 
                 case R.id.iv_add: {
-                    Addservicemodel addservicemodel = list.get(getAdapterPosition());
-                    int test_count = addservicemodel.getCount();
+                    SubSevices sevices = list.get(getAdapterPosition());
+                    int test_count = sevices.getCount();
                     test_count = test_count + 1;
                     if (test_count != 0) {
-                        addservicemodel.setCount(test_count);
+                        sevices.setCount(test_count);
+                        listenerAdditionaldata.getpos(getAdapterPosition(),view);
                         notifyItemChanged(getAdapterPosition());
                     }
                 }
                 break;
                 case R.id.iv_minu: {
-                    Addservicemodel addservicemodel = list.get(getAdapterPosition());
-                    int test_count = addservicemodel.getCount();
+                    SubSevices sevices = list.get(getAdapterPosition());
+                    int test_count = sevices.getCount();
                     test_count = test_count - 1;
                     if (test_count != 0) {
-                        addservicemodel.setCount(test_count);
+                        sevices.setCount(test_count);
+                        listenerAdditionaldata.getpos(getAdapterPosition(),view);
                         notifyItemChanged(getAdapterPosition());
                     }
 

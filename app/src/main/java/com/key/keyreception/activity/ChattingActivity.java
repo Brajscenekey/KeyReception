@@ -11,13 +11,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -67,6 +67,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
 import static com.key.keyreception.helper.Constant.Other_User_id;
 
 
@@ -104,7 +105,6 @@ public class ChattingActivity extends BaseActivity implements View.OnClickListen
     private FirebaseUserModel otherUserInfo;
     private String otherprofilePic = "";
     private boolean isNotification = true;
-
 
 
     @Override
@@ -177,6 +177,16 @@ public class ChattingActivity extends BaseActivity implements View.OnClickListen
                     ImagePicker.pickImage(ChattingActivity.this);
                 }
                 break;
+            case R.id.ly_reportuser: {
+
+                Intent intent = new Intent(ChattingActivity.this,ChatUserReportActivity.class);
+                intent.putExtra("username",otherfullName);
+                startActivity(intent);
+                cv_chat_menu.setVisibility(View.GONE);
+                icotraingle.setVisibility(View.GONE);
+
+            }
+            break;
 
 
             case R.id.iv_menu:
@@ -226,6 +236,7 @@ public class ChattingActivity extends BaseActivity implements View.OnClickListen
 
         }
     }
+
     private void closeKeyboard() {
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -251,6 +262,17 @@ public class ChattingActivity extends BaseActivity implements View.OnClickListen
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         LinearLayout ly_block_user = findViewById(R.id.ly_block_user);
         LinearLayout ly_delete_chat = findViewById(R.id.ly_delete_chat);
+        LinearLayout ly_reportuser = findViewById(R.id.ly_reportuser);
+
+        ly_reportuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ChattingActivity.this,ChatUserReportActivity.class);
+                intent.putExtra("username",otherfullName);
+                startActivity(intent);
+            }
+        });
+
         ImageView chat_back_logo = findViewById(R.id.chat_back_logo);
         ly_delete_chat.setOnClickListener(this);
         ly_block_user.setOnClickListener(this);
@@ -258,6 +280,7 @@ public class ChattingActivity extends BaseActivity implements View.OnClickListen
         chat_back_logo.setOnClickListener(this);
         iv_menu.setOnClickListener(this);
         chat_gallery.setOnClickListener(this);
+        ly_reportuser.setOnClickListener(this);
         intentData();
         myUserData();
         Othertype = session.getusertype().equals("owner") ? "receptionist" : "owner"; // get value of other user data
@@ -292,15 +315,15 @@ public class ChattingActivity extends BaseActivity implements View.OnClickListen
             Other_User_id = Integer.parseInt(otherid);
         }
 
-        if (intent.getStringExtra("id") != null){
+        if (intent.getStringExtra("id") != null) {
             otherid = intent.getStringExtra("id");
             otherprofileImage = intent.getStringExtra("profileImage");
             otherfullName = intent.getStringExtra("fullName");
             Other_User_id = Integer.parseInt(otherid);
-        }else {
+        } else {
             Bundle bundle = getIntent().getExtras();
 
-            if (bundle.getString("opponentChatId") != null ){
+            if (bundle.getString("opponentChatId") != null) {
                 otherid = bundle.getString("opponentChatId");
                 Other_User_id = Integer.parseInt(otherid);
 
@@ -335,16 +358,15 @@ public class ChattingActivity extends BaseActivity implements View.OnClickListen
                         try {
                             Glide.with(chat_userimg.getContext()).load(otherprofilePic).into(chat_userimg);
 
-                        }
-                        catch (Exception e)
-                        {
-                            Log.e("","");
+                        } catch (Exception e) {
+                            Log.e("", "");
                         }
 
 
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -448,7 +470,7 @@ public class ChattingActivity extends BaseActivity implements View.OnClickListen
                             super.onScrollStateChanged(recyclerView, newState);
                             if (newState == RecyclerView.SCROLL_STATE_IDLE) {
 
-                                if (chatList.size() >  position ) {
+                                if (chatList.size() > position) {
                                     if (chatList.get(mLayoutManager.findFirstVisibleItemPosition()).banner_date != null && chatList.get(mLayoutManager.findFirstVisibleItemPosition()).banner_date.isEmpty()) {
                                         if (chatList.get(position).isImage == 1) {
                                             tv_chat_date.setVisibility(View.VISIBLE);
@@ -552,7 +574,7 @@ public class ChattingActivity extends BaseActivity implements View.OnClickListen
                 chat.banner_date = getDateBanner(chat.getTimestamp());
                 chatList.add(chat);
                 //chattingAdapter.notifyDataSetChanged();
-                int size = chatList.size()-1;
+                int size = chatList.size() - 1;
                 chattingAdapter.notifyItemInserted(size);
                 recyclerView.scrollToPosition(size);
                 //getChatLoadMore(dataSnapshot.getKey());
@@ -944,7 +966,7 @@ public class ChattingActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void sendPushNotificationToReceiver(String title, String message, String username, String uid, String firebaseToken) {
-        String oppToken = firebaseToken.equals(otherUserInfo.firebaseToken)?"":otherUserInfo.firebaseToken;
+        String oppToken = firebaseToken.equals(otherUserInfo.firebaseToken) ? "" : otherUserInfo.firebaseToken;
         FcmNotificationBuilder.initialize()
                 .title(title)
                 .message(message)

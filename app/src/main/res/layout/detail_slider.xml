@@ -12,7 +12,7 @@
         android:id="@+id/imagee"
         android:layout_width="match_parent"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/home_image"
+        app:srcCompat="@drawable/ic_new_big_placeholder_img"
         android:layout_height="match_parent"/>
 
 </LinearLayout>

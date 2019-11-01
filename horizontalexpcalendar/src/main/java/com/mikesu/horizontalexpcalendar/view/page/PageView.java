@@ -1,8 +1,8 @@
 package com.mikesu.horizontalexpcalendar.view.page;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
+import androidx.core.content.ContextCompat;
+
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
@@ -17,7 +17,6 @@ import com.mikesu.horizontalexpcalendar.view.cell.BaseCellView;
 import com.mikesu.horizontalexpcalendar.view.cell.DayCellView;
 import com.mikesu.horizontalexpcalendar.view.cell.LabelCellView;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeConstants;
 
 /**
  * Created by MikeSu on 09.08.2016.

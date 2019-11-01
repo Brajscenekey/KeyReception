@@ -7,11 +7,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.key.keyreception.R;
 import com.key.keyreception.base.BaseActivity;
+import com.key.keyreception.ownerChildFragment.MyjobFragment;
 import com.key.keyreception.ownerFragment.OwnerEarningFragment;
 import com.key.keyreception.ownerFragment.OwnerMessageFragment;
 import com.key.keyreception.ownerFragment.OwnerNotificationFragment;
@@ -82,8 +84,8 @@ public class OwnerTabActivity extends BaseActivity implements View.OnClickListen
 
             if (lastClick != R.id.owner_rtlv_one) {
                 lastClick = R.id.owner_rtlv_one;
-                tv_head.setText(getResources().getString(R.string.reserv));
-                fragment = new OwnerReservationFragment();
+                tv_head.setText(getResources().getString(R.string.myjob));
+                fragment = new MyjobFragment();
                 displaySelectedFragment(fragment);
                 iv_addprop.setVisibility(View.GONE);
                 appoint.setImageResource(R.drawable.ic_active_calendar);
@@ -144,10 +146,15 @@ public class OwnerTabActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 10001) {
+            if (resultCode == Activity.RESULT_OK && fragment instanceof MyjobFragment) {
+                ((MyjobFragment) fragment).switchApi();
+            }
+        }
+        /* if (requestCode == 10001) {
             if (resultCode == Activity.RESULT_OK && fragment instanceof OwnerReservationFragment) {
                 ((OwnerReservationFragment) fragment).switchPager();
             }
-        }
+        }*/
         if (requestCode == 10006) {
             if (resultCode == Activity.RESULT_OK && fragment instanceof OwnerEarningFragment) {
                 ((OwnerEarningFragment) fragment).ownerSwitchPager();
@@ -163,8 +170,8 @@ public class OwnerTabActivity extends BaseActivity implements View.OnClickListen
             case R.id.owner_rtlv_one:
                 if (lastClick != R.id.owner_rtlv_one) {
                     lastClick = R.id.owner_rtlv_one;
-                    tv_head.setText(getResources().getString(R.string.reserv));
-                    fragment = new OwnerReservationFragment();
+                    tv_head.setText(getResources().getString(R.string.myjob));
+                    fragment = new MyjobFragment();
                     displaySelectedFragment(fragment);
                     updateTabView(R.id.owner_rtlv_one);
                     headrl.setVisibility(View.VISIBLE);
@@ -308,7 +315,7 @@ public class OwnerTabActivity extends BaseActivity implements View.OnClickListen
     }
 
     public void displaySelectedFragment(Fragment fragment) {
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
     }

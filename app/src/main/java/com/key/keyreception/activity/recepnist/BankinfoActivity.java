@@ -1,10 +1,9 @@
 package com.key.keyreception.activity.recepnist;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -120,6 +119,7 @@ public class BankinfoActivity extends AppCompatActivity implements View.OnClickL
                                 JSONObject jsonObject1 = jsonObject.getJSONObject("data");
                                 accountId = jsonObject1.getString("accountId");
                                 session.putaccountId(accountId);
+                                session.putisBankAccountAdd("1");
 //acct_1FDW6rLM6jhk1iPK
                                 Toast.makeText(BankinfoActivity.this, msg, Toast.LENGTH_SHORT).show();
                                 onBackPressed();
@@ -305,11 +305,6 @@ public class BankinfoActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
 
         switch (view.getId()) {
-            case R.id.iv_editIcon: {
-                Intent intent = new Intent(BankinfoActivity.this, BankinfoEditActivity.class);
-                startActivity(intent);
-            }
-            break;
             case R.id.btn_addcard: {
                 bankInfoValidation();
             }

@@ -11,12 +11,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.media.ExifInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.exifinterface.media.ExifInterface;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -304,11 +304,11 @@ public class CompleteValidActivity extends BaseActivity implements View.OnClickL
                 String picturePath = cursor.getString(columnIndex);
                 cursor.close();
                 file = new File(picturePath);
-                exif = new ExifInterface(picturePath);
+                /*exif = new ExifInterface(picturePath);
                 int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                         ExifInterface.ORIENTATION_UNDEFINED);
-                Bitmap bmRotated = Utility.rotateBitmap(bm, orientation);
-                iv_plusbox.setImageBitmap(bmRotated);
+                Bitmap bmRotated = Utility.rotateBitmap(bm, orientation);*/
+                iv_plusbox.setImageBitmap(bm);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -331,7 +331,7 @@ public class CompleteValidActivity extends BaseActivity implements View.OnClickL
     public void serviceCategoryApiData() {
 
         Call<ResponseBody> call = RetrofitClient.getInstance()
-                .getAnotherApi().categoryList();
+                .getApi().categoryList();
         call.enqueue(new Callback<ResponseBody>() {
             @SuppressLint("NewApi")
             @Override

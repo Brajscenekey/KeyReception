@@ -9,14 +9,14 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -92,7 +92,7 @@ public class AppointmentFragment extends BaseFragment implements View.OnClickLis
 
             if (editable == et_jobsearch.getEditableText()) {
 
-                myJobListApiData1(status, et_jobsearch.getText().toString());
+                myJobListApiData(status, et_jobsearch.getText().toString());
 
 
             }
@@ -122,7 +122,7 @@ public class AppointmentFragment extends BaseFragment implements View.OnClickLis
         tv_inprogress.setTextColor(getResources().getColor(R.color.colorPrimary));
         tv_complete.setTextColor(getResources().getColor(R.color.colorPrimary));
         tv_Apponotstart.setTextColor(getResources().getColor(R.color.colorPrimary));
-        myJobListApiData1("", "");
+        myJobListApiData("", "");
         status = "";
         rl_filter.setVisibility(View.GONE);
     }
@@ -311,6 +311,7 @@ public class AppointmentFragment extends BaseFragment implements View.OnClickLis
                                         propertyImgBean = new MyJobData.PropertyImgBean(_id1, propertyImage);
                                         imglist.add(propertyImgBean);
                                     }
+                                    ownerList = new ArrayList<>();
                                     JSONArray jsonArray2 = jsonObject2.getJSONArray("ownerDetail");
                                     for (int k = 0; k < jsonArray2.length(); k++) {
 
@@ -327,6 +328,7 @@ public class AppointmentFragment extends BaseFragment implements View.OnClickLis
                                     myJobData = new MyJobData(_id, propertyId, propertyName, bedroom, bathroom, price, propertySize, serviceDate, checkIn, checkOut, address, latitude, longitude, description, status, crd, propertyDatalist, imglist, ownerList, categorylist);
                                     jobDataList.add(myJobData);
                                 }
+//                                adapter.filter();
                                 adapter.notifyDataSetChanged();
                             } else {
                                 recyclerView.setVisibility(View.GONE);
@@ -468,6 +470,7 @@ public class AppointmentFragment extends BaseFragment implements View.OnClickLis
                                     myJobData = new MyJobData(_id, propertyId, propertyName, bedroom, bathroom, price, propertySize, serviceDate, checkIn, checkOut, address, latitude, longitude, description, status, crd, propertyDatalist, imglist, ownerList, categorylist);
                                     jobDataList.add(myJobData);
                                 }
+//                                adapter.filter();
                                 adapter.notifyDataSetChanged();
                             } else {
                                 recyclerView.setVisibility(View.GONE);
@@ -594,12 +597,13 @@ public class AppointmentFragment extends BaseFragment implements View.OnClickLis
         RequestBody lat1 = RequestBody.create(text, lat);
         RequestBody lon1 = RequestBody.create(text, lon);
         RequestBody notstatus1 = RequestBody.create(text, notstatus);
+        RequestBody availabilityStatus = RequestBody.create(text, session.getAvabilityStatus());
 
         RequestBody requestBody = new FormBody.Builder().add("address", add).add("latitude", lat).add("longitude", lon).build();
 
 
         Call<ResponseBody> call = RetrofitClient.getInstance()
-                .getApi().updateLocation(authtoken, add1, lat1, lon1, notstatus1);
+                .getApi().updateLocation(authtoken, add1, lat1, lon1, notstatus1,availabilityStatus);
         call.enqueue(new retrofit2.Callback<ResponseBody>() {
             @SuppressLint("NewApi")
             @Override

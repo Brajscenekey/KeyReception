@@ -4,9 +4,9 @@ package com.key.keyreception.ownerFragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +22,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.key.keyreception.R;
 import com.key.keyreception.Session;
 import com.key.keyreception.activity.EditActivity;
+import com.key.keyreception.activity.FaqActivity;
+import com.key.keyreception.activity.HelpActivity;
 import com.key.keyreception.activity.owner.PayOptionActivity;
 import com.key.keyreception.activity.recepnist.CompleteValidActivity;
 import com.key.keyreception.activity.recepnist.RsettingActivity;
@@ -65,6 +67,8 @@ public class OwnerProfileFragment extends BaseFragment implements View.OnClickLi
     public void init(View view) {
         RelativeLayout setting = view.findViewById(R.id.rl_owner_setting);
         RelativeLayout rl_owner_pay = view.findViewById(R.id.rl_owner_pay);
+        RelativeLayout rl_faq = view.findViewById(R.id.rl_owner_faq);
+        RelativeLayout rl_help = view.findViewById(R.id.rl_owner_help);
         ImageView iv_edit = view.findViewById(R.id.iv_owner_edit);
         RelativeLayout service = view.findViewById(R.id.rl_owner_service);
         ivprofile = view.findViewById(R.id.owner_prof_img);
@@ -76,6 +80,8 @@ public class OwnerProfileFragment extends BaseFragment implements View.OnClickLi
         setting.setOnClickListener(this);
         iv_edit.setOnClickListener(this);
         service.setOnClickListener(this);
+        rl_faq.setOnClickListener(this);
+        rl_help.setOnClickListener(this);
         rl_owner_pay.setOnClickListener(this);
         ProfileApiData();
 
@@ -84,6 +90,18 @@ public class OwnerProfileFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+
+            case R.id.rl_owner_faq: {
+                Intent intent = new Intent(mContext, FaqActivity.class);
+                startActivity(intent);
+            }
+            break;
+
+            case R.id.rl_owner_help: {
+                Intent intent = new Intent(mContext, HelpActivity.class);
+                startActivity(intent);
+            }
+            break;
             case R.id.rl_owner_pay: {
                 Intent intent = new Intent(mContext, PayOptionActivity.class);
                 startActivity(intent);

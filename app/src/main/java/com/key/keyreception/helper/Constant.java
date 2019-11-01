@@ -10,8 +10,8 @@ import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -92,17 +92,17 @@ public class Constant {
     }
 
     //************snack bar**************//
-    public static void snackBar(View loginLayout, String message) {
+    /*public static void snackBar(View loginLayout, String message) {
         Snackbar snackbar = Snackbar.make(loginLayout, message, Snackbar.LENGTH_LONG);
         View snackBarView = snackbar.getView();
         snackBarView.setBackgroundColor(loginLayout.getResources().getColor(R.color.colorgray));
         TextView textView = snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(0xFF049a43);
         snackbar.show();
-    }
+    }*/
 
     //*****************check for network connection******************//
-    public static boolean isNetworkAvailable(Context context, View coordinatorLayout) {
+    /*public static boolean isNetworkAvailable(Context context, View coordinatorLayout) {
 
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -121,7 +121,7 @@ public class Constant {
                     .setAction("RETRY", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            /*not used*/
+                            *//*not used*//*
                         }
                     });
             snackbar.setActionTextColor(Color.RED);
@@ -132,7 +132,7 @@ public class Constant {
             return false;
         }
         return false;
-    }
+    }*/
 
     //""""""""image Resize"""""""""/
     public static Bitmap getImageResized(Context context, Uri selectedImage) {

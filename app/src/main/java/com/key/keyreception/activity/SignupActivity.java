@@ -15,12 +15,12 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -111,14 +111,14 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                    if (items[i].equals("Camera")) {
-                        utility.dispatchTakePictureIntent(SignupActivity.this);
-                    } else if (items[i].equals("Gallery")) {
-                        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        startActivityForResult(galleryIntent, 1);
-                    } else if (items[i].equals("Cancel")) {
-                        dialogInterface.dismiss();
-                    }
+                if (items[i].equals("Camera")) {
+                    utility.dispatchTakePictureIntent(SignupActivity.this);
+                } else if (items[i].equals("Gallery")) {
+                    Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(galleryIntent, 1);
+                } else if (items[i].equals("Cancel")) {
+                    dialogInterface.dismiss();
+                }
 
             }
         });
@@ -136,6 +136,8 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
         ImageView ivback = findViewById(R.id.iv_leftarrow_signup);
         Button btnsingup = findViewById(R.id.rbtn_signup);
         TextView tvsignin = findViewById(R.id.tv_signin);
+        TextView ctv3 = findViewById(R.id.ctv3);
+        TextView ctv5 = findViewById(R.id.ctv5);
         etcat = findViewById(R.id.rsigne_category);
         if (session.getusertype().equals("owner")) {
             etcat.setVisibility(View.GONE);
@@ -148,6 +150,10 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
         ivback.setOnClickListener(this);
         profile.setOnClickListener(this);
         etaddress.setOnClickListener(this);
+        ctv3.setOnClickListener(this);
+        ctv5.setOnClickListener(this);
+
+
     }
 
     @SuppressLint("NewApi")
@@ -155,6 +161,19 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
 
         switch (v.getId()) {
+
+            case R.id.ctv3:
+                Intent intent3 = new Intent(SignupActivity.this, TearmsAndConditionActivity.class);
+                intent3.putExtra("terms", "policy");
+                startActivity(intent3);
+                break;
+
+            case R.id.ctv5:
+                Intent intent1 = new Intent(SignupActivity.this, TearmsAndConditionActivity.class);
+                intent1.putExtra("terms", "terms");
+                startActivity(intent1);
+                break;
+
             case R.id.rbtn_signup: {
                 if (utility.checkInternetConnection(this)) {
                     if (validation.isEmailValid(etmail) && validation.isFirstNameValid(etname) && validation.isPasswordValid(etpass)) {
@@ -186,7 +205,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
                 finish();
             }
             case R.id.iv_signup_prof: {
-                if (Utility.checkCameraPermission(SignupActivity.this)) {
+                if (Utility.checkCameraPermission(SignupActivity.this) && Utility.checkCameraPermission(SignupActivity.this) ) {
                     gallerycameramethod();
                 }
             }
@@ -368,12 +387,12 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
                         String picturePath = cursor.getString(columnIndex);
                         cursor.close();
                         file = new File(picturePath);
-                        exif = new ExifInterface(picturePath);
+                      /*  exif = new ExifInterface(picturePath);
                         int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                                 ExifInterface.ORIENTATION_UNDEFINED);
-                        Bitmap bmRotated = Utility.rotateBitmap(bm, orientation);
-                        profile.setImageBitmap(bmRotated);
-                        String img = utility.saveImage(bmRotated, SignupActivity.this);
+                        Bitmap bmRotated = Utility.rotateBitmap(bm, orientation);*/
+                        profile.setImageBitmap(bm);
+                        String img = utility.saveImage(bm, SignupActivity.this);
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -500,7 +519,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     public void serviceCategoryApiData() {
 
         Call<ResponseBody> call = RetrofitClient.getInstance()
-                .getAnotherApi().categoryList();
+                .getApi().categoryList();
         call.enqueue(new Callback<ResponseBody>() {
             @SuppressLint("NewApi")
             @Override

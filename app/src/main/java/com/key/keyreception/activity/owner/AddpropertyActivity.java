@@ -14,16 +14,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.InputFilter;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -61,7 +60,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -400,8 +398,11 @@ public class AddpropertyActivity extends BaseActivity implements View.OnClickLis
                     break;
                 case CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE:// Image Cropper
                     CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
                     try {
                         if (result != null) {
+                           /* Bitmap profileImageBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), result.getUri());
+                            Log.e("",profileImageBitmap.toString());*/
                             temPhoto = result.getUri();
                             file = new File(temPhoto.getPath());
                             uploadImageApiData();
@@ -537,12 +538,12 @@ public class AddpropertyActivity extends BaseActivity implements View.OnClickLis
                     closeKeyboard();
 
                     v.performClick();
-                    bathroom = spinnerbath.getSelectedItem().toString();
+                  /*  bathroom = spinnerbath.getSelectedItem().toString();
                     if (isFTSSelected1) {
                         bath = "1";
                         ftsBathroomSelector.setVisibility(View.GONE);
                         bathroom = spinnerbath.getSelectedItem().toString();
-                    }
+                    }*/
                 }
                 return true;
             }
@@ -573,12 +574,12 @@ public class AddpropertyActivity extends BaseActivity implements View.OnClickLis
                     v.performClick();
                     closeKeyboard();
 
-                    bedroom = spinnerbed.getSelectedItem().toString();
+                   /* bedroom = spinnerbed.getSelectedItem().toString();
                     if (isFTSSelected1) {
                         bed = "1";
                         ftsBedroomSelector.setVisibility(View.GONE);
                         bedroom = spinnerbed.getSelectedItem().toString();
-                    }
+                    }*/
                 }
                 return true;
             }

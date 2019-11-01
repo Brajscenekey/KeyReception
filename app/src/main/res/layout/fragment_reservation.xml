@@ -26,7 +26,7 @@
             exp:top_container_height="50dp"/>
 
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reserv_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
