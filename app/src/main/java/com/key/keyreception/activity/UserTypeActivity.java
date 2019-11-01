@@ -71,5 +71,6 @@ public class UserTypeActivity extends AppCompatActivity implements View.OnClickL
             break;
 
         }
+        
     }
 }
