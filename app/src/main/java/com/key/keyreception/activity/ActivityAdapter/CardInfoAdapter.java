@@ -127,6 +127,7 @@ public class CardInfoAdapter extends RecyclerView.Adapter<CardInfoAdapter.ViewHo
             }
         }
     }
+
 }
 
 
